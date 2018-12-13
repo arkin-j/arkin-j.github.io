@@ -10,7 +10,7 @@
   
   <title>
     
-      Categories | 阿金同学
+      阿金同学
     
   </title>
   <link href="//cdn.staticfile.org/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
@@ -149,30 +149,40 @@
 </header>
 
     <div id="article-banner">
-  <h2>Categories</h2>
-  <p class="post-date">文章分类</p>
+  <h2>Archives</h2>
+  <p class="post-date">文章归档</p>
 </div>
-<main class="app-body">
+<main class="app-body" id="archives">
   
-    <div class="article-category">
-      <ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/其它/">其它</a><span class="article-category-list-count">2</span><ul class="article-category-list-child"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/其它/杂说/">杂说</a><span class="article-category-list-count">1</span></li></ul></li></ul>
-    </div>
+  
+  
+    <section class="time-section">
+  <h1 class="section-year">
+    2018
+  </h1>
+  <div class="section-list">
+    
+    
+      <div class="section-list-item">
+        <a href="/2018/12/13/其它/2018-12-13/" class="archive-title">测试分类</a>
+        <p class="archive-date">12-13</p>
+      </div>
+    
+      <div class="section-list-item">
+        <a href="/2018/05/21/其它/20180521/" class="archive-title">基于MarkDown的博客系统搭建</a>
+        <p class="archive-date">05-21</p>
+      </div>
+    
+  </div>
+</section>
   
 </main>
 
 <script>
   (function () {
-    var url = 'https://arkin-j.github.io/categories/index.html'
-    $('#article-banner').geopattern(url)
-    $('.header').removeClass('fixed-header')
-
-    var tag = location.hash.replace('#', '')
-    if (tag) {
-      var tagId = "#tag-" + tag;
-      $("html, body").animate({
-        scrollTop: $(tagId).offset().top 
-      }, 400)
-    }
+    var url = 'https://arkin-j.github.io/categories/其它/index.html';
+    $('#article-banner').geopattern(url);
+    $('.header').removeClass('fixed-header');
   })();
 </script>
     <div class="scroll-top">

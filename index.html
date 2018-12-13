@@ -71,6 +71,12 @@
       
         <li class="list-item">
           
+            <a href="/categories/" class="item-link">分类</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
             <a href="/tags/" class="item-link">标签</a>
           
         </li>
@@ -88,6 +94,17 @@
         </li>
       
     </ul>
+
+    
+  <div id="site_search">
+   <div class="form-group">
+    <input type="text" id="local-search-input" autocomplete="off" name="q" results="0" placeholder="search" class="st-search-input st-default-search-input form-control"/>
+   </div>  
+  <div id="local-search-result"></div>
+  </div>
+
+
+    
     <div class="menu">
       <span class="icon-bar"></span>
       <span class="icon-bar"></span>
@@ -99,6 +116,12 @@
           <li class="menu-item">
             
               <a href="/" class="menu-link mobile-active">首页</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/categories/" class="menu-link">分类</a>
             
           </li>
         
@@ -129,44 +152,46 @@
   
     <article class="article-card">
       <h2 class="article-head">
-        <a href="/2018/05/21/20180521/">基于MarkDown的博客系统搭建</a>
+        <a href="/2018/12/13/其它/2018-12-13/">测试分类</a>
       </h2>
-      <p class="article-date">May 21, 2018</p>
+      <p class="article-date">
+      发表:<span> 2018-12-13 02:06 </span>
+      分类:
       
-        
-  <a href="/tags#初始化" >
-    <span class="tag-code">初始化</span>
-  </a>
-
-  <a href="/tags#Hexo" >
-    <span class="tag-code">Hexo</span>
-  </a>
-
-  <a href="/tags#MWeb" >
-    <span class="tag-code">MWeb</span>
-  </a>
-
-  <a href="/tags#GitPage" >
-    <span class="tag-code">GitPage</span>
-  </a>
-
-      
+      <span class="article-category">
+        <a class="article-category-link" href="/categories/其它/">其它</a>,<a class="article-category-link" href="/categories/其它/杂说/">杂说</a>
+      </span>
+    
+    </p>
       <div class="article-summary">
         
-          基于MarkDown的博客系统搭建
-纯粹的文章编写,使用到GitPage,Hexo,MWeb,七牛做图床
-
-注册七牛云账号七牛官网
-创建”对象存储”
-个人中心获取密钥
-安装MWebMWeb官网
-Mweb界面:
-打开设置界面
-填入密钥
-完成后就可以上传图片了,图片访问需要一个固定域名,创建时七 ...
+          
         
       </div>
-      <a class="more" href="/2018/05/21/20180521/">更多</a>
+      <a class="more" href="/2018/12/13/其它/2018-12-13/">阅读全文</a>
+    </article>
+  
+    <article class="article-card">
+      <h2 class="article-head">
+        <a href="/2018/05/21/其它/20180521/">基于MarkDown的博客系统搭建</a>
+      </h2>
+      <p class="article-date">
+      发表:<span> 2018-05-21 02:06 </span>
+      分类:
+      
+      <span class="article-category">
+        <a class="article-category-link" href="/categories/其它/">其它</a>
+      </span>
+    
+    </p>
+      <div class="article-summary">
+        
+          <blockquote>
+<p>纯粹的文章编写,使用到GitPage,Hexo,MWeb,七牛做图床</p>
+</blockquote>
+        
+      </div>
+      <a class="more" href="/2018/05/21/其它/20180521/">阅读全文</a>
     </article>
   
 
@@ -179,9 +204,10 @@ Mweb界面:
 </div>
     <footer class="app-footer">
   <p class="copyright">
-    &copy; 2018 | Proudly powered by Arkin</a>
+    &copy; 2018 |  Powered by Arkin</a>
   </p>
 </footer>
+<script src="/js/search.js"></script> 
 
 <script>
   function async(u, c) {
@@ -218,6 +244,20 @@ Mweb界面:
     });
   })
 </script>
+
+
+
+   <script type="text/javascript">      
+     var search_path = "search.xml";
+   if (search_path.length == 0) {
+    search_path = "search.xml";
+   }
+   var path = "/" + search_path;
+     searchFunc(path, 'local-search-input', 'local-search-result');
+   </script>
+
+
+
 <!-- Baidu Tongji -->
 
 <script src="/js/script.js"></script>

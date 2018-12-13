@@ -71,6 +71,12 @@
       
         <li class="list-item">
           
+            <a href="/categories/" class="item-link">分类</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
             <a href="/tags/" class="item-link">标签</a>
           
         </li>
@@ -88,6 +94,17 @@
         </li>
       
     </ul>
+
+    
+  <div id="site_search">
+   <div class="form-group">
+    <input type="text" id="local-search-input" autocomplete="off" name="q" results="0" placeholder="search" class="st-search-input st-default-search-input form-control"/>
+   </div>  
+  <div id="local-search-result"></div>
+  </div>
+
+
+    
     <div class="menu">
       <span class="icon-bar"></span>
       <span class="icon-bar"></span>
@@ -99,6 +116,12 @@
           <li class="menu-item">
             
               <a href="/" class="menu-link">首页</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/categories/" class="menu-link">分类</a>
             
           </li>
         
@@ -127,7 +150,14 @@
 
     <div id="article-banner">
   <h2>基于MarkDown的博客系统搭建</h2>
-  <p class="post-date">2018-05-21</p>
+  <div class="post-date">
+    发表:<span> 2018-05-21 </span>
+    分类:
+      <span class="article-category">
+        <a class="article-category-link" href="/categories/其它/">其它</a>
+      </span>
+    
+  </div>
   <div class="arrow-down">
     <a href="javascript:;"></a>
   </div>
@@ -135,14 +165,10 @@
 <main class="app-body flex-box">
   <!-- Article START -->
   <article class="post-article">
-    
-      <div class="article-category">
-        <a class="article-category-link" href="/categories/技术/">技术</a>
-      </div>
-    
-    <section class="markdown-content"><h1 id="基于MarkDown的博客系统搭建"><a href="#基于MarkDown的博客系统搭建" class="headerlink" title="基于MarkDown的博客系统搭建"></a>基于MarkDown的博客系统搭建</h1><blockquote>
+    <section class="markdown-content"><blockquote>
 <p>纯粹的文章编写,使用到GitPage,Hexo,MWeb,七牛做图床</p>
 </blockquote>
+<a id="more"></a>
 <h2 id="注册七牛云账号"><a href="#注册七牛云账号" class="headerlink" title="注册七牛云账号"></a>注册七牛云账号</h2><p><a href="https://qiniu.com" target="_blank" rel="noopener">七牛官网</a></p>
 <h3 id="创建”对象存储”"><a href="#创建”对象存储”" class="headerlink" title="创建”对象存储”"></a>创建”对象存储”</h3><p><img src="http://pjk1j4vy6.bkt.clouddn.com/2018-12-13-15446982780002.jpg" alt="创建对象存储"></p>
 <h3 id="个人中心获取密钥"><a href="#个人中心获取密钥" class="headerlink" title="个人中心获取密钥"></a>个人中心获取密钥</h3><p><img src="http://pjk1j4vy6.bkt.clouddn.com/2018-12-13-15446983346117.jpg" alt="密钥"></p>
@@ -203,6 +229,19 @@
     <!-- Tags END -->
     <!-- NAV START -->
     
+  <div class="nav-container">
+    <!-- reverse left and right to put prev and next in a more logic postition -->
+    
+    
+      <a class="nav-right" href="/2018/12/13/其它/2018-12-13/">
+        
+          测试分类
+        
+        <span class="nav-arrow"> →</span>
+      </a>
+    
+  </div>
+
     <!-- NAV END -->
 
     <!-- 二维码 START -->
@@ -226,7 +265,7 @@
   <div class="toc-main">
     <strong class="toc-title">Catalog</strong>
     
-      <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#基于MarkDown的博客系统搭建"><span class="toc-nav-text">基于MarkDown的博客系统搭建</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#注册七牛云账号"><span class="toc-nav-text">注册七牛云账号</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#创建”对象存储”"><span class="toc-nav-text">创建”对象存储”</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#个人中心获取密钥"><span class="toc-nav-text">个人中心获取密钥</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#安装MWeb"><span class="toc-nav-text">安装MWeb</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#Mweb界面"><span class="toc-nav-text">Mweb界面:</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#打开设置界面"><span class="toc-nav-text">打开设置界面</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#填入密钥"><span class="toc-nav-text">填入密钥</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#使用”外部模式”-快捷键⌘-E"><span class="toc-nav-text">使用”外部模式” 快捷键⌘+E</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#配置项目"><span class="toc-nav-text">配置项目</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#安装Hexo"><span class="toc-nav-text">安装Hexo</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#新建项目"><span class="toc-nav-text">新建项目</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#新建文章"><span class="toc-nav-text">新建文章</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#运行预览服务"><span class="toc-nav-text">运行预览服务</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#配置GitHubPage"><span class="toc-nav-text">配置GitHubPage</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#配置发布"><span class="toc-nav-text">配置发布</span></a></li></ol></li></ol></li></ol>
+      <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#注册七牛云账号"><span class="toc-nav-text">注册七牛云账号</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#创建”对象存储”"><span class="toc-nav-text">创建”对象存储”</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#个人中心获取密钥"><span class="toc-nav-text">个人中心获取密钥</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#安装MWeb"><span class="toc-nav-text">安装MWeb</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#Mweb界面"><span class="toc-nav-text">Mweb界面:</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#打开设置界面"><span class="toc-nav-text">打开设置界面</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#填入密钥"><span class="toc-nav-text">填入密钥</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#使用”外部模式”-快捷键⌘-E"><span class="toc-nav-text">使用”外部模式” 快捷键⌘+E</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#配置项目"><span class="toc-nav-text">配置项目</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#安装Hexo"><span class="toc-nav-text">安装Hexo</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#新建项目"><span class="toc-nav-text">新建项目</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#新建文章"><span class="toc-nav-text">新建文章</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#运行预览服务"><span class="toc-nav-text">运行预览服务</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#配置GitHubPage"><span class="toc-nav-text">配置GitHubPage</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#配置发布"><span class="toc-nav-text">配置发布</span></a></li></ol></li></ol>
     
   </div>
 </aside>
@@ -236,7 +275,7 @@
 
 <script>
   (function () {
-    var url = 'http://yoursite.com/2018/05/21/20180521/';
+    var url = 'https://arkin-j.github.io/2018/05/21/其它/20180521/';
     var banner = ''
     if (banner !== '' && banner !== 'undefined' && banner !== 'null') {
       $('#article-banner').css({
@@ -322,9 +361,10 @@
 </div>
     <footer class="app-footer">
   <p class="copyright">
-    &copy; 2018 | Proudly powered by Arkin</a>
+    &copy; 2018 |  Powered by Arkin</a>
   </p>
 </footer>
+<script src="/js/search.js"></script> 
 
 <script>
   function async(u, c) {
@@ -361,6 +401,20 @@
     });
   })
 </script>
+
+
+
+   <script type="text/javascript">      
+     var search_path = "search.xml";
+   if (search_path.length == 0) {
+    search_path = "search.xml";
+   }
+   var path = "/" + search_path;
+     searchFunc(path, 'local-search-input', 'local-search-result');
+   </script>
+
+
+
 <!-- Baidu Tongji -->
 
 <script src="/js/script.js"></script>

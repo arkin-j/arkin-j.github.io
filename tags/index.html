@@ -71,6 +71,12 @@
       
         <li class="list-item">
           
+            <a href="/categories/" class="item-link">分类</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
             <a href="/tags/" class="item-link">标签</a>
           
         </li>
@@ -88,6 +94,17 @@
         </li>
       
     </ul>
+
+    
+  <div id="site_search">
+   <div class="form-group">
+    <input type="text" id="local-search-input" autocomplete="off" name="q" results="0" placeholder="search" class="st-search-input st-default-search-input form-control"/>
+   </div>  
+  <div id="local-search-result"></div>
+  </div>
+
+
+    
     <div class="menu">
       <span class="icon-bar"></span>
       <span class="icon-bar"></span>
@@ -99,6 +116,12 @@
           <li class="menu-item">
             
               <a href="/" class="menu-link">首页</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/categories/" class="menu-link">分类</a>
             
           </li>
         
@@ -132,65 +155,22 @@
 <main class="app-body">
   <div id="tag-cloud">
     
-      <a class="tag2" data-name="tag-初始化">初始化</a>
+      <a class="tag2" data-name="tag-测试">测试</a>
     
-      <a class="tag0" data-name="tag-Hexo">Hexo</a>
+      <a class="tag1" data-name="tag-初始化">初始化</a>
     
-      <a class="tag2" data-name="tag-MWeb">MWeb</a>
+      <a class="tag2" data-name="tag-Hexo">Hexo</a>
     
-      <a class="tag2" data-name="tag-GitPage">GitPage</a>
+      <a class="tag1" data-name="tag-MWeb">MWeb</a>
+    
+      <a class="tag0" data-name="tag-GitPage">GitPage</a>
     
   </div>
-  
-    <div class="tag-list">
-      <h3 class="tag-name" id="tag-初始化">初始化</h3>
-      
-        <ul class="tag-preview">
-          <li>
-            <a href="/2018/05/21/20180521/">基于MarkDown的博客系统搭建</a>
-          </li>
-        </ul>
-        
-    </div>
-    
-    <div class="tag-list">
-      <h3 class="tag-name" id="tag-Hexo">Hexo</h3>
-      
-        <ul class="tag-preview">
-          <li>
-            <a href="/2018/05/21/20180521/">基于MarkDown的博客系统搭建</a>
-          </li>
-        </ul>
-        
-    </div>
-    
-    <div class="tag-list">
-      <h3 class="tag-name" id="tag-MWeb">MWeb</h3>
-      
-        <ul class="tag-preview">
-          <li>
-            <a href="/2018/05/21/20180521/">基于MarkDown的博客系统搭建</a>
-          </li>
-        </ul>
-        
-    </div>
-    
-    <div class="tag-list">
-      <h3 class="tag-name" id="tag-GitPage">GitPage</h3>
-      
-        <ul class="tag-preview">
-          <li>
-            <a href="/2018/05/21/20180521/">基于MarkDown的博客系统搭建</a>
-          </li>
-        </ul>
-        
-    </div>
-    
 </main>
 
 <script>
   (function () {
-    var url = 'http://yoursite.com/tags/index.html'
+    var url = 'https://arkin-j.github.io/tags/index.html'
     $('#article-banner').geopattern(url)
     $('.header').removeClass('fixed-header')
 
@@ -208,9 +188,10 @@
 </div>
     <footer class="app-footer">
   <p class="copyright">
-    &copy; 2018 | Proudly powered by Arkin</a>
+    &copy; 2018 |  Powered by Arkin</a>
   </p>
 </footer>
+<script src="/js/search.js"></script> 
 
 <script>
   function async(u, c) {
@@ -247,6 +228,20 @@
     });
   })
 </script>
+
+
+
+   <script type="text/javascript">      
+     var search_path = "search.xml";
+   if (search_path.length == 0) {
+    search_path = "search.xml";
+   }
+   var path = "/" + search_path;
+     searchFunc(path, 'local-search-input', 'local-search-result');
+   </script>
+
+
+
 <!-- Baidu Tongji -->
 
 <script src="/js/script.js"></script>

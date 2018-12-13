@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<search>
+  <entry>
+    <title><![CDATA[测试分类]]></title>
+    <url>%2F2018%2F12%2F13%2F%E5%85%B6%E5%AE%83%2F2018-12-13%2F</url>
+    <content type="text"></content>
+      <categories>
+        <category>其它</category>
+        <category>杂说</category>
+      </categories>
+      <tags>
+        <tag>测试</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[基于MarkDown的博客系统搭建]]></title>
+    <url>%2F2018%2F05%2F21%2F%E5%85%B6%E5%AE%83%2F20180521%2F</url>
+    <content type="text"><![CDATA[纯粹的文章编写,使用到GitPage,Hexo,MWeb,七牛做图床 注册七牛云账号七牛官网 创建”对象存储” 个人中心获取密钥 安装MWebMWeb官网 Mweb界面: 打开设置界面 填入密钥 完成后就可以上传图片了,图片访问需要一个固定域名,创建时七牛云给一个临时的域名可以使用一个月. 使用”外部模式” 快捷键⌘+E点 “+”号引入 配置项目 因为MWeb在外部模式才支持,图片url替换,正常模式需要手工上传粘贴url 安装Hexo参照官网Hexo官网安装1npm install -g hexo-cli 安装完成,可以在命令行下使用. 新建项目123hexo init &lt;folder&gt;cd &lt;folder&gt;npm install 创建完如下: 新建文章1hexo new 文章名 打开,如图结构 运行预览服务1hexo s 找开网址,便能看到Blog界面 配置GitHubPage注册GitHub,略新建GitHubPagehttps://pages.github.com/创建一个git仓库,名字如下,xxx.github.io就可以使用xxx.github.io访问了 复制仓库地址,配置hexo如:https://github.com/arkin-j/arkin-j.github.io.git 配置发布在刚创建的目录下,修改_config.yml文件1vim _config.yml 具体查看帮助 https://hexo.io/docs/deployment如 创建完文章,便可以使用命令发布了,需要在项目目录下执行. 1hexo clean &amp;&amp; hexo deploy 然后再访问刚才创建的gitpage如:https://arkin-j.github.io/ 就可以看到新的文章了.如下: 模板在项目目录下,可以修改,也可以使用别人现在的. 完 &gt;&gt;&gt;]]></content>
+      <categories>
+        <category>其它</category>
+      </categories>
+      <tags>
+        <tag>初始化</tag>
+        <tag>Hexo</tag>
+        <tag>MWeb</tag>
+        <tag>GitPage</tag>
+      </tags>
+  </entry>
+</search>
