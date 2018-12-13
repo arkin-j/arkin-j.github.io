@@ -21,6 +21,8 @@
   <script src="//cdn.staticfile.org/jquery/3.2.1/jquery.min.js"></script>
   <script src="//cdn.staticfile.org/geopattern/1.2.3/js/geopattern.min.js"></script>
   <script src="//cdn.staticfile.org/nprogress/0.2.0/nprogress.min.js"></script>
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="//unpkg.com/valine"></script>
   <script src="/js/qrious.js"></script>
 <script src="/js/gitment.js"></script>
   
@@ -202,7 +204,9 @@
     <div class="scroll-top">
   <span class="arrow-icon"></span>
 </div>
-    <footer class="app-footer">
+    
+<footer class="app-footer">
+  <div id="vcomments" style="max-width:800px"></div>
   <p class="copyright">
     &copy; 2018 |  Powered by Arkin</a>
   </p>
@@ -260,6 +264,32 @@
 
 <!-- Baidu Tongji -->
 
+
+
+
+
 <script src="/js/script.js"></script>
+
+<script>
+            var valine = new Valine();
+            var path = window.location.pathname.replace('index.html','');
+            var isEN = path.indexOf('en') > -1;
+            path = isEN ? path.replace('en/','') : path;
+            valine.init({
+                el: '#vcomments',
+                appId: 's00pjsgpQfTMhup6C0IC1e5w-gzGzoHsz',
+                appKey: 'L1jipTeNE3kEt8GGtbJvGMvV',
+                notify: true,
+                placeholder: 'Just Go Go.',
+                avatar:'mm',
+                path:path,
+                lang: isEN ? 'en' : 'zh-cn',
+                visitor:true
+            })
+          </script>
+
+
+
+
   </body>
 </html>
