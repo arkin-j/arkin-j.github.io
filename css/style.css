@@ -827,49 +827,22 @@ h2.article-head {
   display: block;
   border-radius: 50%;
 }
-.author h3 {
+.author .author-name {
   font-size: 1.4em;
   opacity: 0;
   transform: translateY(-20px);
   transition: all 0.4s;
   transition-delay: 0.05s;
 }
-.author .description {
-  opacity: 0;
-  transform: translateY(-20px);
-  transition: all 0.4s;
-  transition-delay: 0.1s;
-}
-.author .share-icons {
-  opacity: 0;
-  transform: translateY(-20px);
-  transition: all 0.4s;
-  transition-delay: 0.15s;
-  margin-top: 2em;
-}
-.author .share-icons a {
-  font-size: 1em;
+.author .about-content {
+  text-align: left;
+  width: 50%;
   display: inline-block;
-  margin: 0 0.4em;
+  text-align: left;
+  line-height: 1.8;
 }
-.author .share-icons a:hover {
-  transition: opacity 0.2s;
-  opacity: 0.6;
-}
-.author .share-icons .icon-weibo {
-  color: #e6162d;
-}
-.author .share-icons .icon-github {
-  color: #333;
-}
-.author .share-icons .icon-zhihu {
-  color: #0767c8;
-}
-.author .share-icons .icon-twitter {
-  color: #2aa9e0;
-}
-.author .share-icons .icon-douban {
-  color: #00b51d;
+.author .about-content p {
+  padding-left: 2em;
 }
 .project-app {
   max-width: 1020px;
