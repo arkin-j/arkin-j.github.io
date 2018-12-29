@@ -10,7 +10,7 @@
   
   <title>
     
-      阿金同学
+      Electron Build 安装使用 | 阿金同学
     
   </title>
   <link href="//cdn.staticfile.org/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
@@ -151,10 +151,14 @@
 </header>
 
     <div id="article-banner">
-  <h2></h2>
+  <h2>Electron Build 安装使用</h2>
   <div class="post-date">
-    发表:<span> 2018-12-20 </span>
+    发表:<span> 2018-05-21 </span>
     分类:
+      <span class="article-category">
+        <a class="article-category-link" href="/categories/NodeJs/">NodeJs</a>
+      </span>
+    
   </div>
   <div class="arrow-down">
     <a href="javascript:;"></a>
@@ -163,9 +167,32 @@
 <main class="app-body flex-box">
   <!-- Article START -->
   <article class="post-article">
-    <section class="markdown-content"><h1 id="Node获取Usb信息"><a href="#Node获取Usb信息" class="headerlink" title="Node获取Usb信息"></a>Node获取Usb信息</h1><h2 id="MacOS获取Usb相关资料"><a href="#MacOS获取Usb相关资料" class="headerlink" title="MacOS获取Usb相关资料"></a>MacOS获取Usb相关资料</h2><p>如果已经安装 <code>lsusb</code> 可以使用lsusb获取<br>没有則使用 <code>system_profiler SPUSBDataType</code></p>
-<h2 id="Windows可以通过-Wmic获取"><a href="#Windows可以通过-Wmic获取" class="headerlink" title="Windows可以通过 Wmic获取"></a>Windows可以通过 Wmic获取</h2></section>
+    <section class="markdown-content"><h1 id="Electron-Build-安装使用"><a href="#Electron-Build-安装使用" class="headerlink" title="Electron Build 安装使用"></a>Electron Build 安装使用</h1><p>NodeJs原生插件因为版本系统问题,需要重新编译.</p>
+<p>Electron环境下,最好固定版本,备份定指定版本数据,避免NPM或源被和谐.<br>electron有快捷build方法.</p>
+<p>依赖node,npm</p>
+<h2 id="electron-rebuild"><a href="#electron-rebuild" class="headerlink" title="electron-rebuild"></a>electron-rebuild</h2><p><a href="https://electronjs.org/docs/tutorial/using-native-node-modules" target="_blank" rel="noopener">官方文档(cn)</a></p>
+<h3 id="安装node-gyp"><a href="#安装node-gyp" class="headerlink" title="安装node-gyp"></a>安装node-gyp</h3><p>参考: <a href="https://githnpmub.com/nodejs/node-gyp" target="_blank" rel="noopener">https://githnpmub.com/nodejs/node-gyp</a></p>
+<p>[window系统]<br>window使用<a href="https://github.com/felixrieseberg/windows-build-tools" target="_blank" rel="noopener">Windows-Build-Tools</a>工具快捷安装各种依赖.</p>
+<p>powershell/cmd中安装,使用管理员方式运行<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">yarn global add windows-build-tools</span><br><span class="line"><span class="meta">#</span>或</span><br><span class="line">npm install windows-build-tools -g</span><br></pre></td></tr></table></figure></p>
+<p>[MacOS]<br>Mac默认有python2.7,只需要安装node-gyp<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">npm install node-gyp -g</span><br><span class="line">或</span><br><span class="line">yarn global add  node-gyp</span><br></pre></td></tr></table></figure></p>
+<h3 id="安装electron-rebuild"><a href="#安装electron-rebuild" class="headerlink" title="安装electron-rebuild"></a>安装electron-rebuild</h3><p><a href="https://github.com/electron/electron-rebuild" target="_blank" rel="noopener">GitHub</a></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install --save-dev electron-rebuild</span><br></pre></td></tr></table></figure>
+<ul>
+<li>运行编译</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">./node_modules/.bin/electron-rebuild</span><br><span class="line"><span class="comment"># 或windows</span></span><br><span class="line">.\node_modules\.bin\electron-rebuild.cmd</span><br></pre></td></tr></table></figure>
+<p>由于网络原因,尽量使用yarn.<br>然而淘宝源不太干净,会导致各种神奇的原因.</p>
+</section>
     <!-- Tags START -->
+    
+      <div class="tags">
+        <span>Tags:</span>
+        
+  <a href="/tags#Electron" >
+    <span class="tag-code">Electron</span>
+  </a>
+
+      </div>
     
     <!-- Tags END -->
     <!-- NAV START -->
@@ -173,13 +200,20 @@
   <div class="nav-container">
     <!-- reverse left and right to put prev and next in a more logic postition -->
     
-      <a class="nav-left" href="/2018/12/13/其它/2018-12-13/">
+      <a class="nav-left" href="/2018/05/21/其它/20180521/">
         <span class="nav-arrow">← </span>
         
-          测试分类
+          基于MarkDown的博客系统搭建
         
       </a>
     
+    
+      <a class="nav-right" href="/2018/12/13/其它/2018-12-13/">
+        
+          测试分类
+        
+        <span class="nav-arrow"> →</span>
+      </a>
     
   </div>
 
@@ -204,7 +238,7 @@
   <div class="toc-main">
     <strong class="toc-title">Catalog</strong>
     
-      <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#Node获取Usb信息"><span class="toc-nav-text">Node获取Usb信息</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#MacOS获取Usb相关资料"><span class="toc-nav-text">MacOS获取Usb相关资料</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#Windows可以通过-Wmic获取"><span class="toc-nav-text">Windows可以通过 Wmic获取</span></a></li></ol></li></ol>
+      <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#Electron-Build-安装使用"><span class="toc-nav-text">Electron Build 安装使用</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#electron-rebuild"><span class="toc-nav-text">electron-rebuild</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#安装node-gyp"><span class="toc-nav-text">安装node-gyp</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#安装electron-rebuild"><span class="toc-nav-text">安装electron-rebuild</span></a></li></ol></li></ol></li></ol>
     
   </div>
 </aside>
@@ -214,7 +248,7 @@
 
 <script>
   (function () {
-    var url = 'https://arkin-j.github.io/2018/12/20/NodeJs/usb/';
+    var url = 'https://arkin-j.github.io/2018/05/21/NodeJs/electron-rebuild/';
     var banner = ''
     if (banner !== '' && banner !== 'undefined' && banner !== 'null') {
       $('#article-banner').css({
@@ -270,7 +304,7 @@
     var gitmentConfig = "";
     if (gitmentConfig !== 'undefined') {
       var gitment = new Gitment({
-        id: "",
+        id: "Electron Build 安装使用",
         owner: "",
         repo: "",
         oauth: {
