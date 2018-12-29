@@ -1,6 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[Electron Build 安装使用]]></title>
+    <url>%2F2018%2F12%2F24%2FNodeJs%2Felectron-rebuild%2F</url>
+    <content type="text"><![CDATA[Electron Build 安装使用NodeJs原生插件因为版本系统问题,需要重新编译. Electron环境下,最好固定版本,备份定指定版本数据,避免NPM或源被和谐.electron有快捷build方法. 依赖node,npm electron-rebuild官方文档(cn) 安装node-gyp参考: https://githnpmub.com/nodejs/node-gyp [window系统]window使用Windows-Build-Tools工具快捷安装各种依赖. powershell/cmd中安装,使用管理员方式运行123yarn global add windows-build-tools#或npm install windows-build-tools -g [MacOS]Mac默认有python2.7,只需要安装node-gyp123npm install node-gyp -g或yarn global add node-gyp 安装electron-rebuildGitHub 1npm install --save-dev electron-rebuild 运行编译 123./node_modules/.bin/electron-rebuild# 或windows.\node_modules\.bin\electron-rebuild.cmd 由于网络原因,尽量使用yarn.然而淘宝源不太干净,会导致各种神奇的原因.]]></content>
+      <categories>
+        <category>NodeJs</category>
+      </categories>
+      <tags>
+        <tag>Electron</tag>
+      </tags>
+  </entry>
+  <entry>
     <title></title>
     <url>%2F2018%2F12%2F20%2FNodeJs%2Fusb%2F</url>
     <content type="text"><![CDATA[Node获取Usb信息MacOS获取Usb相关资料如果已经安装 lsusb 可以使用lsusb获取没有則使用 system_profiler SPUSBDataType Windows可以通过 Wmic获取]]></content>
@@ -15,17 +26,6 @@
       </categories>
       <tags>
         <tag>测试</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[Electron Build 安装使用]]></title>
-    <url>%2F2018%2F05%2F21%2FNodeJs%2Felectron-rebuild%2F</url>
-    <content type="text"><![CDATA[Electron Build 安装使用NodeJs原生插件因为版本系统问题,需要重新编译. Electron环境下,最好固定版本,备份定指定版本数据,避免NPM或源被和谐.electron有快捷build方法. 依赖node,npm electron-rebuild官方文档(cn) 安装node-gyp参考: https://githnpmub.com/nodejs/node-gyp [window系统]window使用Windows-Build-Tools工具快捷安装各种依赖. powershell/cmd中安装,使用管理员方式运行123yarn global add windows-build-tools#或npm install windows-build-tools -g [MacOS]Mac默认有python2.7,只需要安装node-gyp123npm install node-gyp -g或yarn global add node-gyp 安装electron-rebuildGitHub 1npm install --save-dev electron-rebuild 运行编译 123./node_modules/.bin/electron-rebuild# 或windows.\node_modules\.bin\electron-rebuild.cmd 由于网络原因,尽量使用yarn.然而淘宝源不太干净,会导致各种神奇的原因.]]></content>
-      <categories>
-        <category>NodeJs</category>
-      </categories>
-      <tags>
-        <tag>Electron</tag>
       </tags>
   </entry>
   <entry>
