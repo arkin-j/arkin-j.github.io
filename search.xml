@@ -12,20 +12,15 @@
       </tags>
   </entry>
   <entry>
-    <title></title>
+    <title><![CDATA[Node获取Usb信息]]></title>
     <url>%2F2018%2F12%2F20%2FNodeJs%2Fusb%2F</url>
     <content type="text"><![CDATA[Node获取Usb信息MacOS获取Usb相关资料如果已经安装 lsusb 可以使用lsusb获取没有則使用 system_profiler SPUSBDataType Windows可以通过 Wmic获取]]></content>
-  </entry>
-  <entry>
-    <title><![CDATA[测试分类]]></title>
-    <url>%2F2018%2F12%2F13%2F%E5%85%B6%E5%AE%83%2F2018-12-13%2F</url>
-    <content type="text"></content>
       <categories>
-        <category>其它</category>
-        <category>杂说</category>
+        <category>NodeJs</category>
       </categories>
       <tags>
-        <tag>测试</tag>
+        <tag>Electron</tag>
+        <tag>Node</tag>
       </tags>
   </entry>
   <entry>
