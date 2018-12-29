@@ -10,7 +10,7 @@
   
   <title>
     
-      基于MarkDown的博客系统搭建 | 阿金同学
+      阿金同学
     
   </title>
   <link href="//cdn.staticfile.org/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
@@ -151,14 +151,10 @@
 </header>
 
     <div id="article-banner">
-  <h2>基于MarkDown的博客系统搭建</h2>
+  <h2></h2>
   <div class="post-date">
-    发表:<span> 2018-05-21 </span>
+    发表:<span> 2018-12-24 </span>
     分类:
-      <span class="article-category">
-        <a class="article-category-link" href="/categories/其它/">其它</a>
-      </span>
-    
   </div>
   <div class="arrow-down">
     <a href="javascript:;"></a>
@@ -167,66 +163,23 @@
 <main class="app-body flex-box">
   <!-- Article START -->
   <article class="post-article">
-    <section class="markdown-content"><blockquote>
-<p>纯粹的文章编写,使用到GitPage,Hexo,MWeb,七牛做图床</p>
-</blockquote>
-<a id="more"></a>
-<h2 id="注册七牛云账号"><a href="#注册七牛云账号" class="headerlink" title="注册七牛云账号"></a>注册七牛云账号</h2><p><a href="https://qiniu.com" target="_blank" rel="noopener">七牛官网</a></p>
-<h3 id="创建”对象存储”"><a href="#创建”对象存储”" class="headerlink" title="创建”对象存储”"></a>创建”对象存储”</h3><p><img src="http://pjk1j4vy6.bkt.clouddn.com/2018-12-13-15446982780002.jpg" alt="创建对象存储"></p>
-<h3 id="个人中心获取密钥"><a href="#个人中心获取密钥" class="headerlink" title="个人中心获取密钥"></a>个人中心获取密钥</h3><p><img src="http://pjk1j4vy6.bkt.clouddn.com/2018-12-13-15446983346117.jpg" alt="密钥"></p>
-<h2 id="安装MWeb"><a href="#安装MWeb" class="headerlink" title="安装MWeb"></a>安装MWeb</h2><p><a href="https://zh.mweb.im/" target="_blank" rel="noopener">MWeb官网</a></p>
-<h3 id="Mweb界面"><a href="#Mweb界面" class="headerlink" title="Mweb界面:"></a>Mweb界面:</h3><p><img src="http://pjk1j4vy6.bkt.clouddn.com/2018-12-13-15446981064348.jpg" alt=""></p>
-<h3 id="打开设置界面"><a href="#打开设置界面" class="headerlink" title="打开设置界面"></a>打开设置界面</h3><p><img src="http://pjk1j4vy6.bkt.clouddn.com/2018-12-13-15446985074780.jpg" alt=""></p>
-<h3 id="填入密钥"><a href="#填入密钥" class="headerlink" title="填入密钥"></a>填入密钥</h3><p><img src="http://pjk1j4vy6.bkt.clouddn.com/2018-12-13-15446985671071.jpg" alt=""></p>
-<p>完成后就可以上传图片了,图片访问需要一个固定域名,创建时七牛云给一个临时的域名可以使用一个月.</p>
-<h3 id="使用”外部模式”-快捷键⌘-E"><a href="#使用”外部模式”-快捷键⌘-E" class="headerlink" title="使用”外部模式” 快捷键⌘+E"></a>使用”外部模式” 快捷键⌘+E</h3><p><img src="http://pjk1j4vy6.bkt.clouddn.com/2018-12-13-15446987030673.jpg" alt=""><br>点 “+”号引入</p>
-<h3 id="配置项目"><a href="#配置项目" class="headerlink" title="配置项目"></a>配置项目</h3><p><img src="http://pjk1j4vy6.bkt.clouddn.com/2018-12-13-15446993418827.jpg" alt=""></p>
-<p>因为MWeb在外部模式才支持,图片url替换,正常模式需要手工上传粘贴url</p>
-<h2 id="安装Hexo"><a href="#安装Hexo" class="headerlink" title="安装Hexo"></a>安装Hexo</h2><p>参照官网<a href="https://hexo.io" target="_blank" rel="noopener">Hexo官网</a>安装<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install -g hexo-cli</span><br></pre></td></tr></table></figure></p>
-<p>安装完成,可以在命令行下使用.<br><img src="http://pjk1j4vy6.bkt.clouddn.com/2018-12-13-15446980382305.jpg" alt=""></p>
-<h3 id="新建项目"><a href="#新建项目" class="headerlink" title="新建项目"></a>新建项目</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">hexo init &lt;folder&gt;</span><br><span class="line">cd &lt;folder&gt;</span><br><span class="line">npm install</span><br></pre></td></tr></table></figure>
-<p><img src="http://pjk1j4vy6.bkt.clouddn.com/2018-12-13-15446999681293.jpg" alt=""></p>
-<p>创建完如下:<br><img src="http://pjk1j4vy6.bkt.clouddn.com/2018-12-13-15447000524322.jpg" alt=""><br><img src="http://pjk1j4vy6.bkt.clouddn.com/2018-12-13-15447001845301.jpg" alt=""></p>
-<h3 id="新建文章"><a href="#新建文章" class="headerlink" title="新建文章"></a>新建文章</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo new 文章名</span><br></pre></td></tr></table></figure>
-<p><img src="http://pjk1j4vy6.bkt.clouddn.com/2018-12-13-15447002639868.jpg" alt=""></p>
-<p>打开,如图结构<br><img src="http://pjk1j4vy6.bkt.clouddn.com/2018-12-13-15447002979205.jpg" alt=""></p>
-<h3 id="运行预览服务"><a href="#运行预览服务" class="headerlink" title="运行预览服务"></a>运行预览服务</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo s</span><br></pre></td></tr></table></figure>
-<p><img src="http://pjk1j4vy6.bkt.clouddn.com/2018-12-13-15447003989020.jpg" alt=""></p>
-<p>找开网址,便能看到Blog界面<br><img src="http://pjk1j4vy6.bkt.clouddn.com/2018-12-13-15447004960789.jpg" alt=""></p>
-<h3 id="配置GitHubPage"><a href="#配置GitHubPage" class="headerlink" title="配置GitHubPage"></a>配置GitHubPage</h3><p>注册GitHub,略<br>新建GitHubPage<br><a href="https://pages.github.com/" target="_blank" rel="noopener">https://pages.github.com/</a><br>创建一个git仓库,名字如下,xxx.github.io<br>就可以使用xxx.github.io访问了<br><img src="http://pjk1j4vy6.bkt.clouddn.com/2018-12-13-15447008475364.jpg" alt=""></p>
-<p>复制仓库地址,配置hexo<br>如:<br><a href="https://github.com/arkin-j/arkin-j.github.io.git" target="_blank" rel="noopener">https://github.com/arkin-j/arkin-j.github.io.git</a></p>
-<h3 id="配置发布"><a href="#配置发布" class="headerlink" title="配置发布"></a>配置发布</h3><p>在刚创建的目录下,修改_config.yml文件<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vim _config.yml</span><br></pre></td></tr></table></figure></p>
-<p>具体查看帮助 <a href="https://hexo.io/docs/deployment" target="_blank" rel="noopener">https://hexo.io/docs/deployment</a><br>如<br><img src="http://pjk1j4vy6.bkt.clouddn.com/2018-12-13-15447011557701.jpg" alt=""></p>
-<p>创建完文章,便可以使用命令发布了,需要在项目目录下执行.</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo clean &amp;&amp; hexo deploy</span><br></pre></td></tr></table></figure>
-<p><img src="http://pjk1j4vy6.bkt.clouddn.com/2018-12-13-15447013903714.jpg" alt=""></p>
-<p>然后再访问刚才创建的gitpage<br>如:<a href="https://arkin-j.github.io/">https://arkin-j.github.io/</a></p>
-<p>就可以看到新的文章了.<br>如下:<br><img src="http://pjk1j4vy6.bkt.clouddn.com/2018-12-13-15447016706059.jpg" alt=""></p>
-<p>模板在项目目录下,可以修改,也可以使用别人现在的.</p>
-<p> 完 &gt;&gt;&gt;</p>
+    <section class="markdown-content"><h1 id="Electron-Build-安装使用"><a href="#Electron-Build-安装使用" class="headerlink" title="Electron Build 安装使用"></a>Electron Build 安装使用</h1><p>NodeJs原生插件因为版本系统问题,需要重新编译.</p>
+<p>Electron环境下,最好固定版本,备份定指定版本数据,避免NPM或源被和谐.<br>electron有快捷build方法.</p>
+<p>依赖node,npm</p>
+<h2 id="electron-rebuild"><a href="#electron-rebuild" class="headerlink" title="electron-rebuild"></a>electron-rebuild</h2><p><a href="https://electronjs.org/docs/tutorial/using-native-node-modules" target="_blank" rel="noopener">官方文档(cn)</a></p>
+<h3 id="安装node-gyp"><a href="#安装node-gyp" class="headerlink" title="安装node-gyp"></a>安装node-gyp</h3><p>参考: <a href="https://githnpmub.com/nodejs/node-gyp" target="_blank" rel="noopener">https://githnpmub.com/nodejs/node-gyp</a></p>
+<p>[window系统]<br>window使用<a href="https://github.com/felixrieseberg/windows-build-tools" target="_blank" rel="noopener">Windows-Build-Tools</a>工具快捷安装各种依赖.</p>
+<p>powershell/cmd中安装,使用管理员方式运行<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">yarn global add windows-build-tools</span><br><span class="line"><span class="meta">#</span>或</span><br><span class="line">npm install windows-build-tools -g</span><br></pre></td></tr></table></figure></p>
+<p>[MacOS]<br>Mac默认有python2.7,只需要安装node-gyp<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">npm install node-gyp -g</span><br><span class="line">或</span><br><span class="line">yarn global add  node-gyp</span><br></pre></td></tr></table></figure></p>
+<h3 id="安装electron-rebuild"><a href="#安装electron-rebuild" class="headerlink" title="安装electron-rebuild"></a>安装electron-rebuild</h3><p><a href="https://github.com/electron/electron-rebuild" target="_blank" rel="noopener">GitHub</a></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install --save-dev electron-rebuild</span><br></pre></td></tr></table></figure>
+<ul>
+<li>运行编译</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">./node_modules/.bin/electron-rebuild</span><br><span class="line"><span class="comment"># 或windows</span></span><br><span class="line">.\node_modules\.bin\electron-rebuild.cmd</span><br></pre></td></tr></table></figure>
+<p>由于网络原因,尽量使用yarn.<br>然而淘宝源不太干净,会导致各种神奇的原因.</p>
 </section>
     <!-- Tags START -->
-    
-      <div class="tags">
-        <span>Tags:</span>
-        
-  <a href="/tags#初始化" >
-    <span class="tag-code">初始化</span>
-  </a>
-
-  <a href="/tags#Hexo" >
-    <span class="tag-code">Hexo</span>
-  </a>
-
-  <a href="/tags#MWeb" >
-    <span class="tag-code">MWeb</span>
-  </a>
-
-  <a href="/tags#GitPage" >
-    <span class="tag-code">GitPage</span>
-  </a>
-
-      </div>
     
     <!-- Tags END -->
     <!-- NAV START -->
@@ -234,13 +187,13 @@
   <div class="nav-container">
     <!-- reverse left and right to put prev and next in a more logic postition -->
     
-    
-      <a class="nav-right" href="/2018/12/13/其它/2018-12-13/">
+      <a class="nav-left" href="/2018/12/20/NodeJs/usb/">
+        <span class="nav-arrow">← </span>
         
-          测试分类
+          (untitled)
         
-        <span class="nav-arrow"> →</span>
       </a>
+    
     
   </div>
 
@@ -265,7 +218,7 @@
   <div class="toc-main">
     <strong class="toc-title">Catalog</strong>
     
-      <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#注册七牛云账号"><span class="toc-nav-text">注册七牛云账号</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#创建”对象存储”"><span class="toc-nav-text">创建”对象存储”</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#个人中心获取密钥"><span class="toc-nav-text">个人中心获取密钥</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#安装MWeb"><span class="toc-nav-text">安装MWeb</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#Mweb界面"><span class="toc-nav-text">Mweb界面:</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#打开设置界面"><span class="toc-nav-text">打开设置界面</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#填入密钥"><span class="toc-nav-text">填入密钥</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#使用”外部模式”-快捷键⌘-E"><span class="toc-nav-text">使用”外部模式” 快捷键⌘+E</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#配置项目"><span class="toc-nav-text">配置项目</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#安装Hexo"><span class="toc-nav-text">安装Hexo</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#新建项目"><span class="toc-nav-text">新建项目</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#新建文章"><span class="toc-nav-text">新建文章</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#运行预览服务"><span class="toc-nav-text">运行预览服务</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#配置GitHubPage"><span class="toc-nav-text">配置GitHubPage</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#配置发布"><span class="toc-nav-text">配置发布</span></a></li></ol></li></ol>
+      <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#Electron-Build-安装使用"><span class="toc-nav-text">Electron Build 安装使用</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#electron-rebuild"><span class="toc-nav-text">electron-rebuild</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#安装node-gyp"><span class="toc-nav-text">安装node-gyp</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#安装electron-rebuild"><span class="toc-nav-text">安装electron-rebuild</span></a></li></ol></li></ol></li></ol>
     
   </div>
 </aside>
@@ -275,7 +228,7 @@
 
 <script>
   (function () {
-    var url = 'https://arkin-j.github.io/2018/05/21/其它/20180521/';
+    var url = 'https://arkin-j.github.io/2018/12/24/NodeJs/electron-rebuild/';
     var banner = ''
     if (banner !== '' && banner !== 'undefined' && banner !== 'null') {
       $('#article-banner').css({
@@ -331,7 +284,7 @@
     var gitmentConfig = "";
     if (gitmentConfig !== 'undefined') {
       var gitment = new Gitment({
-        id: "基于MarkDown的博客系统搭建",
+        id: "",
         owner: "",
         repo: "",
         oauth: {
