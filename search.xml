@@ -1,6 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[electron生成pdf]]></title>
+    <url>%2F2019%2F01%2F09%2FElectron%2Fconvert2pdf%2F</url>
+    <content type="text"><![CDATA[electron生成pdf主要是html转pdf,pdf是打印用的文档,可以控制打印的格式.使用electron生成pdf的方式就很随意了.使用webview.toPDF(),NodeJS转化,NodeJS调用系统资源去生成都可以.下面主要讲 使用webview或webcontent生成PDF.注意:Electron的toPDF不支持页眉页脚设置.后面只能通过其它文案去修改页眉页脚了. 主要步骤 读取weburl 生成临时PDF文件 预览临时PDF 打印临时PDF 下载,上传PDF 读取URL在服务器使用php模板渲染生成html页面,写打印样式.统一使用A4纸标准.打印注意,请参考关于html打印相关文章. 下面都是基于electron-vue的代码.关键代码:]]></content>
+      <categories>
+        <category>NodeJs</category>
+      </categories>
+      <tags>
+        <tag>Electron</tag>
+        <tag>PDF</tag>
+        <tag>Project</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Doc电子报告研发]]></title>
+    <url>%2F2019%2F01%2F09%2FElectron%2Freport%2F</url>
+    <content type="text"><![CDATA[Doc电子报告研发过程这是记录一次电子报告研发过程,口水记录.项目中需要生成电子报告; 一切不讲实际场景的解决方案都是耍牛氓. 场景 类似ERP系统,需要生成电子报告; 需要私网部署; 电子报告格式复杂,内容包含:富文本,公式,特殊字符,表格,图片,分页涵盖Word的功能; 内容长度不限制; 后台服务器主要使用PHP开发,但不限制PHP,NodeJS,Pyhton,Java,C++都可以; 服务器主要使用CentOS7 线下主要通过修改使用Word模板生成报告; 使用Word打印; Word有良好打印格式支持; 电子报告是必须流程; 解决方案HTML转WORD方案通过html生成pdf或word,也研究过markdown转word.虽然能达到要求,但是由于前端html的使用分辨率px来计算,打印使用点pi来计算,很难精确控制页面样式. html转pdf的方案工具很多,文档格式的瑞士军刀pandoc,很多格式都可以转换官网:http://www.pandoc.org/在macos,window,linux下都可以安装使用.常用转换格式,看下图 虽然很强大,但生成文档质量差强人意,个人使用可以,客户很挑,有可能为了个空格折腾一星期都解决不了. PHPWord方案设想通过word模板生成word,设想很美好,现实很骨感.PHPOffice的GitHub:https://github.com/PHPOffice/PHPWord 选型阶段,测试了几个简单的模板,文本变量替换完全没问题,就匆匆使用了.经过几天试用,完全解决不了问题.问题: 分块没法复制 表格生成有问题 库Bug太多,很多千年bug没有修复 复制的数据结构完全就蒙逼了 打开文本写入会丢失原word样式 模板正则有问题,兼容性也存在问题. 文档太差,没法入手 Bug太多,有很多需要修改源码才能使用,时间紧就没有使用.迫切使用第二方案. 在线Word解析地址:http://www.xdocin.com这个云模板,支持很多数据结构,直接调用API就能使用,可以生成word,pdf.也是基于word模板变量替换方式来完成的.一些简单的结构还比较OK,格式不会丢失. 缺点和问题: 基于对象的模板变量,虽然可以支持多层结构的数据 ,但是有个缺点,就是不能跨页,如果数据量多超就显示不全. 对象就是Word”文本框”来实现. 无故多空白,串行等现象 无法支持运算 富文本不支持 公式不支持 图片很难调整 不支持私有布署 不开源,有问题只能面对黑洞 Python方案回到原点,PHPWord虽然可以能写入任意内容,但是质量效率都成问题.我们考虑使用其它语言方案,不能在一棵树上吊死.选择一门稍微快速入手的语言,Python.git:https://github.com/python-openxml/python-docx 通过python生成api,然后使用php去调用.python-docx,可以私有化布署,支持富文本与公式,调整样式等自定义操作. 缺点: 复增加杂度跨语言,维护难度增加 已经失去word模板的用处,基本上是创建word. 不能可视化,调整很复杂. 由于word的格式与html常用的富文本不一样,比如公式表达不一样.前端UI后word需要两套处理方案. 通过上面几次选型,决定再回归到最初html方案,直接导出PDF,不在生成word.减少复杂度. 需要解决问题: 报告生成 报告预览 UI和报告一至 减少复杂度 支持定制化的所有要求 浏览器兼容性 跨平台 因为ERP有大量打印需要,自定义打印内容,硬件交互,本地文件处理的需要.这次直接使用封装html方案,来避规这些问题,通过选型,我们使用了Electron方案. 参考后面&lt;&lt;electron生成pdf&gt;&gt;文章 WebOffice方案如果需要真正可被化在线编辑Word,只能使用在线文档编辑控件了.这个布署复杂,收费,难以自定义. 官方office online:https://products.office.com/zh-cn/office-online/documents-spreadsheets-presentations-office-online 服务器不跨不平台且收费,客户端跨平台免费使用. 这个方案,算是最后的稻草,基于能省则省的原则,到最后再尝试.]]></content>
+      <categories>
+        <category>NodeJs</category>
+      </categories>
+      <tags>
+        <tag>Electron</tag>
+        <tag>PDF</tag>
+        <tag>Project</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[通过背景色设置文字颜色]]></title>
     <url>%2F2019%2F01%2F07%2FJavascript%2FisLight%2F</url>
     <content type="text"><![CDATA[通过背景色设置文字颜色 有这么一个需求,用户设置选择一个主题颜色,计算出背景色和文字颜色. 通过分析需求,需要最简单的实现方案,背景色和主题色,文字为背景色的对比色.对比色,可以简单的两种,黑或白色,根据背景色的明暗度使用白或黑. 获取色值的明暗度明暗度,通过两种色彩模式获取. PS中,HSV(HSB)色彩模式:H:色相 (0-360)S:饱和度 (0-100%)V:亮度 (0-100%) 在CSS中只支持HSL色彩模式:H:色相 (0-360)S:饱和度 (0-100%)L:明度 (0-100%) 纯红色:RGB(255,0,0)在不同色彩模式的表现. HSV,为0,100%,100% HSL,为0,100%,50% HSl更适合人类眼睛,通过观察我们只需要判断HSl色彩模式的L就可以了.L:50%时,使用明或暗都可以. 使用JS转换色值因为前端考虑兼容性,CSS常用两种色彩模式,RGB的十进制和十六进制.透明度暂时不考虑. HEX转RGB参考公式:12345678910111213141516171819202122var colorRgb = function(sColor)&#123; sColor = sColor.toLowerCase(); //十六进制颜色值的正则表达式 var reg = /^#([0-9a-fA-f]&#123;3&#125;|[0-9a-fA-f]&#123;6&#125;)$/; // 如果是16进制颜色 if (sColor &amp;&amp; reg.test(sColor)) &#123; if (sColor.length === 4) &#123; var sColorNew = "#"; for (var i=1; i&lt;4; i+=1) &#123; sColorNew += sColor.slice(i, i+1).concat(sColor.slice(i, i+1)); &#125; sColor = sColorNew; &#125; //处理六位的颜色值 var sColorChange = []; for (var i=1; i&lt;7; i+=2) &#123; sColorChange.push(parseInt("0x"+sColor.slice(i, i+2))); &#125; return "RGB(" + sColorChange.join(",") + ")"; &#125; return sColor;&#125;; RGB转HSL参考网上的公式函数 12345678910111213141516171819202122232425262728293031/** * RGB 颜色值转换为 HSL. * 转换公式参考自 http://en.wikipedia.org/wiki/HSL_color_space. * r, g, 和 b 需要在 [0, 255] 范围内 * 返回的 h, s, 和 l 在 [0, 1] 之间 * * @param Number r 红色色值 * @param Number g 绿色色值 * @param Number b 蓝色色值 * @return Array HSL各值数组 */function rgbToHsl(r, g, b) &#123; r /= 255, g /= 255, b /= 255; var max = Math.max(r, g, b), min = Math.min(r, g, b); var h, s, l = (max + min) / 2; if (max == min)&#123; h = s = 0; // achromatic &#125; else &#123; var d = max - min; s = l &gt; 0.5 ? d / (2 - max - min) : d / (max + min); switch(max) &#123; case r: h = (g - b) / d + (g &lt; b ? 6 : 0); break; case g: h = (b - r) / d + 2; break; case b: h = (r - g) / d + 4; break; &#125; h /= 6; &#125; return [h, s, l];&#125; 明暗度判断明暗度是基于人眼的感光程度来的,可以选择一个舒适的取值范围,下面是我的人眼取值. 通过L值判断,在大于60左右为”亮”. 直接通过RGB值来判断也可,比值公式 (0.213 rgb[0] + 0.715 rgb[1] + 0.072 * rgb[2]) &gt;255/2 完成 项目中对色盘认识不够,不然可以取亲合一点的对比色,那就完美了. 我主要用于electron封装壳主题色改变,electron和web是两套系统,只能通过 html中的meta来获取web当前的主题,从而改变标题栏等颜色. html中: electron-vue中 mounted(): 12345678// themewebview.addEventListener('did-change-theme-color', (e,themeColor) =&gt; &#123; if(e.themeColor)&#123; this.theme=e.themeColor this.changeTheme(e.themeColor); &#125;&#125;); method()中 1234567891011121314151617181920212223242526272829303132333435363738394041changeTheme(themeColor)&#123; themeColor=themeColor.toLowerCase(); const reg = /^#([0-9a-fA-f]&#123;3&#125;|[0-9a-fA-f]&#123;6&#125;)$/; let rgbColor=[]; // 十六进制转换RGB if (reg.test(themeColor)) &#123; if (themeColor.length === 4) &#123; rgbColor[0]=parseInt("0x"+themeColor.substr(1,1)+themeColor.substr(1,1)+themeColor.substr(1,1)); rgbColor[1]=parseInt("0x"+themeColor.substr(2,1)+themeColor.substr(2,1)+themeColor.substr(2,1)); rgbColor[2]=parseInt("0x"+themeColor.substr(3,1)+themeColor.substr(3,1)+themeColor.substr(3,1)); &#125;else&#123; rgbColor[0]=parseInt("0x"+themeColor.substr(1,2)); rgbColor[1]=parseInt("0x"+themeColor.substr(2,2)); rgbColor[2]=parseInt("0x"+themeColor.substr(4,2)); &#125; &#125;else if(/^(rgb|RGB)/.test(themeColor))&#123; rgbColor = themeColor.replace(/(?:\(|\)|rgb|RGB)*/g, "").split(","); &#125; // 获取颜色明暗度 let isLight=false; if(rgbColor)&#123; let isLightValue =(0.213 * rgbColor[0] +0.715* rgbColor[1] +0.072 * rgbColor[2]); // 人眼明暗度 0.213,0.715,0.072 isLight=isLightValue &gt;155; //console.log(themeColor,isLightValue); &#125;else&#123; themeColor='#5b6270'; isLight=false; &#125; const TextColor=isLight?'#333':'#f5f5f5'; this.themeStyle=&#123; color:TextColor, background:themeColor &#125; &#125;]]></content>
@@ -16,10 +42,11 @@
     <url>%2F2018%2F12%2F24%2FElectron%2Felectron-rebuild%2F</url>
     <content type="text"><![CDATA[Electron Build 安装使用NodeJs原生插件因为版本系统问题,需要重新编译. Electron环境下,最好固定版本,备份定指定版本数据,避免NPM或源被和谐.electron有快捷build方法. 依赖node,npm electron-rebuild官方文档(cn) 安装node-gyp参考: https://githnpmub.com/nodejs/node-gyp [window系统]window使用Windows-Build-Tools工具快捷安装各种依赖. powershell/cmd中安装,使用管理员方式运行123yarn global add windows-build-tools#或npm install windows-build-tools -g [MacOS]Mac默认有python2.7,只需要安装node-gyp123npm install node-gyp -g或yarn global add node-gyp 安装electron-rebuildGitHub 1npm install --save-dev electron-rebuild 运行编译 123./node_modules/.bin/electron-rebuild# 或windows.\node_modules\.bin\electron-rebuild.cmd 由于网络原因,尽量使用yarn.然而淘宝源不太干净,会导致各种神奇的原因.]]></content>
       <categories>
-        <category>NodeJs</category>
+        <category>Electron</category>
       </categories>
       <tags>
         <tag>Electron</tag>
+        <tag>NodeJs</tag>
       </tags>
   </entry>
   <entry>

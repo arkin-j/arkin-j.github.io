@@ -12,7 +12,7 @@
   
   <title>
     
-      Electron Build 安装使用 | Hi,阿金
+      Doc电子报告研发 | Hi,阿金
     
   </title>
   <link href="//cdn.staticfile.org/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
@@ -150,12 +150,12 @@
 </header>
 
     <div id="article-banner">
-  <h2>Electron Build 安装使用</h2>
+  <h2>Doc电子报告研发</h2>
   <div class="post-date">
-    发表:<span> 2018-12-24 </span>
+    发表:<span> 2019-01-09 </span>
     分类:
       <span class="article-category">
-        <a class="article-category-link" href="/categories/Electron/">Electron</a>
+        <a class="article-category-link" href="/categories/NodeJs/">NodeJs</a>
       </span>
     
   </div>
@@ -166,21 +166,73 @@
 <main class="app-body flex-box">
   <!-- Article START -->
   <article class="post-article">
-    <section class="markdown-content"><h1 id="Electron-Build-安装使用"><a href="#Electron-Build-安装使用" class="headerlink" title="Electron Build 安装使用"></a>Electron Build 安装使用</h1><p>NodeJs原生插件因为版本系统问题,需要重新编译.</p>
-<p>Electron环境下,最好固定版本,备份定指定版本数据,避免NPM或源被和谐.<br>electron有快捷build方法.</p>
-<p>依赖node,npm</p>
-<h2 id="electron-rebuild"><a href="#electron-rebuild" class="headerlink" title="electron-rebuild"></a>electron-rebuild</h2><p><a href="https://electronjs.org/docs/tutorial/using-native-node-modules" target="_blank" rel="noopener">官方文档(cn)</a></p>
-<h3 id="安装node-gyp"><a href="#安装node-gyp" class="headerlink" title="安装node-gyp"></a>安装node-gyp</h3><p>参考: <a href="https://githnpmub.com/nodejs/node-gyp" target="_blank" rel="noopener">https://githnpmub.com/nodejs/node-gyp</a></p>
-<p>[window系统]<br>window使用<a href="https://github.com/felixrieseberg/windows-build-tools" target="_blank" rel="noopener">Windows-Build-Tools</a>工具快捷安装各种依赖.</p>
-<p>powershell/cmd中安装,使用管理员方式运行<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">yarn global add windows-build-tools</span><br><span class="line"><span class="meta">#</span>或</span><br><span class="line">npm install windows-build-tools -g</span><br></pre></td></tr></table></figure></p>
-<p>[MacOS]<br>Mac默认有python2.7,只需要安装node-gyp<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">npm install node-gyp -g</span><br><span class="line">或</span><br><span class="line">yarn global add  node-gyp</span><br></pre></td></tr></table></figure></p>
-<h3 id="安装electron-rebuild"><a href="#安装electron-rebuild" class="headerlink" title="安装electron-rebuild"></a>安装electron-rebuild</h3><p><a href="https://github.com/electron/electron-rebuild" target="_blank" rel="noopener">GitHub</a></p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install --save-dev electron-rebuild</span><br></pre></td></tr></table></figure>
-<ul>
-<li>运行编译</li>
+    <section class="markdown-content"><h1 id="Doc电子报告研发过程"><a href="#Doc电子报告研发过程" class="headerlink" title="Doc电子报告研发过程"></a>Doc电子报告研发过程</h1><p>这是记录一次电子报告研发过程,口水记录.<br>项目中需要生成电子报告;</p>
+<p>一切不讲实际场景的解决方案都是耍牛氓.</p>
+<h2 id="场景"><a href="#场景" class="headerlink" title="场景"></a>场景</h2><ul>
+<li>类似ERP系统,需要生成电子报告;</li>
+<li>需要私网部署;</li>
+<li>电子报告格式复杂,内容包含:富文本,公式,特殊字符,表格,图片,分页涵盖Word的功能;</li>
+<li>内容长度不限制;</li>
+<li>后台服务器主要使用PHP开发,但不限制PHP,NodeJS,Pyhton,Java,C++都可以;</li>
+<li>服务器主要使用CentOS7</li>
+<li>线下主要通过修改使用Word模板生成报告;</li>
+<li>使用Word打印;</li>
+<li>Word有良好打印格式支持;</li>
+<li>电子报告是必须流程;</li>
 </ul>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">./node_modules/.bin/electron-rebuild</span><br><span class="line"><span class="comment"># 或windows</span></span><br><span class="line">.\node_modules\.bin\electron-rebuild.cmd</span><br></pre></td></tr></table></figure>
-<p>由于网络原因,尽量使用yarn.<br>然而淘宝源不太干净,会导致各种神奇的原因.</p>
+<h2 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h2><h3 id="HTML转WORD方案"><a href="#HTML转WORD方案" class="headerlink" title="HTML转WORD方案"></a>HTML转WORD方案</h3><p>通过html生成pdf或word,也研究过markdown转word.<br>虽然能达到要求,但是由于前端html的使用分辨率px来计算,打印使用点pi来计算,很难精确控制页面样式.</p>
+<p>html转pdf的方案工具很多,<br>文档格式的瑞士军刀pandoc,很多格式都可以转换<br>官网:<a href="http://www.pandoc.org/" target="_blank" rel="noopener">http://www.pandoc.org/</a><br>在macos,window,linux下都可以安装使用.<br>常用转换格式,看下图<br><img src="http://www.pandoc.org/diagram.jpg" alt=""></p>
+<p>虽然很强大,但生成文档质量差强人意,个人使用可以,客户很挑,有可能为了个空格折腾一星期都解决不了.</p>
+<h3 id="PHPWord方案"><a href="#PHPWord方案" class="headerlink" title="PHPWord方案"></a>PHPWord方案</h3><p>设想通过word模板生成word,设想很美好,现实很骨感.<br>PHPOffice的GitHub:<br><a href="https://github.com/PHPOffice/PHPWord" target="_blank" rel="noopener">https://github.com/PHPOffice/PHPWord</a></p>
+<p>选型阶段,测试了几个简单的模板,文本变量替换完全没问题,就匆匆使用了.<br>经过几天试用,完全解决不了问题.<br>问题:</p>
+<ol>
+<li>分块没法复制</li>
+<li>表格生成有问题</li>
+<li>库Bug太多,很多千年bug没有修复</li>
+<li>复制的数据结构完全就蒙逼了</li>
+<li>打开文本写入会丢失原word样式</li>
+<li>模板正则有问题,兼容性也存在问题.</li>
+<li>文档太差,没法入手</li>
+</ol>
+<p>Bug太多,有很多需要修改源码才能使用,时间紧就没有使用.迫切使用第二方案.</p>
+<h3 id="在线Word解析"><a href="#在线Word解析" class="headerlink" title="在线Word解析"></a>在线Word解析</h3><p>地址:<a href="http://www.xdocin.com" target="_blank" rel="noopener">http://www.xdocin.com</a><br>这个云模板,支持很多数据结构,直接调用API就能使用,可以生成word,pdf.<br>也是基于word模板变量替换方式来完成的.<br>一些简单的结构还比较OK,格式不会丢失.</p>
+<p>缺点和问题:</p>
+<ol>
+<li>基于对象的模板变量,虽然可以支持多层结构的数据 ,但是有个缺点,就是不能跨页,如果数据量多超就显示不全. 对象就是Word”文本框”来实现.</li>
+<li>无故多空白,串行等现象</li>
+<li>无法支持运算</li>
+<li>富文本不支持</li>
+<li>公式不支持</li>
+<li>图片很难调整</li>
+<li>不支持私有布署</li>
+<li>不开源,有问题只能面对黑洞</li>
+</ol>
+<h3 id="Python方案"><a href="#Python方案" class="headerlink" title="Python方案"></a>Python方案</h3><p>回到原点,PHPWord虽然可以能写入任意内容,但是质量效率都成问题.我们考虑使用其它语言方案,不能在一棵树上吊死.<br>选择一门稍微快速入手的语言,Python.<br>git:<a href="https://github.com/python-openxml/python-docx" target="_blank" rel="noopener">https://github.com/python-openxml/python-docx</a></p>
+<p>通过python生成api,然后使用php去调用.<br>python-docx,可以私有化布署,支持富文本与公式,调整样式等自定义操作.</p>
+<p>缺点:</p>
+<ol>
+<li>复增加杂度跨语言,维护难度增加</li>
+<li>已经失去word模板的用处,基本上是创建word.</li>
+<li>不能可视化,调整很复杂.</li>
+<li>由于word的格式与html常用的富文本不一样,比如公式表达不一样.前端UI后word需要两套处理方案.</li>
+</ol>
+<p>通过上面几次选型,决定再回归到最初html方案,直接导出PDF,不在生成word.减少复杂度.</p>
+<p>需要解决问题:</p>
+<ol>
+<li>报告生成</li>
+<li>报告预览</li>
+<li>UI和报告一至</li>
+<li>减少复杂度</li>
+<li>支持定制化的所有要求</li>
+<li>浏览器兼容性</li>
+<li>跨平台</li>
+</ol>
+<p>因为ERP有大量打印需要,自定义打印内容,硬件交互,本地文件处理的需要.<br>这次直接使用封装html方案,来避规这些问题,通过选型,我们使用了Electron方案.</p>
+<p>参考后面<a href="/2019/01/09/Electron/convert2pdf">&lt;&lt;electron生成pdf&gt;&gt;</a>文章</p>
+<h3 id="WebOffice方案"><a href="#WebOffice方案" class="headerlink" title="WebOffice方案"></a>WebOffice方案</h3><p>如果需要真正可被化在线编辑Word,只能使用在线文档编辑控件了.这个布署复杂,收费,难以自定义.</p>
+<p>官方office online:<br><a href="https://products.office.com/zh-cn/office-online/documents-spreadsheets-presentations-office-online" target="_blank" rel="noopener">https://products.office.com/zh-cn/office-online/documents-spreadsheets-presentations-office-online</a></p>
+<p>服务器不跨不平台且收费,客户端跨平台免费使用.</p>
+<p>这个方案,算是最后的稻草,基于能省则省的原则,到最后再尝试.</p>
 </section>
     <!-- Tags START -->
     
@@ -191,8 +243,12 @@
     <span class="tag-code">Electron</span>
   </a>
 
-  <a href="/tags#NodeJs" >
-    <span class="tag-code">NodeJs</span>
+  <a href="/tags#PDF" >
+    <span class="tag-code">PDF</span>
+  </a>
+
+  <a href="/tags#Project" >
+    <span class="tag-code">Project</span>
   </a>
 
       </div>
@@ -203,17 +259,17 @@
   <div class="nav-container">
     <!-- reverse left and right to put prev and next in a more logic postition -->
     
-      <a class="nav-left" href="/2018/12/20/Electron/usb/">
+      <a class="nav-left" href="/2019/01/07/Javascript/isLight/">
         <span class="nav-arrow">← </span>
         
-          Node获取Usb信息
+          通过背景色设置文字颜色
         
       </a>
     
     
-      <a class="nav-right" href="/2019/01/07/Javascript/isLight/">
+      <a class="nav-right" href="/2019/01/09/Electron/convert2pdf/">
         
-          通过背景色设置文字颜色
+          electron生成pdf
         
         <span class="nav-arrow"> →</span>
       </a>
@@ -241,7 +297,7 @@
   <div class="toc-main">
     <strong class="toc-title">Catalog</strong>
     
-      <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#Electron-Build-安装使用"><span class="toc-nav-text">Electron Build 安装使用</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#electron-rebuild"><span class="toc-nav-text">electron-rebuild</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#安装node-gyp"><span class="toc-nav-text">安装node-gyp</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#安装electron-rebuild"><span class="toc-nav-text">安装electron-rebuild</span></a></li></ol></li></ol></li></ol>
+      <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#Doc电子报告研发过程"><span class="toc-nav-text">Doc电子报告研发过程</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#场景"><span class="toc-nav-text">场景</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#解决方案"><span class="toc-nav-text">解决方案</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#HTML转WORD方案"><span class="toc-nav-text">HTML转WORD方案</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#PHPWord方案"><span class="toc-nav-text">PHPWord方案</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#在线Word解析"><span class="toc-nav-text">在线Word解析</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#Python方案"><span class="toc-nav-text">Python方案</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#WebOffice方案"><span class="toc-nav-text">WebOffice方案</span></a></li></ol></li></ol></li></ol>
     
   </div>
 </aside>
@@ -251,7 +307,7 @@
 
 <script>
   (function () {
-    var url = 'https://arkin-j.github.io/2018/12/24/Electron/electron-rebuild/';
+    var url = 'https://arkin-j.github.io/2019/01/09/Electron/report/';
     var banner = ''
     if (banner !== '' && banner !== 'undefined' && banner !== 'null') {
       $('#article-banner').css({
