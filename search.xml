@@ -1,6 +1,63 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[OAuth授权原理]]></title>
+    <url>%2F2019%2F03%2F01%2FPHP%2Foauth%2F</url>
+    <content type="text"><![CDATA[OAuth授权原理 OAuth第三开放平台授权 绕口令: 第3方用户想获取第1方用户在第2方上的权限.举个生活中的例子,就明白了.1小明要取他爸爸王叔叔在招商银行存的500块钱. 角色: 用户 (王叔叔) 平台 (招商银行) 第三方 (小明) 分解步骤: 小明 找 王叔叔 签 授权书 王叔叔 签 授权书 ,并给小明 银行卡 小明 拿着 授权书 和 银行卡 到招商银行 取钱 招商银行 先验证小明的身份 招商银行 确定小明的身份没问题后,再验证 授权书 的内容无误然后再把钱给小明 上面就是一个简单的第三方授权,可以算上Oauth1.0;支票系统,可以算上OAuth2.0 支票的样子: 支票系统不需要用户的银行卡及密码. 支票的基本内容:平台: 招商银行用户: 出票人账号和签名第三方: 收款人模式类型: 转账/现金权限: 金额和用途时间: 有效期,开票日期 支票 相当于 AccessToken AccessToken主要包含以下内容: 授权方 代理方(第三方) 授权权限内容 有效期限 支票系统肯定包含很多细节,如支票的防伪,防篡改,鉴别,有效性.有记名支票,不记名支票. Oauth2.0 交易流程如下. 解释:认证服务器,如QQ开放平台,微信平方平台,微博开放平台等.第三方平台,指我们开发的第三方应用,如论坛,商城等.可以使用微信微博登录.用户,需要用微信等去登录第三方平台的用户.权限,一般平台,授权第三方获取用户头像,昵称,手机号,也有操作,如支付,发微博,分享朋友圈等. OAuth2.0关键点,授权码code,授权凭证AccessToken.其它都是这些实现过程的中安全控制,边界控制,操作记录,性能优化,防伪方案,账号系统,权限管理等等.]]></content>
+      <categories>
+        <category>PHP</category>
+      </categories>
+      <tags>
+        <tag>产品</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[History三种模hash,history,memory]]></title>
+    <url>%2F2019%2F03%2F01%2FJavascript%2Frouter_history%2F</url>
+    <content type="text"><![CDATA[JavaScript中History的三种模式区别 我们在前端做路由时,需要记录URL的历史.常见单页面,Vue,React应用]]></content>
+      <categories>
+        <category>Javascript</category>
+      </categories>
+      <tags>
+        <tag>History</tag>
+        <tag>Vue Router</tag>
+        <tag>React Router</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title></title>
+    <url>%2F2019%2F02%2F26%2FPHP%2F2019-02-26%2F</url>
+    <content type="text"><![CDATA[微信公众号开发配置启用开发者权限]]></content>
+  </entry>
+  <entry>
+    <title><![CDATA[把故事讲好]]></title>
+    <url>%2F2019%2F02%2F25%2FPM%2F2019-02-25%2F</url>
+    <content type="text"><![CDATA[产品经理和导演(编剧)一样,需求会讲故事,把故事讲好. &lt;&lt;故事思维&gt;&gt;]]></content>
+      <categories>
+        <category>PM</category>
+      </categories>
+      <tags>
+        <tag>产品经理</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[产品结构图,产品信息结构图,产品功能结构图]]></title>
+    <url>%2F2019%2F02%2F22%2FProject%2Fmix%2F</url>
+    <content type="text"><![CDATA[区分产品结构图,产品信息结构图,产品功能结构做项目中各种结构图经常弄混乱,导致权责不清楚.经常把自己”人格分裂”,同时充当很多角色.产品经理–项目经理–技术经理–架构师–研发工程师–UI设计–运维–运营–测试 结构图很多产品经理都没有做,只出需求文档,原型图.由于技术出生,习惯用理性的思想来做事,可以外脑来存储的,而不是感性的文字描述,有版本,可回归.除了给Boss看,尽量用excel,project,xmind来编写.反而注重结构,轻原型. 我喜欢的顺序是: 功能结构图 信息结构图 产品结构图/流程图 原型图/交互设计/UI设计/数据库设计/架构设计 任务计划安排/编写测试用例 开发 各结构图虽然有重复,但侧重点不一样. 功能结构图 作用: 梳理功能点 产品经理:罗列所有功能点及细节,如客户需求,老板需求,竞品功能,臆想的功能. 包含优先级,需求来源,注释 技术经理: 转化成任务,任务类型为功能,包含未完成,完成,关闭的功能,需要注明负责人,优先级,预期时间,开始时间,结束时间,依赖任务. 信息结构图 作用: 梳理所有信息数据与关系 数据库可以定信息类型,如布尔型,字符型,数据关联,字符长度 产品经理:罗列所有信息,要求 研发:定数据结构 产品结构作用: 展示所有功能,信息,交互综合之前功能结构,和信息结构,完善信息和功能,去掉不必要的功能和信息.补充那交互,设计图,原型图我认为产品结构是产品经理的最终产物,而不是某个网站,APP. Xmind的使用需求整理各种有理无理的需求,自己YY的需求等.草稿版使用xmind的灵感工具.如:]]></content>
+      <categories>
+        <category>Project</category>
+      </categories>
+      <tags>
+        <tag>产品经理</tag>
+        <tag>项目管理</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title></title>
+    <url>%2F2019%2F01%2F21%2FPHP%2Fphpwinxp%2F</url>
+    <content type="text"><![CDATA[WindowsXp 集成环境工具列表: Apache PHP Mysql Chrome浏览器 一键集成环境安装.基于wamp2.20来改造.]]></content>
+  </entry>
+  <entry>
     <title><![CDATA[electron生成pdf]]></title>
     <url>%2F2019%2F01%2F09%2FElectron%2Fconvert2pdf%2F</url>
     <content type="text"><![CDATA[electron生成pdf主要是html转pdf,pdf是打印用的文档,可以控制打印的格式.使用electron生成pdf的方式就很随意了.使用webview.toPDF(),NodeJS转化,NodeJS调用系统资源去生成都可以.下面主要讲 使用webview或webcontent生成PDF.注意:Electron的toPDF不支持页眉页脚设置.后面只能通过其它文案去修改页眉页脚了. 主要步骤 读取weburl 生成临时PDF文件 预览临时PDF 打印临时PDF 下载,上传PDF 读取URL在服务器使用php模板渲染生成html页面,写打印样式.统一使用A4纸标准.打印注意,请参考关于html打印相关文章. 下面都是基于electron-vue的代码.关键代码:]]></content>
@@ -29,7 +86,7 @@
   <entry>
     <title><![CDATA[通过背景色设置文字颜色]]></title>
     <url>%2F2019%2F01%2F07%2FJavascript%2FisLight%2F</url>
-    <content type="text"><![CDATA[通过背景色设置文字颜色 有这么一个需求,用户设置选择一个主题颜色,计算出背景色和文字颜色. 通过分析需求,需要最简单的实现方案,背景色和主题色,文字为背景色的对比色.对比色,可以简单的两种,黑或白色,根据背景色的明暗度使用白或黑. 获取色值的明暗度明暗度,通过两种色彩模式获取. PS中,HSV(HSB)色彩模式:H:色相 (0-360)S:饱和度 (0-100%)V:亮度 (0-100%) 在CSS中只支持HSL色彩模式:H:色相 (0-360)S:饱和度 (0-100%)L:明度 (0-100%) 纯红色:RGB(255,0,0)在不同色彩模式的表现. HSV,为0,100%,100% HSL,为0,100%,50% HSl更适合人类眼睛,通过观察我们只需要判断HSl色彩模式的L就可以了.L:50%时,使用明或暗都可以. 使用JS转换色值因为前端考虑兼容性,CSS常用两种色彩模式,RGB的十进制和十六进制.透明度暂时不考虑. HEX转RGB参考公式:12345678910111213141516171819202122var colorRgb = function(sColor)&#123; sColor = sColor.toLowerCase(); //十六进制颜色值的正则表达式 var reg = /^#([0-9a-fA-f]&#123;3&#125;|[0-9a-fA-f]&#123;6&#125;)$/; // 如果是16进制颜色 if (sColor &amp;&amp; reg.test(sColor)) &#123; if (sColor.length === 4) &#123; var sColorNew = "#"; for (var i=1; i&lt;4; i+=1) &#123; sColorNew += sColor.slice(i, i+1).concat(sColor.slice(i, i+1)); &#125; sColor = sColorNew; &#125; //处理六位的颜色值 var sColorChange = []; for (var i=1; i&lt;7; i+=2) &#123; sColorChange.push(parseInt("0x"+sColor.slice(i, i+2))); &#125; return "RGB(" + sColorChange.join(",") + ")"; &#125; return sColor;&#125;; RGB转HSL参考网上的公式函数 12345678910111213141516171819202122232425262728293031/** * RGB 颜色值转换为 HSL. * 转换公式参考自 http://en.wikipedia.org/wiki/HSL_color_space. * r, g, 和 b 需要在 [0, 255] 范围内 * 返回的 h, s, 和 l 在 [0, 1] 之间 * * @param Number r 红色色值 * @param Number g 绿色色值 * @param Number b 蓝色色值 * @return Array HSL各值数组 */function rgbToHsl(r, g, b) &#123; r /= 255, g /= 255, b /= 255; var max = Math.max(r, g, b), min = Math.min(r, g, b); var h, s, l = (max + min) / 2; if (max == min)&#123; h = s = 0; // achromatic &#125; else &#123; var d = max - min; s = l &gt; 0.5 ? d / (2 - max - min) : d / (max + min); switch(max) &#123; case r: h = (g - b) / d + (g &lt; b ? 6 : 0); break; case g: h = (b - r) / d + 2; break; case b: h = (r - g) / d + 4; break; &#125; h /= 6; &#125; return [h, s, l];&#125; 明暗度判断明暗度是基于人眼的感光程度来的,可以选择一个舒适的取值范围,下面是我的人眼取值. 通过L值判断,在大于60左右为”亮”. 直接通过RGB值来判断也可,比值公式 (0.213 rgb[0] + 0.715 rgb[1] + 0.072 * rgb[2]) &gt;255/2 完成 项目中对色盘认识不够,不然可以取亲合一点的对比色,那就完美了. 我主要用于electron封装壳主题色改变,electron和web是两套系统,只能通过 html中的meta来获取web当前的主题,从而改变标题栏等颜色. html中: electron-vue中 mounted(): 12345678// themewebview.addEventListener('did-change-theme-color', (e,themeColor) =&gt; &#123; if(e.themeColor)&#123; this.theme=e.themeColor this.changeTheme(e.themeColor); &#125;&#125;); method()中 1234567891011121314151617181920212223242526272829303132333435363738394041changeTheme(themeColor)&#123; themeColor=themeColor.toLowerCase(); const reg = /^#([0-9a-fA-f]&#123;3&#125;|[0-9a-fA-f]&#123;6&#125;)$/; let rgbColor=[]; // 十六进制转换RGB if (reg.test(themeColor)) &#123; if (themeColor.length === 4) &#123; rgbColor[0]=parseInt("0x"+themeColor.substr(1,1)+themeColor.substr(1,1)+themeColor.substr(1,1)); rgbColor[1]=parseInt("0x"+themeColor.substr(2,1)+themeColor.substr(2,1)+themeColor.substr(2,1)); rgbColor[2]=parseInt("0x"+themeColor.substr(3,1)+themeColor.substr(3,1)+themeColor.substr(3,1)); &#125;else&#123; rgbColor[0]=parseInt("0x"+themeColor.substr(1,2)); rgbColor[1]=parseInt("0x"+themeColor.substr(2,2)); rgbColor[2]=parseInt("0x"+themeColor.substr(4,2)); &#125; &#125;else if(/^(rgb|RGB)/.test(themeColor))&#123; rgbColor = themeColor.replace(/(?:\(|\)|rgb|RGB)*/g, "").split(","); &#125; // 获取颜色明暗度 let isLight=false; if(rgbColor)&#123; let isLightValue =(0.213 * rgbColor[0] +0.715* rgbColor[1] +0.072 * rgbColor[2]); // 人眼明暗度 0.213,0.715,0.072 isLight=isLightValue &gt;155; //console.log(themeColor,isLightValue); &#125;else&#123; themeColor='#5b6270'; isLight=false; &#125; const TextColor=isLight?'#333':'#f5f5f5'; this.themeStyle=&#123; color:TextColor, background:themeColor &#125; &#125;]]></content>
+    <content type="text"><![CDATA[通过背景色设置文字颜色 有这么一个需求,用户设置选择一个主题颜色,计算出背景色和文字颜色. 通过分析需求,需要最简单的实现方案,背景色和主题色,文字为背景色的对比色.对比色,可以简单的两种,黑或白色,根据背景色的明暗度使用白或黑. 获取色值的明暗度明暗度,通过两种色彩模式获取. PS中,HSV(HSB)色彩模式:H:色相 (0-360)S:饱和度 (0-100%)V:亮度 (0-100%) 在CSS中只支持HSL色彩模式:H:色相 (0-360)S:饱和度 (0-100%)L:明度 (0-100%) 纯红色:RGB(255,0,0)在不同色彩模式的表现. HSV,为0,100%,100% HSL,为0,100%,50% HSl更适合人类眼睛,通过观察我们只需要判断HSl色彩模式的L就可以了.L:50%时,使用明或暗都可以. 使用JS转换色值因为前端考虑兼容性,CSS常用两种色彩模式,RGB的十进制和十六进制.透明度暂时不考虑. HEX转RGB参考公式:__12345678910111213141516171819202122var colorRgb = function(sColor)&#123; sColor = sColor.toLowerCase(); //十六进制颜色值的正则表达式 var reg = /^#([0-9a-fA-f]&#123;3&#125;|[0-9a-fA-f]&#123;6&#125;)$/; // 如果是16进制颜色 if (sColor &amp;&amp; reg.test(sColor)) &#123; if (sColor.length === 4) &#123; var sColorNew = "#"; for (var i=1; i&lt;4; i+=1) &#123; sColorNew += sColor.slice(i, i+1).concat(sColor.slice(i, i+1)); &#125; sColor = sColorNew; &#125; //处理六位的颜色值 var sColorChange = []; for (var i=1; i&lt;7; i+=2) &#123; sColorChange.push(parseInt("0x"+sColor.slice(i, i+2))); &#125; return "RGB(" + sColorChange.join(",") + ")"; &#125; return sColor;&#125;; RGB转HSL参考网上的公式函数 12345678910111213141516171819202122232425262728293031/** * RGB 颜色值转换为 HSL. * 转换公式参考自 http://en.wikipedia.org/wiki/HSL_color_space. * r, g, 和 b 需要在 [0, 255] 范围内 * 返回的 h, s, 和 l 在 [0, 1] 之间 * * @param Number r 红色色值 * @param Number g 绿色色值 * @param Number b 蓝色色值 * @return Array HSL各值数组 */function rgbToHsl(r, g, b) &#123; r /= 255, g /= 255, b /= 255; var max = Math.max(r, g, b), min = Math.min(r, g, b); var h, s, l = (max + min) / 2; if (max == min)&#123; h = s = 0; // achromatic &#125; else &#123; var d = max - min; s = l &gt; 0.5 ? d / (2 - max - min) : d / (max + min); switch(max) &#123; case r: h = (g - b) / d + (g &lt; b ? 6 : 0); break; case g: h = (b - r) / d + 2; break; case b: h = (r - g) / d + 4; break; &#125; h /= 6; &#125; return [h, s, l];&#125; 明暗度判断明暗度是基于人眼的感光程度来的,可以选择一个舒适的取值范围,下面是我的人眼取值. 通过L值判断,在大于60左右为”亮”. 直接通过RGB值来判断也可,比值公式 (0.213 rgb[0] + 0.715 rgb[1] + 0.072 * rgb[2]) &gt;255/2 完成 项目中对色盘认识不够,不然可以取亲合一点的对比色,那就完美了. 我主要用于electron封装壳主题色改变,electron和web是两套系统,只能通过 html中的meta来获取web当前的主题,从而改变标题栏等颜色. html中: electron-vue中 mounted(): 12345678// themewebview.addEventListener('did-change-theme-color', (e,themeColor) =&gt; &#123; if(e.themeColor)&#123; this.theme=e.themeColor this.changeTheme(e.themeColor); &#125;&#125;); method()中 1234567891011121314151617181920212223242526272829303132333435363738394041changeTheme(themeColor)&#123; themeColor=themeColor.toLowerCase(); const reg = /^#([0-9a-fA-f]&#123;3&#125;|[0-9a-fA-f]&#123;6&#125;)$/; let rgbColor=[]; // 十六进制转换RGB if (reg.test(themeColor)) &#123; if (themeColor.length === 4) &#123; rgbColor[0]=parseInt("0x"+themeColor.substr(1,1)+themeColor.substr(1,1)+themeColor.substr(1,1)); rgbColor[1]=parseInt("0x"+themeColor.substr(2,1)+themeColor.substr(2,1)+themeColor.substr(2,1)); rgbColor[2]=parseInt("0x"+themeColor.substr(3,1)+themeColor.substr(3,1)+themeColor.substr(3,1)); &#125;else&#123; rgbColor[0]=parseInt("0x"+themeColor.substr(1,2)); rgbColor[1]=parseInt("0x"+themeColor.substr(2,2)); rgbColor[2]=parseInt("0x"+themeColor.substr(4,2)); &#125; &#125;else if(/^(rgb|RGB)/.test(themeColor))&#123; rgbColor = themeColor.replace(/(?:\(|\)|rgb|RGB)*/g, "").split(","); &#125; // 获取颜色明暗度 let isLight=false; if(rgbColor)&#123; let isLightValue =(0.213 * rgbColor[0] +0.715* rgbColor[1] +0.072 * rgbColor[2]); // 人眼明暗度 0.213,0.715,0.072 isLight=isLightValue &gt;155; //console.log(themeColor,isLightValue); &#125;else&#123; themeColor='#5b6270'; isLight=false; &#125; const TextColor=isLight?'#333':'#f5f5f5'; this.themeStyle=&#123; color:TextColor, background:themeColor &#125; &#125;]]></content>
       <categories>
         <category>Javascript</category>
       </categories>

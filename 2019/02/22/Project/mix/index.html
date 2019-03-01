@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+  <meta name="description" content="Hi~我是阿金,也可以叫我Arkin,做开发的阿金同学">
+  <meta name="baidu-site-verification" content="KAIz07eWp9" />
+  <meta name="baidu_union_verify" content="89761f418e2e32d488f0c783a8616865">
+  <meta name="keyword" content="阿金,开发,前端,后端,产品,架构师">
+  
+    <link rel="shortcut icon" href="/css/images/logo.png">
+  
+  <title>
+    
+      产品结构图,产品信息结构图,产品功能结构图 | Hi,阿金
+    
+  </title>
+  <link href="//cdn.staticfile.org/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+  <link href="//cdn.staticfile.org/nprogress/0.2.0/nprogress.min.css" rel="stylesheet">
+  <link href="//cdn.staticfile.org/highlight.js/9.12.0/styles/tomorrow.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="/css/style.css">
+  <script src="//cdn.staticfile.org/jquery/3.2.1/jquery.min.js"></script>
+  <script src="//cdn.staticfile.org/geopattern/1.2.3/js/geopattern.min.js"></script>
+  <script src="//cdn.staticfile.org/nprogress/0.2.0/nprogress.min.js"></script>
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="/js/qrious.js"></script>
+  
+  
+    <!-- MathJax support START -->
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.staticfile.org/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <!-- MathJax support END -->
+  
+
+
+</head>
+<div class="wechat-share">
+  <img src="/css/images/logo.svg" />
+</div>
+
+  <body>
+    <header class="header fixed-header">
+  <div class="header-container">
+    <a class="home-link" href="/">
+      <div class="logo"></div>
+      <span>Hi,阿金 <span class="jumping-dots"><i>.</i><i>.</i><i>.</i></span></span>
+    </a>
+    <ul class="right-list">
+      
+        <li class="list-item">
+          
+            <a href="/" class="item-link">首页</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/categories/" class="item-link">分类</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/tags/" class="item-link">标签</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/archives/" class="item-link">归档</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/about/" class="item-link">whois</a>
+          
+        </li>
+      
+    </ul>
+
+    
+  <!-- div id="site_search">
+   <div class="form-group">
+    <input type="text" id="local-search-input" autocomplete="off" name="q" results="0" placeholder="search" class="st-search-input st-default-search-input form-control"/>
+   </div>  
+  <div id="local-search-result"></div>
+  </div -->
+
+
+    
+    <div class="menu">
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </div>
+    <div class="menu-mask">
+      <ul class="menu-list">
+        
+          <li class="menu-item">
+            
+              <a href="/" class="menu-link">首页</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/categories/" class="menu-link">分类</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/tags/" class="menu-link">标签</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/archives/" class="menu-link">归档</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/about/" class="menu-link">whois</a>
+            
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</header>
+
+    <div id="article-banner">
+  <h2>产品结构图,产品信息结构图,产品功能结构图</h2>
+  <div class="post-date">
+    发表:<span> 2019-02-22 </span>
+    分类:
+      <span class="article-category">
+        <a class="article-category-link" href="/categories/Project/">Project</a>
+      </span>
+    
+  </div>
+  <div class="arrow-down">
+    <a href="javascript:;"></a>
+  </div>
+</div>
+<main class="app-body flex-box">
+  <!-- Article START -->
+  <article class="post-article">
+    <section class="markdown-content"><h1 id="区分产品结构图-产品信息结构图-产品功能结构"><a href="#区分产品结构图-产品信息结构图-产品功能结构" class="headerlink" title="区分产品结构图,产品信息结构图,产品功能结构"></a>区分产品结构图,产品信息结构图,产品功能结构</h1><p>做项目中各种结构图经常弄混乱,导致权责不清楚.<br>经常把自己”人格分裂”,同时充当很多角色.<br>产品经理–项目经理–技术经理–架构师–研发工程师–UI设计–运维–运营–测试</p>
+<p>结构图很多产品经理都没有做,只出需求文档,原型图.由于技术出生,习惯用理性的思想来做事,可以外脑来存储的,而不是感性的文字描述,有版本,可回归.<br>除了给Boss看,尽量用excel,project,xmind来编写.<br>反而注重结构,轻原型.</p>
+<p>我喜欢的顺序是:</p>
+<ol>
+<li>功能结构图</li>
+<li>信息结构图</li>
+<li>产品结构图/流程图</li>
+<li>原型图/交互设计/UI设计/数据库设计/架构设计</li>
+<li>任务计划安排/编写测试用例</li>
+<li>开发</li>
+</ol>
+<p>各结构图虽然有重复,但侧重点不一样.</p>
+<h2 id="功能结构图"><a href="#功能结构图" class="headerlink" title="功能结构图"></a>功能结构图</h2><p> 作用: <strong>梳理功能点</strong><br> 产品经理:罗列所有功能点及细节,如客户需求,老板需求,竞品功能,臆想的功能.<br> 包含优先级,需求来源,注释<br> 技术经理: 转化成任务,任务类型为功能,包含未完成,完成,关闭的功能,需要注明负责人,优先级,预期时间,开始时间,结束时间,依赖任务.</p>
+<h2 id="信息结构图"><a href="#信息结构图" class="headerlink" title="信息结构图"></a>信息结构图</h2><p> 作用: <strong>梳理所有信息数据与关系</strong><br> 数据库可以定信息类型,如布尔型,字符型,数据关联,字符长度<br> 产品经理:罗列所有信息,要求<br> 研发:定数据结构</p>
+<h2 id="产品结构"><a href="#产品结构" class="headerlink" title="产品结构"></a>产品结构</h2><p>作用: <strong>展示所有功能,信息,交互</strong><br>综合之前功能结构,和信息结构,完善信息和功能,去掉不必要的功能和信息.<br>补充那交互,设计图,原型图<br>我认为产品结构是产品经理的最终产物,而不是某个网站,APP.</p>
+<h2 id="Xmind的使用"><a href="#Xmind的使用" class="headerlink" title="Xmind的使用"></a>Xmind的使用</h2><h3 id="需求整理"><a href="#需求整理" class="headerlink" title="需求整理"></a>需求整理</h3><p>各种有理无理的需求,自己YY的需求等.草稿版<br>使用xmind的灵感工具.<br>如:<br><img src="http://img.hi-arkin.com/2019-02-22-15508423454705.jpg" alt=""></p>
+</section>
+    <!-- Tags START -->
+    
+      <div class="tags">
+        <span>Tags:</span>
+        
+  <a href="/tags#产品经理" >
+    <span class="tag-code">产品经理</span>
+  </a>
+
+  <a href="/tags#项目管理" >
+    <span class="tag-code">项目管理</span>
+  </a>
+
+      </div>
+    
+    <!-- Tags END -->
+    <!-- NAV START -->
+    
+  <div class="nav-container">
+    <!-- reverse left and right to put prev and next in a more logic postition -->
+    
+      <a class="nav-left" href="/2019/01/21/PHP/phpwinxp/">
+        <span class="nav-arrow">← </span>
+        
+          (untitled)
+        
+      </a>
+    
+    
+      <a class="nav-right" href="/2019/02/25/PM/2019-02-25/">
+        
+          把故事讲好
+        
+        <span class="nav-arrow"> →</span>
+      </a>
+    
+  </div>
+
+    <!-- NAV END -->
+
+    <!-- 二维码 START -->
+    
+      <div class="qrcode">
+        <canvas id="share-qrcode"></canvas>
+        <p class="notice">扫描二维码，分享此文章</p>
+      </div>
+    
+    <!-- 二维码 END -->
+    
+      <!-- No Comment -->
+    
+  </article>
+  <!-- Article END -->
+  <!-- Catalog START -->
+  
+    <aside class="catalog-container">
+  <div class="toc-main">
+    <strong class="toc-title">Catalog</strong>
+    
+      <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#区分产品结构图-产品信息结构图-产品功能结构"><span class="toc-nav-text">区分产品结构图,产品信息结构图,产品功能结构</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#功能结构图"><span class="toc-nav-text">功能结构图</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#信息结构图"><span class="toc-nav-text">信息结构图</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#产品结构"><span class="toc-nav-text">产品结构</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#Xmind的使用"><span class="toc-nav-text">Xmind的使用</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#需求整理"><span class="toc-nav-text">需求整理</span></a></li></ol></li></ol></li></ol>
+    
+  </div>
+</aside>
+  
+  <!-- Catalog END -->
+</main>
+
+<script>
+  (function () {
+    var url = 'https://arkin-j.github.io/2019/02/22/Project/mix/';
+    var banner = ''
+    if (banner !== '' && banner !== 'undefined' && banner !== 'null') {
+      $('#article-banner').css({
+        'background-image': 'url(' + banner + ')'
+      })
+    } else {
+      $('#article-banner').geopattern(url)
+    }
+    $('.header').removeClass('fixed-header')
+
+     // error image
+    $(".markdown-content img").on('error', function() {
+      $(this).attr('src', '/css/images/error-img.svg')
+      $(this).css({
+        'cursor': 'default'
+      })
+    })
+
+    // zoom image
+    $(".markdown-content img").on('click', function() {
+      var src = $(this).attr('src')
+      if (src !== '/css/images/error-img.svg') {
+        var imageW = $(this).width()
+        var imageH = $(this).height()
+        
+        var zoom = ($(window).width() * 0.95 / imageW).toFixed(2)
+        zoom = zoom < 1 ? 1 : zoom
+        zoom = zoom > 2 ? 2 : zoom
+        var transY = (($(window).height() - imageH) / 2).toFixed(2)
+
+        $('body').append('<div class="image-view-wrap"><div class="image-view-inner"><img src="'+ src +'" /></div></div>')
+        $('.image-view-wrap').addClass('wrap-active')
+        $('.image-view-wrap img').css({
+          'width': `${imageW}`,
+          'transform': `translate3d(0, ${transY}px, 0) scale3d(${zoom}, ${zoom}, 1)`
+        })
+        $('html').css('overflow', 'hidden')
+
+        $('.image-view-wrap').on('click', function() {
+          $(this).remove()
+          $('html').attr('style', '')
+        })
+      }
+    })
+
+    // qrcode
+    var qr = new QRious({
+      element: document.getElementById('share-qrcode'),
+      value: document.location.href
+    });
+
+  })();
+</script>
+
+    <div class="scroll-top">
+  <span class="arrow-icon"></span>
+</div>
+    
+<footer class="app-footer">
+  <div id="vcomments" style="max-width:800px"></div>
+  <p class="copyright">
+    <a href="http://tongji.baidu.com/web/welcome/ico?s=371952d9b83cd706a4702ef0c232e3de" target="_blank">...</a>
+    &copy; 2019 |  Powered by 阿金 | 
+    <a href="http://www.miitbeian.gov.cn" rel="nofollow" target="_blank"> 京ICP备18064786号-1 </a>
+  </p>
+</footer>
+<script src="/js/search.js"></script> 
+
+<script>
+  function async(u, c) {
+    var d = document, t = 'script',
+      o = d.createElement(t),
+      s = d.getElementsByTagName(t)[0];
+    o.src = u;
+    if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+    s.parentNode.insertBefore(o, s);
+  }
+</script>
+<script>
+  async("//cdn.staticfile.org/fastclick/1.0.6/fastclick.min.js", function(){
+    FastClick.attach(document.body);
+  })
+</script>
+
+<script>
+  var hasLine = 'true';
+  async("//cdn.staticfile.org/highlight.js/9.12.0/highlight.min.js", function(){
+    $('figure pre').each(function(i, block) {
+      var figure = $(this).parents('figure');
+      if (hasLine === 'false') {
+        figure.find('.gutter').hide();
+      }
+      var lang = figure.attr('class').split(' ')[1] || 'code';
+      var codeHtml = $(this).html();
+      var codeTag = document.createElement('code');
+      codeTag.className = lang;
+      codeTag.innerHTML = codeHtml;
+      $(this).attr('class', '').empty().html(codeTag);
+      figure.attr('data-lang', lang.toUpperCase());
+      hljs.highlightBlock(block);
+    });
+  })
+</script>
+
+
+
+   <script type="text/javascript">      
+     var search_path = "search.xml";
+   if (search_path.length == 0) {
+    search_path = "search.xml";
+   }
+   var path = "/" + search_path;
+     searchFunc(path, 'local-search-input', 'local-search-result');
+   </script>
+
+
+
+<!-- Baidu Tongji -->
+
+<script>
+    var _baId = '371952d9b83cd706a4702ef0c232e3de';
+    // Originial
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?" + _baId;
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </body>
+</html>

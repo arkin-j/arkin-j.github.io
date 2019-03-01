@@ -97,12 +97,12 @@
     </ul>
 
     
-  <div id="site_search">
+  <!-- div id="site_search">
    <div class="form-group">
     <input type="text" id="local-search-input" autocomplete="off" name="q" results="0" placeholder="search" class="st-search-input st-default-search-input form-control"/>
    </div>  
   <div id="local-search-result"></div>
-  </div>
+  </div -->
 
 
     
@@ -168,7 +168,7 @@
   <article class="post-article">
     <section class="markdown-content"><h1 id="Doc电子报告研发过程"><a href="#Doc电子报告研发过程" class="headerlink" title="Doc电子报告研发过程"></a>Doc电子报告研发过程</h1><p>这是记录一次电子报告研发过程,口水记录.<br>项目中需要生成电子报告;</p>
 <p>一切不讲实际场景的解决方案都是耍牛氓.</p>
-<h2 id="场景"><a href="#场景" class="headerlink" title="场景"></a>场景</h2><ul>
+<h1 id="场景"><a href="#场景" class="headerlink" title="场景"></a>场景</h1><ul>
 <li>类似ERP系统,需要生成电子报告;</li>
 <li>需要私网部署;</li>
 <li>电子报告格式复杂,内容包含:富文本,公式,特殊字符,表格,图片,分页涵盖Word的功能;</li>
@@ -180,10 +180,10 @@
 <li>Word有良好打印格式支持;</li>
 <li>电子报告是必须流程;</li>
 </ul>
-<h2 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h2><h3 id="HTML转WORD方案"><a href="#HTML转WORD方案" class="headerlink" title="HTML转WORD方案"></a>HTML转WORD方案</h3><p>通过html生成pdf或word,也研究过markdown转word.<br>虽然能达到要求,但是由于前端html的使用分辨率px来计算,打印使用点pi来计算,很难精确控制页面样式.</p>
+<h1 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h1><h2 id="HTML转WORD方案"><a href="#HTML转WORD方案" class="headerlink" title="HTML转WORD方案"></a>HTML转WORD方案</h2><p>通过html生成pdf或word,也研究过markdown转word.<br>虽然能达到要求,但是由于前端html的使用分辨率px来计算,打印使用点pi来计算,很难精确控制页面样式.</p>
 <p>html转pdf的方案工具很多,<br>文档格式的瑞士军刀pandoc,很多格式都可以转换<br>官网:<a href="http://www.pandoc.org/" target="_blank" rel="noopener">http://www.pandoc.org/</a><br>在macos,window,linux下都可以安装使用.<br>常用转换格式,看下图<br><img src="http://www.pandoc.org/diagram.jpg" alt=""></p>
 <p>虽然很强大,但生成文档质量差强人意,个人使用可以,客户很挑,有可能为了个空格折腾一星期都解决不了.</p>
-<h3 id="PHPWord方案"><a href="#PHPWord方案" class="headerlink" title="PHPWord方案"></a>PHPWord方案</h3><p>设想通过word模板生成word,设想很美好,现实很骨感.<br>PHPOffice的GitHub:<br><a href="https://github.com/PHPOffice/PHPWord" target="_blank" rel="noopener">https://github.com/PHPOffice/PHPWord</a></p>
+<h2 id="PHPWord方案"><a href="#PHPWord方案" class="headerlink" title="PHPWord方案"></a>PHPWord方案</h2><p>设想通过word模板生成word,设想很美好,现实很骨感.<br>PHPOffice的GitHub:<br><a href="https://github.com/PHPOffice/PHPWord" target="_blank" rel="noopener">https://github.com/PHPOffice/PHPWord</a></p>
 <p>选型阶段,测试了几个简单的模板,文本变量替换完全没问题,就匆匆使用了.<br>经过几天试用,完全解决不了问题.<br>问题:</p>
 <ol>
 <li>分块没法复制</li>
@@ -195,7 +195,7 @@
 <li>文档太差,没法入手</li>
 </ol>
 <p>Bug太多,有很多需要修改源码才能使用,时间紧就没有使用.迫切使用第二方案.</p>
-<h3 id="在线Word解析"><a href="#在线Word解析" class="headerlink" title="在线Word解析"></a>在线Word解析</h3><p>地址:<a href="http://www.xdocin.com" target="_blank" rel="noopener">http://www.xdocin.com</a><br>这个云模板,支持很多数据结构,直接调用API就能使用,可以生成word,pdf.<br>也是基于word模板变量替换方式来完成的.<br>一些简单的结构还比较OK,格式不会丢失.</p>
+<h2 id="在线Word解析"><a href="#在线Word解析" class="headerlink" title="在线Word解析"></a>在线Word解析</h2><p>地址:<a href="http://www.xdocin.com" target="_blank" rel="noopener">http://www.xdocin.com</a><br>这个云模板,支持很多数据结构,直接调用API就能使用,可以生成word,pdf.<br>也是基于word模板变量替换方式来完成的.<br>一些简单的结构还比较OK,格式不会丢失.</p>
 <p>缺点和问题:</p>
 <ol>
 <li>基于对象的模板变量,虽然可以支持多层结构的数据 ,但是有个缺点,就是不能跨页,如果数据量多超就显示不全. 对象就是Word”文本框”来实现.</li>
@@ -207,7 +207,7 @@
 <li>不支持私有布署</li>
 <li>不开源,有问题只能面对黑洞</li>
 </ol>
-<h3 id="Python方案"><a href="#Python方案" class="headerlink" title="Python方案"></a>Python方案</h3><p>回到原点,PHPWord虽然可以能写入任意内容,但是质量效率都成问题.我们考虑使用其它语言方案,不能在一棵树上吊死.<br>选择一门稍微快速入手的语言,Python.<br>git:<a href="https://github.com/python-openxml/python-docx" target="_blank" rel="noopener">https://github.com/python-openxml/python-docx</a></p>
+<h2 id="Python方案"><a href="#Python方案" class="headerlink" title="Python方案"></a>Python方案</h2><p>回到原点,PHPWord虽然可以能写入任意内容,但是质量效率都成问题.我们考虑使用其它语言方案,不能在一棵树上吊死.<br>选择一门稍微快速入手的语言,Python.<br>git:<a href="https://github.com/python-openxml/python-docx" target="_blank" rel="noopener">https://github.com/python-openxml/python-docx</a></p>
 <p>通过python生成api,然后使用php去调用.<br>python-docx,可以私有化布署,支持富文本与公式,调整样式等自定义操作.</p>
 <p>缺点:</p>
 <ol>
@@ -229,7 +229,7 @@
 </ol>
 <p>因为ERP有大量打印需要,自定义打印内容,硬件交互,本地文件处理的需要.<br>这次直接使用封装html方案,来避规这些问题,通过选型,我们使用了Electron方案.</p>
 <p>参考后面<a href="/2019/01/09/Electron/convert2pdf">&lt;&lt;electron生成pdf&gt;&gt;</a>文章</p>
-<h3 id="WebOffice方案"><a href="#WebOffice方案" class="headerlink" title="WebOffice方案"></a>WebOffice方案</h3><p>如果需要真正可被化在线编辑Word,只能使用在线文档编辑控件了.这个布署复杂,收费,难以自定义.</p>
+<h2 id="WebOffice方案"><a href="#WebOffice方案" class="headerlink" title="WebOffice方案"></a>WebOffice方案</h2><p>如果需要真正可被化在线编辑Word,只能使用在线文档编辑控件了.这个布署复杂,收费,难以自定义.</p>
 <p>官方office online:<br><a href="https://products.office.com/zh-cn/office-online/documents-spreadsheets-presentations-office-online" target="_blank" rel="noopener">https://products.office.com/zh-cn/office-online/documents-spreadsheets-presentations-office-online</a></p>
 <p>服务器不跨不平台且收费,客户端跨平台免费使用.</p>
 <p>这个方案,算是最后的稻草,基于能省则省的原则,到最后再尝试.</p>
@@ -297,7 +297,7 @@
   <div class="toc-main">
     <strong class="toc-title">Catalog</strong>
     
-      <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#Doc电子报告研发过程"><span class="toc-nav-text">Doc电子报告研发过程</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#场景"><span class="toc-nav-text">场景</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#解决方案"><span class="toc-nav-text">解决方案</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#HTML转WORD方案"><span class="toc-nav-text">HTML转WORD方案</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#PHPWord方案"><span class="toc-nav-text">PHPWord方案</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#在线Word解析"><span class="toc-nav-text">在线Word解析</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#Python方案"><span class="toc-nav-text">Python方案</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#WebOffice方案"><span class="toc-nav-text">WebOffice方案</span></a></li></ol></li></ol></li></ol>
+      <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#Doc电子报告研发过程"><span class="toc-nav-text">Doc电子报告研发过程</span></a></li><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#场景"><span class="toc-nav-text">场景</span></a></li><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#解决方案"><span class="toc-nav-text">解决方案</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#HTML转WORD方案"><span class="toc-nav-text">HTML转WORD方案</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#PHPWord方案"><span class="toc-nav-text">PHPWord方案</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#在线Word解析"><span class="toc-nav-text">在线Word解析</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#Python方案"><span class="toc-nav-text">Python方案</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#WebOffice方案"><span class="toc-nav-text">WebOffice方案</span></a></li></ol></li></ol>
     
   </div>
 </aside>
