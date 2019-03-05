@@ -1,6 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[路由事件]]></title>
+    <url>%2F2019%2F03%2F04%2FJavascript%2Frouterlister%2F</url>
+    <content type="text"><![CDATA[浏览器路由监听事件“路由”在任何http框架占有最重要的角色,可以说每个那框架都离不开路由,路由就是框架的核心.如前端的框架,如前端框架Vue.js,React.js,AngularJS…PHP框架,Laravel,ThinkPhp,CI…等. 我们今天说的路由,指的前端框架的路由.因为对vue-router和react-router 4,以这两个路由来实现.主要的路由事件钩子有:Before,Resolve,After,[Before 前置]离开或进入路由,在页面渲染前 [Resolve 确认]路由已经进行完成,不能修改,不能结束,等待页面渲染结束. [After 后置]在页面渲染结束后发生. Before 前置事件就是门卫,”从哪儿来到哪儿去的问题”这门卫还可以给你瞎指路,引导你去.一般用来做权限验证的.通过有个全局”门卫”和小部门”门卫”. Vue:[参考]1234567891011const router = new VueRouter(&#123; ... &#125;)router.beforeEach((to, from, next) =&gt; &#123; // ... //to:去哪的路由信息 //from: 来至哪 //next : 门卫开门指路方法 // 如果没运行next函数,就是门卫懒得不理你. next();// 给开门了,路自己去找吧吧 next('/login');// 指引你去登记处&#125;) React:由于React路由中没有全局中间件,React所有都是组件.我们可以在根路由组件里面分别实现. 进入事件 离开事件一般在根组件里面,如监听componentWillReceiveProps事件监听.shouldComponentUpdate事件阻断. 123456789101112131415161718import React from 'react';import &#123; Route,Prompt &#125; from 'react-router-dom';class App extends React.Component &#123; // 进入事件 componentDidMount()&#123; let to=this.props.location let from=undefined; console.log(to,from); &#125; //离开事件 shouldComponentUpdate(nextProps, nextState)&#123; let to=this.props.location let from=nextProps.location; console.log(to.pathname,form.pathname); return true;// 开门 return false;// 不开门 &#125;&#125; 旧版本路由使用routerWillLeave监听.新版本react-router v4以后.使用Prompt,由于没有v2版本,这里只例举.Prompt的用法. 1234567891011121314151617181920212223242526import React from 'react';import &#123;Route, Redirect,Prompt&#125; from 'react-router-dom';class App extends React.Component &#123; render()&#123; const HomePage= ()=&gt;(&lt;div&gt;home&lt;/div&gt;); const LoginPage= ()=&gt;(&lt;div&gt;login&lt;/div&gt;); const NotFound= ()=&gt;(&lt;div&gt;404&lt;/div&gt;); return ( &lt;div id="APP"&gt; &lt;Prompt message=&#123;(to)=&gt;&#123; let from=this.props.location; console.log(to); return true;// 跳转 return false;// 不跳转 &#125;&#125; /&gt; &lt;Route exact path="/home" component=&#123;HomePage&#125;/&gt; &lt;Route exact path="/login" component=&#123;LoginPage&#125;/&gt; &lt;Route render=&#123;NotFound&#125; /&gt; &lt;/div&gt; ); &#125;&#125; React中的权限判断最好使用高阶组件来完成.如这样的写法 Resolve 渲染事件路由已经完成,正在准备渲染了.vue通过router.beforeResolve事件来实现.123router.beforeResolve((to, from, next) =&gt; &#123; // ...&#125;) React通过组件的生命周期来实现.render();1 React和Vue区在于,Vue的路由是独立的,而React是组件的;vue先执行完成路由事件,再去渲染组件,顺序是子路由–&gt;根路由;React是全部组件从,父级–&gt;子级; After 渲染事件vuevue可以通过,所有路由完成状态123router.afterEach((to, from) =&gt; &#123; // ...&#125;) react没有全局钩子,只能约定通过高阶组件来统一管理路由状态.很难避免直接使用componet的情况.]]></content>
+      <categories>
+        <category>Javascript</category>
+      </categories>
+      <tags>
+        <tag>History</tag>
+        <tag>Vue Router</tag>
+        <tag>React Router</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[OAuth授权原理]]></title>
     <url>%2F2019%2F03%2F01%2FPHP%2Foauth%2F</url>
     <content type="text"><![CDATA[OAuth授权原理 OAuth第三开放平台授权 绕口令: 第3方用户想获取第1方用户在第2方上的权限.如JD的QQ,微信授权登录. 举个生活中的例子,就明白了.1小明要取他爸爸王叔叔在招商银行存的500块钱. 角色: 用户 (王叔叔) 平台 (招商银行) 第三方 (小明) 分解步骤: 小明 找 王叔叔 签 授权书 王叔叔 签 授权书 ,并给小明 银行卡 小明 拿着 授权书 和 银行卡 到招商银行 取钱 招商银行 先验证小明的身份 招商银行 确定小明的身份没问题后,再验证 授权书 的内容无误然后再把钱给小明 上面就是一个简单的第三方授权,可以算上Oauth1.0;支票系统,可以算上OAuth2.0 支票的样子: 支票系统不需要用户的银行卡及密码. 支票的基本内容:平台: 招商银行用户: 出票人账号和签名第三方: 收款人模式类型: 转账/现金权限: 金额和用途时间: 有效期,开票日期 支票 相当于 AccessToken AccessToken主要包含以下内容: 授权方 代理方(第三方) 授权权限内容 有效期限 支票系统肯定包含很多细节,如支票的防伪,防篡改,鉴别,有效性.有记名支票,不记名支票. Oauth2.0 交易流程如下. 解释:认证服务器,如QQ开放平台,微信平方平台,微博开放平台等.第三方平台,指我们开发的第三方应用,如论坛,商城等.可以使用微信微博登录.用户,需要用微信等去登录第三方平台的用户.权限,一般平台,授权第三方获取用户头像,昵称,手机号,也有操作,如支付,发微博,分享朋友圈等. OAuth2.0关键点,授权码code,授权凭证AccessToken.其它都是这些实现过程的中安全控制,边界控制,操作记录,性能优化,防伪方案,账号系统,权限管理等等.]]></content>
@@ -25,11 +38,6 @@
       </tags>
   </entry>
   <entry>
-    <title></title>
-    <url>%2F2019%2F02%2F26%2FPHP%2F2019-02-26%2F</url>
-    <content type="text"><![CDATA[微信公众号开发配置启用开发者权限]]></content>
-  </entry>
-  <entry>
     <title><![CDATA[把故事讲好]]></title>
     <url>%2F2019%2F02%2F25%2FPM%2F2019-02-25%2F</url>
     <content type="text"><![CDATA[产品经理和导演(编剧)一样,需求会讲故事,把故事讲好. &lt;&lt;故事思维&gt;&gt;]]></content>
@@ -51,11 +59,6 @@
         <tag>产品经理</tag>
         <tag>项目管理</tag>
       </tags>
-  </entry>
-  <entry>
-    <title></title>
-    <url>%2F2019%2F01%2F21%2FPHP%2Fphpwinxp%2F</url>
-    <content type="text"><![CDATA[WindowsXp 集成环境工具列表: Apache PHP Mysql Chrome浏览器 一键集成环境安装.基于wamp2.20来改造.]]></content>
   </entry>
   <entry>
     <title><![CDATA[electron生成pdf]]></title>

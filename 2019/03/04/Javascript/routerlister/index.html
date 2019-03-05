@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+  <meta name="description" content="Hi~我是阿金,也可以叫我Arkin,做开发的阿金同学">
+  <meta name="baidu-site-verification" content="KAIz07eWp9" />
+  <meta name="baidu_union_verify" content="89761f418e2e32d488f0c783a8616865">
+  <meta name="keyword" content="阿金,开发,前端,后端,产品,架构师">
+  
+    <link rel="shortcut icon" href="/css/images/logo.png">
+  
+  <title>
+    
+      路由事件 | Hi,阿金
+    
+  </title>
+  <link href="//cdn.staticfile.org/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+  <link href="//cdn.staticfile.org/nprogress/0.2.0/nprogress.min.css" rel="stylesheet">
+  <link href="//cdn.staticfile.org/highlight.js/9.12.0/styles/tomorrow.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="/css/style.css">
+  <script src="//cdn.staticfile.org/jquery/3.2.1/jquery.min.js"></script>
+  <script src="//cdn.staticfile.org/geopattern/1.2.3/js/geopattern.min.js"></script>
+  <script src="//cdn.staticfile.org/nprogress/0.2.0/nprogress.min.js"></script>
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="/js/qrious.js"></script>
+  
+  
+    <!-- MathJax support START -->
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.staticfile.org/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <!-- MathJax support END -->
+  
+
+
+</head>
+<div class="wechat-share">
+  <img src="/css/images/logo.svg" />
+</div>
+
+  <body>
+    <header class="header fixed-header">
+  <div class="header-container">
+    <a class="home-link" href="/">
+      <div class="logo"></div>
+      <span>Hi,阿金 <span class="jumping-dots"><i>.</i><i>.</i><i>.</i></span></span>
+    </a>
+    <ul class="right-list">
+      
+        <li class="list-item">
+          
+            <a href="/" class="item-link">首页</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/categories/" class="item-link">分类</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/tags/" class="item-link">标签</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/archives/" class="item-link">归档</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/about/" class="item-link">whois</a>
+          
+        </li>
+      
+    </ul>
+
+    
+  <!-- div id="site_search">
+   <div class="form-group">
+    <input type="text" id="local-search-input" autocomplete="off" name="q" results="0" placeholder="search" class="st-search-input st-default-search-input form-control"/>
+   </div>  
+  <div id="local-search-result"></div>
+  </div -->
+
+
+    
+    <div class="menu">
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </div>
+    <div class="menu-mask">
+      <ul class="menu-list">
+        
+          <li class="menu-item">
+            
+              <a href="/" class="menu-link">首页</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/categories/" class="menu-link">分类</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/tags/" class="menu-link">标签</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/archives/" class="menu-link">归档</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/about/" class="menu-link">whois</a>
+            
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</header>
+
+    <div id="article-banner">
+  <h2>路由事件</h2>
+  <div class="post-date">
+    发表:<span> 2019-03-04 </span>
+    分类:
+      <span class="article-category">
+        <a class="article-category-link" href="/categories/Javascript/">Javascript</a>
+      </span>
+    
+  </div>
+  <div class="arrow-down">
+    <a href="javascript:;"></a>
+  </div>
+</div>
+<main class="app-body flex-box">
+  <!-- Article START -->
+  <article class="post-article">
+    <section class="markdown-content"><h1 id="浏览器路由监听事件"><a href="#浏览器路由监听事件" class="headerlink" title="浏览器路由监听事件"></a>浏览器路由监听事件</h1><p>“路由”在任何http框架占有最重要的角色,可以说每个那框架都离不开路由,路由就是框架的核心.<br>如前端的框架,如前端框架Vue.js,React.js,AngularJS…<br>PHP框架,Laravel,ThinkPhp,CI…等.</p>
+<p>我们今天说的路由,指的前端框架的路由.<br>因为对vue-router和react-router 4,以这两个路由来实现.<br>主要的路由事件钩子有:Before,Resolve,After,<br><strong>[Before 前置]</strong><br>离开或进入路由,在页面渲染前</p>
+<p><strong>[Resolve 确认]</strong><br>路由已经进行完成,不能修改,不能结束,等待页面渲染结束.</p>
+<p><strong>[After 后置]</strong><br>在页面渲染结束后发生.</p>
+<h2 id="Before-前置事件"><a href="#Before-前置事件" class="headerlink" title="Before 前置事件"></a>Before 前置事件</h2><p>就是门卫,”从哪儿来到哪儿去的问题”<br>这门卫还可以给你瞎指路,引导你去.<br>一般用来做权限验证的.<br>通过有个全局”门卫”和小部门”门卫”.</p>
+<p><strong>Vue</strong>:<br><a href="https://router.vuejs.org/zh/guide/advanced/navigation-guards.html#%E5%85%A8%E5%B1%80%E5%89%8D%E7%BD%AE%E5%AE%88%E5%8D%AB" target="_blank" rel="noopener">[参考]</a><br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> router = <span class="keyword">new</span> VueRouter(&#123; ... &#125;)</span><br><span class="line"></span><br><span class="line">router.beforeEach(<span class="function">(<span class="params">to, <span class="keyword">from</span>, next</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="comment">// ...</span></span><br><span class="line">  <span class="comment">//to:去哪的路由信息</span></span><br><span class="line">  <span class="comment">//from: 来至哪</span></span><br><span class="line">  <span class="comment">//next : 门卫开门指路方法</span></span><br><span class="line">  <span class="comment">// 如果没运行next函数,就是门卫懒得不理你.</span></span><br><span class="line">  next();<span class="comment">// 给开门了,路自己去找吧吧</span></span><br><span class="line">  next(<span class="string">'/login'</span>);<span class="comment">// 指引你去登记处</span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></p>
+<p><strong>React</strong>:<br>由于React路由中没有全局中间件,React所有都是组件.<br>我们可以在根路由组件里面分别实现.</p>
+<ol>
+<li>进入事件</li>
+<li>离开事件<br>一般在根组件里面,如<app>监听componentWillReceiveProps事件监听.<br>shouldComponentUpdate事件阻断.</app></li>
+</ol>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> React <span class="keyword">from</span> <span class="string">'react'</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; Route,Prompt &#125; <span class="keyword">from</span> <span class="string">'react-router-dom'</span>;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">App</span> <span class="keyword">extends</span> <span class="title">React</span>.<span class="title">Component</span> </span>&#123;</span><br><span class="line">    <span class="comment">// 进入事件</span></span><br><span class="line">    componentDidMount()&#123;</span><br><span class="line">        <span class="keyword">let</span> to=<span class="keyword">this</span>.props.location</span><br><span class="line">        <span class="keyword">let</span> <span class="keyword">from</span>=<span class="literal">undefined</span>;</span><br><span class="line">        <span class="built_in">console</span>.log(to,<span class="keyword">from</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//离开事件</span></span><br><span class="line">    shouldComponentUpdate(nextProps, nextState)&#123;</span><br><span class="line">        <span class="keyword">let</span> to=<span class="keyword">this</span>.props.location</span><br><span class="line">        <span class="keyword">let</span> <span class="keyword">from</span>=nextProps.location;</span><br><span class="line">        <span class="built_in">console</span>.log(to.pathname,form.pathname);</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">true</span>;<span class="comment">// 开门</span></span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span>;<span class="comment">// 不开门</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>旧版本路由使用routerWillLeave监听.<br>新版本react-router v4以后.使用Prompt,由于没有v2版本,这里只例举.Prompt的用法.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> React <span class="keyword">from</span> <span class="string">'react'</span>;</span><br><span class="line"><span class="keyword">import</span> &#123;Route, Redirect,Prompt&#125; <span class="keyword">from</span> <span class="string">'react-router-dom'</span>;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">App</span> <span class="keyword">extends</span> <span class="title">React</span>.<span class="title">Component</span> </span>&#123;</span><br><span class="line">    </span><br><span class="line">    render()&#123;</span><br><span class="line">        <span class="keyword">const</span> HomePage= <span class="function"><span class="params">()</span>=&gt;</span>(&lt;div&gt;home&lt;/div&gt;);</span><br><span class="line">        <span class="keyword">const</span> LoginPage= <span class="function"><span class="params">()</span>=&gt;</span>(&lt;div&gt;login&lt;/div&gt;);</span><br><span class="line">        <span class="keyword">const</span> NotFound=  <span class="function"><span class="params">()</span>=&gt;</span>(&lt;div&gt;404&lt;/div&gt;);</span><br><span class="line">        <span class="keyword">return</span> (</span><br><span class="line">        </span><br><span class="line">            &lt;div id=<span class="string">"APP"</span>&gt;</span><br><span class="line">                &lt;Prompt message=&#123;(to)=&gt;&#123;</span><br><span class="line">                  <span class="keyword">let</span> <span class="keyword">from</span>=<span class="keyword">this</span>.props.location;</span><br><span class="line">                  <span class="built_in">console</span>.log(to);</span><br><span class="line">                  </span><br><span class="line">                  <span class="keyword">return</span> <span class="literal">true</span>;<span class="comment">// 跳转</span></span><br><span class="line">                  <span class="keyword">return</span> <span class="literal">false</span>;<span class="comment">// 不跳转</span></span><br><span class="line">                &#125;&#125; /&gt;</span><br><span class="line">                &lt;Route exact path=<span class="string">"/home"</span> component=&#123;HomePage&#125;/&gt;</span><br><span class="line">                &lt;Route exact path=<span class="string">"/login"</span> component=&#123;LoginPage&#125;/&gt;</span><br><span class="line">                &lt;Route render=&#123;NotFound&#125; /&gt;</span><br><span class="line">            &lt;<span class="regexp">/div&gt;</span></span><br><span class="line"><span class="regexp">        );</span></span><br><span class="line"><span class="regexp">    &#125;</span></span><br><span class="line"><span class="regexp">&#125;</span></span><br></pre></td></tr></table></figure>
+<p>React中的权限判断最好使用高阶组件来完成.如这样的写法</p>
+<authrouter path="/" render="{HomePage}" redirectpath="/user/login">
+
+
+<h2 id="Resolve-渲染事件"><a href="#Resolve-渲染事件" class="headerlink" title="Resolve 渲染事件"></a>Resolve 渲染事件</h2><p>路由已经完成,正在准备渲染了.<br><strong>vue</strong><br>通过router.beforeResolve事件来实现.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">router.beforeResolve((to, from, next) =&gt; &#123;</span><br><span class="line">  // ...</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></p>
+<p><strong>React</strong><br>通过组件的生命周期来实现.<br>render();<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"> </span><br></pre></td></tr></table></figure></p>
+<p>React和Vue区在于,Vue的路由是独立的,而React是组件的;<br>vue先执行完成路由事件,再去渲染组件,顺序是子路由–&gt;根路由;<br>React是全部组件从,父级–&gt;子级;</p>
+<h2 id="After-渲染事件"><a href="#After-渲染事件" class="headerlink" title="After 渲染事件"></a>After 渲染事件</h2><p><strong>vue</strong><br>vue可以通过,所有路由完成状态<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">router.afterEach((to, from) =&gt; &#123;</span><br><span class="line">  // ...</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></p>
+<p><strong>react</strong><br>没有全局钩子,只能约定通过高阶组件来统一管理路由状态.<br>很难避免直接使用componet的情况.</p>
+</authrouter></section>
+    <!-- Tags START -->
+    
+      <div class="tags">
+        <span>Tags:</span>
+        
+  <a href="/tags#History" >
+    <span class="tag-code">History</span>
+  </a>
+
+  <a href="/tags#Vue Router" >
+    <span class="tag-code">Vue Router</span>
+  </a>
+
+  <a href="/tags#React Router" >
+    <span class="tag-code">React Router</span>
+  </a>
+
+      </div>
+    
+    <!-- Tags END -->
+    <!-- NAV START -->
+    
+  <div class="nav-container">
+    <!-- reverse left and right to put prev and next in a more logic postition -->
+    
+      <a class="nav-left" href="/2019/03/01/PHP/oauth/">
+        <span class="nav-arrow">← </span>
+        
+          OAuth授权原理
+        
+      </a>
+    
+    
+  </div>
+
+    <!-- NAV END -->
+
+    <!-- 二维码 START -->
+    
+      <div class="qrcode">
+        <canvas id="share-qrcode"></canvas>
+        <p class="notice">扫描二维码，分享此文章</p>
+      </div>
+    
+    <!-- 二维码 END -->
+    
+      <!-- No Comment -->
+    
+  </article>
+  <!-- Article END -->
+  <!-- Catalog START -->
+  
+    <aside class="catalog-container">
+  <div class="toc-main">
+    <strong class="toc-title">Catalog</strong>
+    
+      <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#浏览器路由监听事件"><span class="toc-nav-text">浏览器路由监听事件</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#Before-前置事件"><span class="toc-nav-text">Before 前置事件</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#Resolve-渲染事件"><span class="toc-nav-text">Resolve 渲染事件</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#After-渲染事件"><span class="toc-nav-text">After 渲染事件</span></a></li></ol></li></ol>
+    
+  </div>
+</aside>
+  
+  <!-- Catalog END -->
+</main>
+
+<script>
+  (function () {
+    var url = 'https://arkin-j.github.io/2019/03/04/Javascript/routerlister/';
+    var banner = ''
+    if (banner !== '' && banner !== 'undefined' && banner !== 'null') {
+      $('#article-banner').css({
+        'background-image': 'url(' + banner + ')'
+      })
+    } else {
+      $('#article-banner').geopattern(url)
+    }
+    $('.header').removeClass('fixed-header')
+
+     // error image
+    $(".markdown-content img").on('error', function() {
+      $(this).attr('src', '/css/images/error-img.svg')
+      $(this).css({
+        'cursor': 'default'
+      })
+    })
+
+    // zoom image
+    $(".markdown-content img").on('click', function() {
+      var src = $(this).attr('src')
+      if (src !== '/css/images/error-img.svg') {
+        var imageW = $(this).width()
+        var imageH = $(this).height()
+        
+        var zoom = ($(window).width() * 0.95 / imageW).toFixed(2)
+        zoom = zoom < 1 ? 1 : zoom
+        zoom = zoom > 2 ? 2 : zoom
+        var transY = (($(window).height() - imageH) / 2).toFixed(2)
+
+        $('body').append('<div class="image-view-wrap"><div class="image-view-inner"><img src="'+ src +'" /></div></div>')
+        $('.image-view-wrap').addClass('wrap-active')
+        $('.image-view-wrap img').css({
+          'width': `${imageW}`,
+          'transform': `translate3d(0, ${transY}px, 0) scale3d(${zoom}, ${zoom}, 1)`
+        })
+        $('html').css('overflow', 'hidden')
+
+        $('.image-view-wrap').on('click', function() {
+          $(this).remove()
+          $('html').attr('style', '')
+        })
+      }
+    })
+
+    // qrcode
+    var qr = new QRious({
+      element: document.getElementById('share-qrcode'),
+      value: document.location.href
+    });
+
+  })();
+</script>
+
+    <div class="scroll-top">
+  <span class="arrow-icon"></span>
+</div>
+    
+<footer class="app-footer">
+  <div id="vcomments" style="max-width:800px"></div>
+  <p class="copyright">
+    <a href="http://tongji.baidu.com/web/welcome/ico?s=371952d9b83cd706a4702ef0c232e3de" target="_blank">...</a>
+    &copy; 2019 |  Powered by 阿金 | 
+    <a href="http://www.miitbeian.gov.cn" rel="nofollow" target="_blank"> 京ICP备18064786号-1 </a>
+  </p>
+</footer>
+<script src="/js/search.js"></script> 
+
+<script>
+  function async(u, c) {
+    var d = document, t = 'script',
+      o = d.createElement(t),
+      s = d.getElementsByTagName(t)[0];
+    o.src = u;
+    if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+    s.parentNode.insertBefore(o, s);
+  }
+</script>
+<script>
+  async("//cdn.staticfile.org/fastclick/1.0.6/fastclick.min.js", function(){
+    FastClick.attach(document.body);
+  })
+</script>
+
+<script>
+  var hasLine = 'true';
+  async("//cdn.staticfile.org/highlight.js/9.12.0/highlight.min.js", function(){
+    $('figure pre').each(function(i, block) {
+      var figure = $(this).parents('figure');
+      if (hasLine === 'false') {
+        figure.find('.gutter').hide();
+      }
+      var lang = figure.attr('class').split(' ')[1] || 'code';
+      var codeHtml = $(this).html();
+      var codeTag = document.createElement('code');
+      codeTag.className = lang;
+      codeTag.innerHTML = codeHtml;
+      $(this).attr('class', '').empty().html(codeTag);
+      figure.attr('data-lang', lang.toUpperCase());
+      hljs.highlightBlock(block);
+    });
+  })
+</script>
+
+
+
+   <script type="text/javascript">      
+     var search_path = "search.xml";
+   if (search_path.length == 0) {
+    search_path = "search.xml";
+   }
+   var path = "/" + search_path;
+     searchFunc(path, 'local-search-input', 'local-search-result');
+   </script>
+
+
+
+<!-- Baidu Tongji -->
+
+<script>
+    var _baId = '371952d9b83cd706a4702ef0c232e3de';
+    // Originial
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?" + _baId;
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </body>
+</html>
