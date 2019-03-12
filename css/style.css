@@ -186,6 +186,13 @@ h2.article-head {
   width: 100%;
   max-width: 800px;
 }
+.post-copyright {
+  border: 1px dotted #ccc;
+  padding: 1em;
+  margin: 1em 0;
+  background: #e1f1ef;
+  font-size: 12px;
+}
 .money-like {
   padding: 2em 0 3em;
 }
