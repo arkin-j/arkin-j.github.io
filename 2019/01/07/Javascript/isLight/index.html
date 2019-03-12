@@ -246,7 +246,10 @@
     
     <!-- 二维码 END -->
     
-      <!-- No Comment -->
+      <!-- Gitment START -->
+      <div id="vcomments"></div>
+      <script src='//unpkg.com/valine/dist/Valine.min.js'></script>
+      <!-- Gitment END -->
     
   </article>
   <!-- Article END -->
@@ -318,8 +321,24 @@
       value: document.location.href
     });
 
+  
+   
+  
+
   })();
 </script>
+<!-- 评论 -->
+
+<script>
+    Valine && new Valine({
+              el: '#vcomments',
+              placeholder: '欢迎大家吐槽~ ',
+              appId: 's00pjsgpQfTMhup6C0IC1e5w-gzGzoHsz',
+              appKey: 'L1jipTeNE3kEt8GGtbJvGMvV',
+
+    })
+</script>
+
 
     <div class="scroll-top">
   <span class="arrow-icon"></span>
@@ -329,8 +348,8 @@
   <div id="vcomments" style="max-width:800px"></div>
   <p class="copyright">
     <a href="http://tongji.baidu.com/web/welcome/ico?s=371952d9b83cd706a4702ef0c232e3de" target="_blank">...</a>
-    &copy; 2019 |  Powered by 阿金 | 
-    <a href="http://www.miitbeian.gov.cn" rel="nofollow" target="_blank"> 京ICP备18064786号-1 </a>
+    &copy; 2019 |  Powered by 阿金 
+   <br/> <a href="http://www.miitbeian.gov.cn" rel="nofollow" target="_blank"> 京ICP备18064786号-1 </a>
   </p>
 </footer>
 <script src="/js/search.js"></script> 
@@ -373,7 +392,7 @@
 
 
 
-   <script type="text/javascript">      
+   <script type="text/javascript">   
      var search_path = "search.xml";
    if (search_path.length == 0) {
     search_path = "search.xml";
@@ -399,12 +418,7 @@
 </script>
 
 
-
-
-
 <script src="/js/script.js"></script>
-
-
 
   </body>
 </html>

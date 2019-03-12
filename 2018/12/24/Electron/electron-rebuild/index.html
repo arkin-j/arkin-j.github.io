@@ -172,7 +172,7 @@
 <h2 id="electron-rebuild"><a href="#electron-rebuild" class="headerlink" title="electron-rebuild"></a>electron-rebuild</h2><p><a href="https://electronjs.org/docs/tutorial/using-native-node-modules" target="_blank" rel="noopener">官方文档(cn)</a></p>
 <h3 id="安装node-gyp"><a href="#安装node-gyp" class="headerlink" title="安装node-gyp"></a>安装node-gyp</h3><p>参考: <a href="https://githnpmub.com/nodejs/node-gyp" target="_blank" rel="noopener">https://githnpmub.com/nodejs/node-gyp</a></p>
 <p>[window系统]<br>window使用<a href="https://github.com/felixrieseberg/windows-build-tools" target="_blank" rel="noopener">Windows-Build-Tools</a>工具快捷安装各种依赖.</p>
-<p>powershell/cmd中安装,使用管理员方式运行<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">yarn global add windows-build-tools</span><br><span class="line"><span class="meta">#</span>或</span><br><span class="line">npm install windows-build-tools -g</span><br></pre></td></tr></table></figure></p>
+<p>powershell/cmd中安装,使用管理员方式运行<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">yarn global add windows-build-tools</span><br><span class="line"><span class="meta">#</span><span class="bash">或</span></span><br><span class="line">npm install windows-build-tools -g</span><br></pre></td></tr></table></figure></p>
 <p>[MacOS]<br>Mac默认有python2.7,只需要安装node-gyp<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">npm install node-gyp -g</span><br><span class="line">或</span><br><span class="line">yarn global add  node-gyp</span><br></pre></td></tr></table></figure></p>
 <h3 id="安装electron-rebuild"><a href="#安装electron-rebuild" class="headerlink" title="安装electron-rebuild"></a>安装electron-rebuild</h3><p><a href="https://github.com/electron/electron-rebuild" target="_blank" rel="noopener">GitHub</a></p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install --save-dev electron-rebuild</span><br></pre></td></tr></table></figure>
@@ -231,7 +231,10 @@
     
     <!-- 二维码 END -->
     
-      <!-- No Comment -->
+      <!-- Gitment START -->
+      <div id="vcomments"></div>
+      <script src='//unpkg.com/valine/dist/Valine.min.js'></script>
+      <!-- Gitment END -->
     
   </article>
   <!-- Article END -->
@@ -303,8 +306,24 @@
       value: document.location.href
     });
 
+  
+   
+  
+
   })();
 </script>
+<!-- 评论 -->
+
+<script>
+    Valine && new Valine({
+              el: '#vcomments',
+              placeholder: '欢迎大家吐槽~ ',
+              appId: 's00pjsgpQfTMhup6C0IC1e5w-gzGzoHsz',
+              appKey: 'L1jipTeNE3kEt8GGtbJvGMvV',
+
+    })
+</script>
+
 
     <div class="scroll-top">
   <span class="arrow-icon"></span>
@@ -314,8 +333,8 @@
   <div id="vcomments" style="max-width:800px"></div>
   <p class="copyright">
     <a href="http://tongji.baidu.com/web/welcome/ico?s=371952d9b83cd706a4702ef0c232e3de" target="_blank">...</a>
-    &copy; 2019 |  Powered by 阿金 | 
-    <a href="http://www.miitbeian.gov.cn" rel="nofollow" target="_blank"> 京ICP备18064786号-1 </a>
+    &copy; 2019 |  Powered by 阿金 
+   <br/> <a href="http://www.miitbeian.gov.cn" rel="nofollow" target="_blank"> 京ICP备18064786号-1 </a>
   </p>
 </footer>
 <script src="/js/search.js"></script> 
@@ -358,7 +377,7 @@
 
 
 
-   <script type="text/javascript">      
+   <script type="text/javascript">   
      var search_path = "search.xml";
    if (search_path.length == 0) {
     search_path = "search.xml";
@@ -384,12 +403,7 @@
 </script>
 
 
-
-
-
 <script src="/js/script.js"></script>
-
-
 
   </body>
 </html>
