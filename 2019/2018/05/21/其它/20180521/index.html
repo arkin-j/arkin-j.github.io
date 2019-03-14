@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+  <meta name="description" content="Hi~我是阿金,也可以叫我Arkin,做开发的阿金同学">
+  <meta name="baidu-site-verification" content="KAIz07eWp9" />
+  <meta name="baidu_union_verify" content="89761f418e2e32d488f0c783a8616865">
+  <meta name="keyword" content="阿金,开发,前端,后端,产品,架构师">
+  
+    <link rel="shortcut icon" href="/css/images/logo.png">
+  
+  <title>
+    
+      基于MarkDown的博客系统搭建 | Hi,阿金
+    
+  </title>
+  <link href="//cdn.staticfile.org/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+  <link href="//cdn.staticfile.org/nprogress/0.2.0/nprogress.min.css" rel="stylesheet">
+  <link href="//cdn.staticfile.org/highlight.js/9.12.0/styles/tomorrow.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="/css/style.css">
+  <script src="//cdn.staticfile.org/jquery/3.2.1/jquery.min.js"></script>
+  <script src="//cdn.staticfile.org/geopattern/1.2.3/js/geopattern.min.js"></script>
+  <script src="//cdn.staticfile.org/nprogress/0.2.0/nprogress.min.js"></script>
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="/js/qrious.js"></script>
+  
+  
+    <!-- MathJax support START -->
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.staticfile.org/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <!-- MathJax support END -->
+  
+
+
+</head>
+<div class="wechat-share">
+  <img src="/css/images/logo.svg" />
+</div>
+
+  <body>
+    <header class="header fixed-header">
+  <div class="header-container">
+    <a class="home-link" href="/">
+      <div class="logo"></div>
+      <span>Hi,阿金 <span class="jumping-dots"><i>.</i><i>.</i><i>.</i></span></span>
+    </a>
+    <ul class="right-list">
+      
+        <li class="list-item">
+          
+            <a href="/" class="item-link">首页</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/categories/" class="item-link">分类</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/tags/" class="item-link">标签</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/archives/" class="item-link">归档</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/about/" class="item-link">whois</a>
+          
+        </li>
+      
+    </ul>
+
+    
+  <!-- div id="site_search">
+   <div class="form-group">
+    <input type="text" id="local-search-input" autocomplete="off" name="q" results="0" placeholder="search" class="st-search-input st-default-search-input form-control"/>
+   </div>  
+  <div id="local-search-result"></div>
+  </div -->
+
+
+    
+    <div class="menu">
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </div>
+    <div class="menu-mask">
+      <ul class="menu-list">
+        
+          <li class="menu-item">
+            
+              <a href="/" class="menu-link">首页</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/categories/" class="menu-link">分类</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/tags/" class="menu-link">标签</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/archives/" class="menu-link">归档</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/about/" class="menu-link">whois</a>
+            
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</header>
+
+    <div id="article-banner">
+  <h2>基于MarkDown的博客系统搭建</h2>
+  <div class="post-date">
+    发表:<span> 2018-05-21 </span>
+    分类:
+      <span class="article-category">
+        <a class="article-category-link" href="/categories/其它/">其它</a>
+      </span>
+    
+  </div>
+  <div class="arrow-down">
+    <a href="javascript:;"></a>
+  </div>
+</div>
+<main class="app-body flex-box">
+  <!-- Article START -->
+  <article class="post-article">
+    <section class="markdown-content"><blockquote>
+<p>纯粹的文章编写,使用到GitPage,Hexo,MWeb,七牛做图床</p>
+</blockquote>
+<a id="more"></a>
+<h2 id="注册七牛云账号"><a href="#注册七牛云账号" class="headerlink" title="注册七牛云账号"></a>注册七牛云账号</h2><p><a href="https://qiniu.com" target="_blank" rel="noopener">七牛官网</a></p>
+<h3 id="创建”对象存储”"><a href="#创建”对象存储”" class="headerlink" title="创建”对象存储”"></a>创建”对象存储”</h3><p><img src="http://img.hi-arkin.com/2018-12-13-15446982780002.jpg" alt="创建对象存储"></p>
+<h3 id="个人中心获取密钥"><a href="#个人中心获取密钥" class="headerlink" title="个人中心获取密钥"></a>个人中心获取密钥</h3><p><img src="http://img.hi-arkin.com/2018-12-13-15446983346117.jpg" alt="密钥"></p>
+<h2 id="安装MWeb"><a href="#安装MWeb" class="headerlink" title="安装MWeb"></a>安装MWeb</h2><p><a href="https://zh.mweb.im/" target="_blank" rel="noopener">MWeb官网</a></p>
+<h3 id="Mweb界面"><a href="#Mweb界面" class="headerlink" title="Mweb界面:"></a>Mweb界面:</h3><p><img src="http://img.hi-arkin.com/2018-12-13-15446981064348.jpg" alt=""></p>
+<h3 id="打开设置界面"><a href="#打开设置界面" class="headerlink" title="打开设置界面"></a>打开设置界面</h3><p><img src="http://img.hi-arkin.com/2018-12-13-15446985074780.jpg" alt=""></p>
+<h3 id="填入密钥"><a href="#填入密钥" class="headerlink" title="填入密钥"></a>填入密钥</h3><p><img src="http://img.hi-arkin.com/2018-12-13-15446985671071.jpg" alt=""></p>
+<p>完成后就可以上传图片了,图片访问需要一个固定域名,创建时七牛云给一个临时的域名可以使用一个月.</p>
+<h3 id="使用”外部模式”-快捷键⌘-E"><a href="#使用”外部模式”-快捷键⌘-E" class="headerlink" title="使用”外部模式” 快捷键⌘+E"></a>使用”外部模式” 快捷键⌘+E</h3><p><img src="http://img.hi-arkin.com/2018-12-13-15446987030673.jpg" alt=""><br>点 “+”号引入</p>
+<h3 id="配置项目"><a href="#配置项目" class="headerlink" title="配置项目"></a>配置项目</h3><p><img src="http://img.hi-arkin.com/2018-12-13-15446993418827.jpg" alt=""></p>
+<p>因为MWeb在外部模式才支持,图片url替换,正常模式需要手工上传粘贴url</p>
+<h2 id="安装Hexo"><a href="#安装Hexo" class="headerlink" title="安装Hexo"></a>安装Hexo</h2><p>参照官网<a href="https://hexo.io" target="_blank" rel="noopener">Hexo官网</a>安装<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install -g hexo-cli</span><br></pre></td></tr></table></figure></p>
+<p>安装完成,可以在命令行下使用.<br><img src="http://img.hi-arkin.com/2018-12-13-15446980382305.jpg" alt=""></p>
+<h3 id="新建项目"><a href="#新建项目" class="headerlink" title="新建项目"></a>新建项目</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">hexo init &lt;folder&gt;</span><br><span class="line">cd &lt;folder&gt;</span><br><span class="line">npm install</span><br></pre></td></tr></table></figure>
+<p><img src="http://img.hi-arkin.com/2018-12-13-15446999681293.jpg" alt=""></p>
+<p>创建完如下:<br><img src="http://img.hi-arkin.com/2018-12-13-15447000524322.jpg" alt=""><br><img src="http://img.hi-arkin.com/2018-12-13-15447001845301.jpg" alt=""></p>
+<h3 id="新建文章"><a href="#新建文章" class="headerlink" title="新建文章"></a>新建文章</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo new 文章名</span><br></pre></td></tr></table></figure>
+<p><img src="http://img.hi-arkin.com/2018-12-13-15447002639868.jpg" alt=""></p>
+<p>打开,如图结构<br><img src="http://img.hi-arkin.com/2018-12-13-15447002979205.jpg" alt=""></p>
+<h3 id="运行预览服务"><a href="#运行预览服务" class="headerlink" title="运行预览服务"></a>运行预览服务</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo s</span><br></pre></td></tr></table></figure>
+<p><img src="http://img.hi-arkin.com/2018-12-13-15447003989020.jpg" alt=""></p>
+<p>找开网址,便能看到Blog界面<br><img src="http://img.hi-arkin.com/2018-12-13-15447004960789.jpg" alt=""></p>
+<h3 id="配置GitHubPage"><a href="#配置GitHubPage" class="headerlink" title="配置GitHubPage"></a>配置GitHubPage</h3><p>注册GitHub,略<br>新建GitHubPage<br><a href="https://pages.github.com/" target="_blank" rel="noopener">https://pages.github.com/</a><br>创建一个git仓库,名字如下,xxx.github.io<br>就可以使用xxx.github.io访问了<br><img src="http://img.hi-arkin.com/2018-12-13-15447008475364.jpg" alt=""></p>
+<p>复制仓库地址,配置hexo<br>如:<br><a href="https://github.com/arkin-j/arkin-j.github.io.git" target="_blank" rel="noopener">https://github.com/arkin-j/arkin-j.github.io.git</a></p>
+<h3 id="配置发布"><a href="#配置发布" class="headerlink" title="配置发布"></a>配置发布</h3><p>在刚创建的目录下,修改_config.yml文件<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vim _config.yml</span><br></pre></td></tr></table></figure></p>
+<p>具体查看帮助 <a href="https://hexo.io/docs/deployment" target="_blank" rel="noopener">https://hexo.io/docs/deployment</a><br>如<br><img src="http://img.hi-arkin.com/2018-12-13-15447011557701.jpg" alt=""></p>
+<p>创建完文章,便可以使用命令发布了,需要在项目目录下执行.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo clean &amp;&amp; hexo deploy</span><br></pre></td></tr></table></figure>
+<p><img src="http://img.hi-arkin.com/2018-12-13-15447013903714.jpg" alt=""></p>
+<p>然后再访问刚才创建的gitpage<br>如:<a href="https://arkin-j.github.io/" target="_blank" rel="noopener">https://arkin-j.github.io/</a></p>
+<p>就可以看到新的文章了.<br>如下:<br><img src="http://img.hi-arkin.com/2018-12-13-15447016706059.jpg" alt=""></p>
+<p>模板在项目目录下,可以修改,也可以使用别人现在的.</p>
+<p> 完 &gt;&gt;&gt;</p>
+</section>
+    <!-- 版权开始 -->
+    <div class="post-copyright">
+      <p><strong>本文作者：</strong>阿金 </p>
+      <p><strong>本文链接：</strong><a href="http://www.hi-arkin.com/2018/05/21/其它/20180521/">http://www.hi-arkin.com/2018/05/21/其它/20180521/</a></p>
+      <p><strong>版权声明：</strong>本博客所有文章除特别声明外，均采用 
+      <a target="__blank" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> 许可协议。转载请注明出处！</p>
+    </div>
+    <!-- 版权结束 -->
+
+    <!-- Tags START -->
+    
+      <div class="tags">
+        <span>Tags:</span>
+        
+  <a href="/tags#初始化" >
+    <span class="tag-code">初始化</span>
+  </a>
+
+  <a href="/tags#Hexo" >
+    <span class="tag-code">Hexo</span>
+  </a>
+
+  <a href="/tags#MWeb" >
+    <span class="tag-code">MWeb</span>
+  </a>
+
+  <a href="/tags#GitPage" >
+    <span class="tag-code">GitPage</span>
+  </a>
+
+      </div>
+    
+    <!-- Tags END -->
+    <!-- NAV START -->
+    
+  <div class="nav-container">
+    <!-- reverse left and right to put prev and next in a more logic postition -->
+    
+    
+      <a class="nav-right" href="/2018/12/20/Electron/usb/">
+        
+          Node获取Usb信息
+        
+        <span class="nav-arrow"> →</span>
+      </a>
+    
+  </div>
+
+    <!-- NAV END -->
+
+    <!-- 二维码 START -->
+    
+      <div class="qrcode">
+        <canvas id="share-qrcode"></canvas>
+        <p class="notice">扫描二维码，分享此文章</p>
+      </div>
+    
+    <!-- 二维码 END -->
+    
+      <!-- Gitment START -->
+      <div id="vcomments"></div>
+      <script src='//unpkg.com/valine/dist/Valine.min.js'></script>
+      <!-- Gitment END -->
+    
+  </article>
+  <!-- Article END -->
+  <!-- Catalog START -->
+  
+    <aside class="catalog-container">
+  <div class="toc-main">
+    <strong class="toc-title">Catalog</strong>
+    
+      <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#注册七牛云账号"><span class="toc-nav-text">注册七牛云账号</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#创建”对象存储”"><span class="toc-nav-text">创建”对象存储”</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#个人中心获取密钥"><span class="toc-nav-text">个人中心获取密钥</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#安装MWeb"><span class="toc-nav-text">安装MWeb</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#Mweb界面"><span class="toc-nav-text">Mweb界面:</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#打开设置界面"><span class="toc-nav-text">打开设置界面</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#填入密钥"><span class="toc-nav-text">填入密钥</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#使用”外部模式”-快捷键⌘-E"><span class="toc-nav-text">使用”外部模式” 快捷键⌘+E</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#配置项目"><span class="toc-nav-text">配置项目</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#安装Hexo"><span class="toc-nav-text">安装Hexo</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#新建项目"><span class="toc-nav-text">新建项目</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#新建文章"><span class="toc-nav-text">新建文章</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#运行预览服务"><span class="toc-nav-text">运行预览服务</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#配置GitHubPage"><span class="toc-nav-text">配置GitHubPage</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#配置发布"><span class="toc-nav-text">配置发布</span></a></li></ol></li></ol>
+    
+  </div>
+</aside>
+  
+  <!-- Catalog END -->
+</main>
+
+<script>
+  (function () {
+    var url = 'http://www.hi-arkin.com/2018/05/21/其它/20180521/';
+    var banner = ''
+    if (banner !== '' && banner !== 'undefined' && banner !== 'null') {
+      $('#article-banner').css({
+        'background-image': 'url(' + banner + ')'
+      })
+    } else {
+      $('#article-banner').geopattern(url)
+    }
+    $('.header').removeClass('fixed-header')
+
+     // error image
+    $(".markdown-content img").on('error', function() {
+      $(this).attr('src', '/css/images/error-img.svg')
+      $(this).css({
+        'cursor': 'default'
+      })
+    })
+
+    // zoom image
+    $(".markdown-content img").on('click', function() {
+      var src = $(this).attr('src')
+      if (src !== '/css/images/error-img.svg') {
+        var imageW = $(this).width()
+        var imageH = $(this).height()
+        
+        var zoom = ($(window).width() * 0.95 / imageW).toFixed(2)
+        zoom = zoom < 1 ? 1 : zoom
+        zoom = zoom > 2 ? 2 : zoom
+        var transY = (($(window).height() - imageH) / 2).toFixed(2)
+
+        $('body').append('<div class="image-view-wrap"><div class="image-view-inner"><img src="'+ src +'" /></div></div>')
+        $('.image-view-wrap').addClass('wrap-active')
+        $('.image-view-wrap img').css({
+          'width': `${imageW}`,
+          'transform': `translate3d(0, ${transY}px, 0) scale3d(${zoom}, ${zoom}, 1)`
+        })
+        $('html').css('overflow', 'hidden')
+
+        $('.image-view-wrap').on('click', function() {
+          $(this).remove()
+          $('html').attr('style', '')
+        })
+      }
+    })
+
+    // qrcode
+    var qr = new QRious({
+      element: document.getElementById('share-qrcode'),
+      value: document.location.href
+    });
+
+  
+   
+  
+
+  })();
+</script>
+<!-- 评论 -->
+
+<script>
+    Valine && new Valine({
+              el: '#vcomments',
+              placeholder: '欢迎大家吐槽~ ',
+              appId: 's00pjsgpQfTMhup6C0IC1e5w-gzGzoHsz',
+              appKey: 'L1jipTeNE3kEt8GGtbJvGMvV',
+
+    })
+</script>
+
+
+    <div class="scroll-top">
+  <span class="arrow-icon"></span>
+</div>
+    
+<footer class="app-footer">
+  <div id="vcomments" style="max-width:800px"></div>
+  <p class="copyright">
+    <a href="http://tongji.baidu.com/web/welcome/ico?s=371952d9b83cd706a4702ef0c232e3de" target="_blank">...</a>
+    &copy; 2019 |  Powered by 阿金 
+   <br/> <a href="http://www.miitbeian.gov.cn" rel="nofollow" target="_blank"> 京ICP备18064786号-1 </a>
+  </p>
+</footer>
+<script src="/js/search.js"></script> 
+
+<script>
+  function async(u, c) {
+    var d = document, t = 'script',
+      o = d.createElement(t),
+      s = d.getElementsByTagName(t)[0];
+    o.src = u;
+    if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+    s.parentNode.insertBefore(o, s);
+  }
+</script>
+<script>
+  async("//cdn.staticfile.org/fastclick/1.0.6/fastclick.min.js", function(){
+    FastClick.attach(document.body);
+  })
+</script>
+
+<script>
+  var hasLine = 'true';
+  async("//cdn.staticfile.org/highlight.js/9.12.0/highlight.min.js", function(){
+    $('figure pre').each(function(i, block) {
+      var figure = $(this).parents('figure');
+      if (hasLine === 'false') {
+        figure.find('.gutter').hide();
+      }
+      var lang = figure.attr('class').split(' ')[1] || 'code';
+      var codeHtml = $(this).html();
+      var codeTag = document.createElement('code');
+      codeTag.className = lang;
+      codeTag.innerHTML = codeHtml;
+      $(this).attr('class', '').empty().html(codeTag);
+      figure.attr('data-lang', lang.toUpperCase());
+      hljs.highlightBlock(block);
+    });
+  })
+</script>
+
+
+
+   <script type="text/javascript">   
+     var search_path = "search.xml";
+   if (search_path.length == 0) {
+    search_path = "search.xml";
+   }
+   var path = "/" + search_path;
+     searchFunc(path, 'local-search-input', 'local-search-result');
+   </script>
+
+
+
+<!-- Baidu Tongji -->
+
+<script>
+    var _baId = '371952d9b83cd706a4702ef0c232e3de';
+    // Originial
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?" + _baId;
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+
+
+<script src="/js/script.js"></script>
+
+  </body>
+</html>
