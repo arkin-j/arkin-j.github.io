@@ -1,9 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[PHP的设计模式]]></title>
+    <url>%2F2019%2F04%2F14%2FPHP%2Fdesign_parttern%2F</url>
+    <content type="text"><![CDATA[设计模式设计模式是开发人员在面向对象编程实践在总结的经验和方案.PHP中常用到的11种设计模式 工厂模式 单例模式 注册模式 适配器模式 策略模式 数据对象映射模式 观察者模式 原型模式 装饰器模式 迭代器模式 代理模式 php设计模式的基础了解的设计模式的基础,先了解PHP的基础语法和面向对象的特性,以及每个PHP版本的更新变化.面向对象的高级特性. 命名空间php5.3以后新增了命名空间. 命名空间允许同名的类名,避免命名冲突.命名空间和文件系统中的目录结构原理类似.可以于类,函数,常量一起使用.方便软件工程管理. 定义命名空间必须在php文件前申明,以”\”分割多个单词.注意点: 命名空间名字为变量名,如不能以数字或特殊字符开头; 名称本身不能与其它命名重复冲突 命名规范最佳以项目根目录+文件路径+文件名. [app.php]1234567891011121314151617181920&lt;?php namespace App; //常量 5.3以后可以使用const 定义常量 const Author="arkin"; // 函数 function index()&#123; echo "index"; &#125; // 类 class testClass&#123; const NAME="testClass"; // 静态方法 static function index()&#123; echo "testClass.index"; &#125; &#125; ?&gt; 使用命名空间引用文件后,可以使用.12345678910111213&lt;?php require ('app.php'); // 使用常量 echo App\Author; // 使用函数 echo App\index(); // 使用类 $AClass= new App\testClass(); // 使用类的常量 echo App\testClass::Name; // 调用类的静态方法 echo App\testClass::index();?&gt; 类的自动加载php使用require或include手动引用,在php5.2以后提供php自动引用功能.自动引用类机制是,当发现未加载的类时会自动执行载入函数. 使用 __autoload()__authload()函数只可以定义一次. 123456789&lt;?php Test1::index(); Test2::index(); //$class 为 function __autoload($class)&#123; echo "自动载入类:",$class; require __DIR__.DIRECTORY_SEPARATOR.$class.".php"; &#125;?&gt; 使用spl_autoload_register()注册autoload函数]]></content>
+      <categories>
+        <category>Arch</category>
+      </categories>
+      <tags>
+        <tag>PHP</tag>
+        <tag>Arch</tag>
+        <tag>学习</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[PHP架构师技能树]]></title>
     <url>%2F2019%2F04%2F13%2FDevOps%2F2019-04-13%2F</url>
-    <content type="text"><![CDATA[成长路线关键字 精通PHP语言 服务器部署与运维 数据库 缓存 前端 高并发 大数据 分布式 安全 工程化 队列 搜索引擎,ES 中间件 Redis MongoDb nginx 负载均衡 第一阶段: Coding+认知 第二阶段: 发现+专研 第三阶段: 系统+设计 第四阶段: 广度+深度 第一阶段,码农糊口阶段,找一份工作.了解编程互联网的世界. PHP设计模式PHP框架PHP应用]]></content>
+    <content type="text"><![CDATA[成长路线关键字 精通PHP语言 服务器部署与运维 数据库 缓存 前端 高并发 大数据 分布式 安全 工程化 队列 搜索引擎,ES 中间件 Redis MongoDb nginx 负载均衡 性能调优 BUG追踪 docker 网关 Swoft 第一阶段: Coding+认知 第二阶段: 发现+专研 第三阶段: 系统+设计 第四阶段: 广度+深度 第一阶段,码农糊口阶段,找一份工作.了解编程互联网的世界. PHP设计模式PHP框架PHP应用]]></content>
       <categories>
         <category>Arch</category>
       </categories>
@@ -105,8 +118,8 @@
         <category>Project</category>
       </categories>
       <tags>
-        <tag>产品经理</tag>
         <tag>项目管理</tag>
+        <tag>产品经理</tag>
       </tags>
   </entry>
   <entry>
