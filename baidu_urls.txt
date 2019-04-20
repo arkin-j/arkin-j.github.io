@@ -1,1 +1,1 @@
-http://www.hi-arkin.com/2019/04/20/Linux/grep/
+http://www.hi-arkin.com/2019/04/20/Linux/awk/

@@ -166,7 +166,71 @@
 <main class="app-body flex-box">
   <!-- Article START -->
   <article class="post-article">
-    <section class="markdown-content"><h1 id="Linux之-sed-命令"><a href="#Linux之-sed-命令" class="headerlink" title="Linux之 sed 命令"></a>Linux之 sed 命令</h1></section>
+    <section class="markdown-content"><h1 id="Linux之-sed-命令"><a href="#Linux之-sed-命令" class="headerlink" title="Linux之 sed 命令"></a>Linux之 sed 命令</h1><p>sed命令主要用来修改文本文件用的,使用命令的方式来快速修改文件.<br>和vim一样,但是它是使用交互式命令的.<br>一般和管道命令一起使用.<br>主要功能: 插入,删除,选中,替换<br>以之前user.csv文件举例.<br>文件如下:<br><img src="http://img.hi-arkin.com/2019-04-20-15557420852851.jpg" alt></p>
+<p>由于MacOs的sed和gnu-sed不一样,我们以gnu-sed为准.<br>mac安装.<br><code>brew install gnu-sed</code><br>修改sed <code>alias sed=gsed</code> 在.zsh或bash环境改.<br>或者改软链接.<br><code>ln /usr/local/bin/gsed /usr/local/bin/sed</code></p>
+<p>必须前置知识:<br>标准输入/输出,有时间再细说.<br>linux有三种标准输入/输出.</p>
+<table>
+<thead>
+<tr>
+<th>名称</th>
+<th>文件描述</th>
+<th>含义</th>
+<th>设备</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>STDIN</td>
+<td>0</td>
+<td>标准输入</td>
+<td>键盘</td>
+</tr>
+<tr>
+<td>STDOUT</td>
+<td>1</td>
+<td>标准输出</td>
+<td>显示器</td>
+</tr>
+<tr>
+<td>STDERR</td>
+<td>2</td>
+<td>标准错误</td>
+<td>显示器</td>
+</tr>
+</tbody>
+</table>
+<p><code>STDIN</code>: 标准输入,普通的键盘输入<br>比如我们收集一个输入当成变量.</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">read</span> -p <span class="string">"用户名:"</span> username</span><br><span class="line"><span class="built_in">echo</span> <span class="variable">$username</span></span><br></pre></td></tr></table></figure>
+<p><img src="http://img.hi-arkin.com/2019-04-20-15557476546245.jpg" alt></p>
+<p>ps: zsh和bash的语法稍微不同.<br><code>zsh</code>环境使用<br><figure class="highlight zsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">read</span> -s <span class="string">"pwd?密码:"</span></span><br><span class="line"><span class="built_in">echo</span> <span class="variable">$pwd</span></span><br></pre></td></tr></table></figure></p>
+<p><img src="http://img.hi-arkin.com/2019-04-20-15557478795504.jpg" alt><br>提示:<br>zsh用 “变量?提示符代替-p”<br>-s: 隐藏输入</p>
+<p>废话说. 这里的输入就是标准的STDIN</p>
+<p><code>STDOUT</code>:意思是输出到显示器的内容.<br><code>echo</code> 输出来的内容就是 标准输出.<br>我们常见的一个语句.<br><code>xxx.sh 2&gt;&amp;1 &gt; /dev/null</code><br>这语句表示”所有的错误和输出都重定向到黑洞里面”<br>解释一下这语句.主要是 <code>2&gt;&amp;1 &gt; /dev/null</code><br><code>2</code>: 表示<code>STDERR</code>,错误消息<br><code>1</code>: 表示<code>STDOUT</code>,标准输出<br><code>&gt;</code>: 表示<code>重定向</code>,全写应该是 <code>1&gt;</code> 代表标准输出重定向.还有 <code>2&gt;</code>,代表错误重定向.<br><code>/dev/null</code>: 表示文件,只是dev/null是一个特殊空文件</p>
+<p>关键是 <code>2&gt;&amp;1 &gt;</code> ,全写应该是 <code>2&gt;&amp;1 1&gt; xxx</code>,意思是把<code>2</code>也是<code>STDERR</code>错误输出 重定向到<code>1</code>标准输出,最后标准输出,重定向到 某个文件.<br>也可 反着写.<br><img src="http://img.hi-arkin.com/2019-04-20-15557506581346.jpg" alt><br>把 <code>2&gt;&amp;1</code>放到最后.</p>
+<p><code>|</code>:管道符,表示 把 前面命令的标准输出当到后面命令的标准输入.<br>如:<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">cat user.csv | awk &#123;<span class="built_in">print</span>&#125;</span><br><span class="line"><span class="comment"># 相当于</span></span><br><span class="line">awk &#123;<span class="built_in">print</span>&#125; user.csv</span><br></pre></td></tr></table></figure></p>
+<p>了解了标准输入输出和管道符,重定向,开始<code>sed</code>的正题</p>
+<h2 id="参数"><a href="#参数" class="headerlink" title="参数"></a>参数</h2><p><code>-e</code> : 在命令行模式下编辑,默认就是-e,可以省略<br><code>-i</code> : 写入文件,<br><code>-n</code> : 只显示匹配行,不加该参数,默认打印最终结果<br><code>-f</code> : 使用外部脚本,相对于<code>-e</code>,太复杂不讲</p>
+<h2 id="写入文件"><a href="#写入文件" class="headerlink" title="写入文件"></a>写入文件</h2><p><code>sed</code> 标准输入,只能在内存和标准输出中修改,只有使用 &gt; 重定向 才能写入到文件.<br>平时我们使用 <code>sed</code> 只在标准输出中修改,一般不直接修改文件,因为直接修改文件有风险.<br>怎么修改文件呢?<br>使用 <code>sed -i &#39;备份后缀名&#39; &#39;操作命令&#39; 文件</code><br>注:macOS必须填写备份后缀名,但允许为空<br>例:我们要删除文件的第1行.<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sed -ie <span class="string">'1d'</span> user.csv</span><br></pre></td></tr></table></figure></p>
+<p><code>1d</code> 代表删除第1行,后面 “删除” 再细讲.<br>在使用标准输入时就不能用 <code>-i</code> 参数了.<br><code>echo &quot;lalalalal&quot; | sed -ie &#39;1d&#39;</code> 这个就会出错.<br><img src="http://img.hi-arkin.com/2019-04-20-15557514019450.jpg" alt><br>意思. 使用 <code>-i</code> 必须带文件.<br>实际修改文件 使用 <code>-i</code>参数.  </p>
+<h2 id="标准输入"><a href="#标准输入" class="headerlink" title="标准输入"></a>标准输入</h2><p>后面基演示都在标准输入和标准输出.不修改文件本身.</p>
+<h2 id="删除行操作"><a href="#删除行操作" class="headerlink" title="删除行操作"></a>删除行操作</h2><p>使用 <code>d</code> 命令<br><strong>按行删除</strong><br><code>sed -e &#39;1d&#39; user.csv</code><br><img src="http://img.hi-arkin.com/2019-04-20-15557517850523.jpg" alt><br>解释:<br><code>1d</code>: 1为第1行,<code>d</code>代表删除操作符,</p>
+<p><code>1,4</code>: 代表1至4行<br><code>$</code>:代表最后一行<br>例:<br><img src="http://img.hi-arkin.com/2019-04-20-15557519331169.jpg" alt></p>
+<p><strong>正则删除</strong><br><code>sed &#39;/正则/d&#39;</code><br>删除带关键字”阿木”的行:<br><code>sed &#39;/阿木/d&#39; user.csv</code><br>删除空白行<br><code>sed &#39;/^[\( \)|\s]*$/d&#39; user.csv</code><br>注意:<code>sed</code> 的正则很变态,<code>()</code>或<code>{}</code>有时需要转义,有时不需要.</p>
+<h2 id="增加行"><a href="#增加行" class="headerlink" title="增加行"></a>增加行</h2><p>使用<code>a</code>和<code>i</code>操作符<br><code>a</code>: 在后面追加<br><code>i</code>: 在前面添加<br>格式:<br><code>sed -e &#39;/模式/a 内容&#39; 文件</code> </p>
+<p>在第1行前加1行内容:<br><code>sed -e &#39;1i 内容&#39; user.csv</code></p>
+<p>在最后一行添加1行内容:<br><code>sed -e &#39;$a 最后一行&#39; user.csv</code><br>注意空文件的情况.文件必须存在且不能为空.<br>避免空文件空行,一般用<code>&gt;</code>或 ‘&gt;&gt;’ 添加.<br><code>echo &#39;&#39; &gt; tmp.txt</code></p>
+<p>查找到正则添加:<br><code>sed -e &#39;/阿金/i &quot;# 这就是我&quot;&#39; user.csv</code></p>
+<h2 id="修改内容"><a href="#修改内容" class="headerlink" title="修改内容"></a>修改内容</h2><p>修改内容是很常用的功能.<br>使用<code>s</code>命令<br>语法:<br><code>sed -e &#39;s/正则/替换/模式&#39;</code></p>
+<p>如修改配置文件:把root变成admin<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sed -i -e <span class="string">'s/username=\(.*\);/username=admin;/'</span> config.ini</span><br></pre></td></tr></table></figure></p>
+<h2 id="打印行"><a href="#打印行" class="headerlink" title="打印行"></a>打印行</h2><p><code>p</code>来打印输出行.<br>打印奇数行<br><code>sed  -n -e &#39;1~2p&#39; user.csv</code><br>解释: <code>~</code>表示递增,从1行开始递增,1,1+2,3+2行<br>偶数行:<br><code>sed  -n -e &#39;0~2p&#39; user.csv</code><br>0,2,2+2行<br>匹配行的下一行<br><code>sed -n -e &#39;2{n;p}&#39;</code> //第2行的下1行,第3行<br>上一行:<br><code>sed -n -e &#39;2{p;n}&#39;</code> //第2行的上1行,第1行</p>
+<p>范围打印:<br><code>sed -n -e &#39;/开始正则/,/结束正则/&#39;</code></p>
+<h2 id="读取文件"><a href="#读取文件" class="headerlink" title="读取文件"></a>读取文件</h2><p><code>r</code>命令<br>在匹配行下,读取加载文件内容.<br>例,在php类中为每个函数里面加载一段代码.<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sed -e <span class="string">'/function \([A-Za-z0-9_]*\)(\(.*\))&#123;/r log_hook.php'</span> class.php</span><br></pre></td></tr></table></figure></p>
+<p>效果如下.<br><img src="http://img.hi-arkin.com/2019-04-20-15557660449853.jpg" alt></p>
+<h2 id="写入文件-1"><a href="#写入文件-1" class="headerlink" title="写入文件"></a>写入文件</h2><p><code>w</code>,把匹配的每一行写入到某个文件,和上面刚好相反.</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sed -e <span class="string">'/function \([A-Za-z0-9_]*\)(\(.*\))&#123;/w function.php'</span> class.php</span><br></pre></td></tr></table></figure>
+<h2 id="跨行匹配"><a href="#跨行匹配" class="headerlink" title="跨行匹配"></a>跨行匹配</h2><p>sed默认是按行处理的.有时候有大段文字是跨多行的,就不好处理了.<br><code>sed &#39;/开始标准/,/结束标记/&#39;</code><br>比如上面截取函数列表.<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sed -n -e <span class="string">'/function /,/\&#125;/w function.php'</span> class.php</span><br></pre></td></tr></table></figure></p>
+<p>得到这样的结果.<br><img src="http://img.hi-arkin.com/2019-04-20-15557684287904.jpg" alt></p>
+</section>
     <!-- 版权开始 -->
     <div class="post-copyright">
       <p><strong>本文作者：</strong>阿金 </p>
@@ -197,10 +261,10 @@
   <div class="nav-container">
     <!-- reverse left and right to put prev and next in a more logic postition -->
     
-      <a class="nav-left" href="/2019/04/19/PHP/IOC_DI/">
+      <a class="nav-left" href="/2019/04/20/Linux/grep/">
         <span class="nav-arrow">← </span>
         
-          依赖注入(DI)/控制反转(IoC)
+          Linux三剑客之grep
         
       </a>
     
@@ -238,7 +302,7 @@
   <div class="toc-main">
     <strong class="toc-title">Catalog</strong>
     
-      <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#Linux之-sed-命令"><span class="toc-nav-text">Linux之 sed 命令</span></a></li></ol>
+      <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#Linux之-sed-命令"><span class="toc-nav-text">Linux之 sed 命令</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#参数"><span class="toc-nav-text">参数</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#写入文件"><span class="toc-nav-text">写入文件</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#标准输入"><span class="toc-nav-text">标准输入</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#删除行操作"><span class="toc-nav-text">删除行操作</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#增加行"><span class="toc-nav-text">增加行</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#修改内容"><span class="toc-nav-text">修改内容</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#打印行"><span class="toc-nav-text">打印行</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#读取文件"><span class="toc-nav-text">读取文件</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#写入文件-1"><span class="toc-nav-text">写入文件</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#跨行匹配"><span class="toc-nav-text">跨行匹配</span></a></li></ol></li></ol>
     
   </div>
 </aside>

@@ -169,7 +169,7 @@
     <section class="markdown-content"><blockquote>
 <p>Linux三剑客:awk,sed,grep<br>如果你不会这三个命令,就别谈会Linux.<br>awk,sed都是linux下处理文本和文件的命令.还有一本书专讲这两个命令.《sed 与 awk》《awk》<br>基本上每个linux系统下都自带这三命令.</p>
 </blockquote>
-<h1 id="Linux之-awk-命令"><a href="#Linux之-awk-命令" class="headerlink" title="Linux之 awk 命令"></a>Linux之 awk 命令</h1><p>awk是处理文本文件的一个应用程序,实际上awk还是一门脚本语言,但我们平时只用到awk命令.<br>awk的处理逻辑是依次扫描处理文本文件的每一行,每个字段(列).<br>我们经常使用它来处理大量的日志文件,csv文件.<br>下面只讲,命令方法.<br>假如我们有这样一段csv文件.会员列表吧.<br>[user.csv]<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">1001,阿金,13800013801,user001@163.com</span><br><span class="line">1002,阿木,13800013802,user002@163.com</span><br><span class="line">1003,阿水,13800013803,user003@163.com</span><br><span class="line">1004,阿火,13800013804,user004@163.com</span><br><span class="line">1005,阿土,13800013805,user004@163.com</span><br></pre></td></tr></table></figure></p>
+<h1 id="Linux之-awk-命令"><a href="#Linux之-awk-命令" class="headerlink" title="Linux之 awk 命令"></a>Linux之 awk 命令</h1><p>awk是处理文本文件的一个应用程序,实际上awk还是一门脚本语言,但我们平时只用到awk命令.<br>awk的处理逻辑是依次扫描处理文本文件的<strong>每一行,每一列(字段)</strong>.<br>我们经常使用它来处理大量的日志文件,csv文件.<br>下面只讲,命令方法.<br>假如我们有这样一段csv文件.会员列表吧.<br>[user.csv]<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">1001,阿金,13800013801,user001@163.com</span><br><span class="line">1002,阿木,13800013802,user002@163.com</span><br><span class="line">1003,阿水,13800013803,user003@163.com</span><br><span class="line">1004,阿火,13800013804,user004@163.com</span><br><span class="line">1005,阿土,13800013805,user004@163.com</span><br></pre></td></tr></table></figure></p>
 <p>基本语法:<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">awk 参数 动作 文件名</span><br></pre></td></tr></table></figure></p>
 <h2 id="逐行打印"><a href="#逐行打印" class="headerlink" title="逐行打印"></a>逐行打印</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">awk <span class="string">'&#123;print&#125;'</span> user.csv</span><br></pre></td></tr></table></figure>
 <p>解释:<br>{print} 为动作 print命令 为打印显示<br>print命令默认尾部会加换行.<br>可以使用printf 命令不会加换行.</p>
@@ -240,13 +240,6 @@
         
       </a>
     
-    
-      <a class="nav-right" href="/2019/04/20/Linux/grep/">
-        
-          Linux三剑客之grep
-        
-        <span class="nav-arrow"> →</span>
-      </a>
     
   </div>
 

@@ -1,21 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title><![CDATA[Linux三剑客之grep]]></title>
-    <url>%2F2019%2F04%2F20%2FLinux%2Fgrep%2F</url>
-    <content type="text"><![CDATA[Linux之 grep 命令]]></content>
-      <categories>
-        <category>Linux</category>
-      </categories>
-      <tags>
-        <tag>Shell</tag>
-        <tag>Bash</tag>
-      </tags>
-  </entry>
-  <entry>
     <title><![CDATA[Linux三剑客之awk]]></title>
     <url>%2F2019%2F04%2F20%2FLinux%2Fawk%2F</url>
-    <content type="text"><![CDATA[Linux三剑客:awk,sed,grep如果你不会这三个命令,就别谈会Linux.awk,sed都是linux下处理文本和文件的命令.还有一本书专讲这两个命令.《sed 与 awk》《awk》基本上每个linux系统下都自带这三命令. Linux之 awk 命令awk是处理文本文件的一个应用程序,实际上awk还是一门脚本语言,但我们平时只用到awk命令.awk的处理逻辑是依次扫描处理文本文件的每一行,每个字段(列).我们经常使用它来处理大量的日志文件,csv文件.下面只讲,命令方法.假如我们有这样一段csv文件.会员列表吧.[user.csv]123451001,阿金,13800013801,user001@163.com1002,阿木,13800013802,user002@163.com1003,阿水,13800013803,user003@163.com1004,阿火,13800013804,user004@163.com1005,阿土,13800013805,user004@163.com 基本语法:1awk 参数 动作 文件名 逐行打印1awk '&#123;print&#125;' user.csv 解释:{print} 为动作 print命令 为打印显示print命令默认尾部会加换行.可以使用printf 命令不会加换行. 显示指定列如:姓名,手机号1awk -F ',' '&#123;print $2,$3&#125;' user.csv 效果如下:解释:‘-F’: 代表 列(字段)分割符,默认使用空白符 (空格或Tab)‘\$2’: 表示 第2个字段,即是第2列‘\$3’: 表示 第3个字段$0:表示整行.‘,’: 逗号表示,空格除了这些,还有很多内置的变量,和方法,参考awk官方文档.如:NR代表行号.1awk -F ',' '&#123;print NR".手机号是:"$3&#125;' user.csv 双引号是字符串. 这样就可以生成,一些脚本,如PHP,bash批量发送短信脚本. 变量和运算awk可以用变量和运算结果echo &quot;&quot; | awk &#39;{a=1+2;print a;}&#39;解释:awk脚本使用 ;作来代码分隔符. 处理函数内置很多处理函数,如大小写转换，切割截取文本,正则,数学处理,随机数等等.详细参考官方文档.《内置函数文档》 如把substr(string,start,length)注意字符集,中文utf8按3个字节.1awk -F ',' '&#123;print substr($2,4,3)&#125;' user.csv 条件输出基础语法,动作为空时,默认print输出awk &#39;条件语句 {动作}&#39;比如第1表用户ID,大于1002的1awk -F ',' '$1&gt;1002 &amp;&amp; $1&lt;1005' user.csv 说明:条件符如: &lt;,&gt;,=,&gt;=,&lt;=,!不等于,&amp;&amp;合,|| 或等.例:从第2行开始1awk -F ',' 'NR&gt;1 &#123;print $2,$3&#125;' user.csv 也可以支持正则.例,查找包含”阿金”的行:1awk -F ',' '/阿金/ &#123;print $2,$3&#125;' user.csv IF语句复杂的条件,可以使用if条件.可以使用if() ;else例:只输出偶数行.1awk -F ',' '&#123;if($1%2 ==0)print $2;&#125;' user.csv 例:使用else if ,else1awk -F ',' '&#123;if($1%2 ==0)print $2;else if($1==1001) print "第1行";else print "--"&#125;' BEGIN和END基本语法BEGIN{读取前前执行} 条件 {动作} END{最后退出前}可以单独使用,注意大写.例,BEGIN1awk -F ',' 'BEGIN &#123;print "我们要开始遍历行了:"&#125; &#123;print $0&#125;' user.csv 例:END一般用于统计结果,如求ID的总和. 稍微复杂的经典案例:计算目录下的文本总大小.需要个知识:ls -l 目录 : 显示目录的文件列表|: 管道符,把前面的结果传给后面命令例:计算当前目录下,.gz文件的总大小1ls -l ./ | awk '/.gz$/ &#123;size+=$5&#125; END &#123;print "大小为:" size&#125;' PS,查看文件和目录大小有专用的命令.du -sk 目录或文件如du -skh ./*.gzh:友好显示大小k: Kbm: Mb 上面求大小可以改成.1du -sk ./*.gz | awk '&#123;size+=$1;&#125; END&#123;print size&#125;' 独立脚本运行awk是一个脚本语言,类似python,JS一样.由于是很多linux系统自带,所以流行度很高.脚本演示. awk -f 脚本 处理文件1awk -f user.awk user.csv 例: 处理成json 123456789101112131415161718#!/bin/awk BEGIN&#123; FS=","; RS="\r"#MacOs 是'\r' print "&#123;" &gt; "user.json"&#125;&#123; obj="&#123;" obj=obj"\id\":\""$1"\","; obj=obj"\"name\":\""$2"\","; obj=obj"\"phone\":\""$3"\","; obj=obj"\"email\":\""$4"\","; obj=obj"&#125;," print obj &gt;&gt; "user.json"&#125;END&#123; print "&#125;" &gt;&gt; "user.json";&#125; 解释:FS : 修改字段分隔符RS : 修改行分隔符,默认\n&gt;&gt; : 重定向到文件]]></content>
+    <content type="text"><![CDATA[Linux三剑客:awk,sed,grep如果你不会这三个命令,就别谈会Linux.awk,sed都是linux下处理文本和文件的命令.还有一本书专讲这两个命令.《sed 与 awk》《awk》基本上每个linux系统下都自带这三命令. Linux之 awk 命令awk是处理文本文件的一个应用程序,实际上awk还是一门脚本语言,但我们平时只用到awk命令.awk的处理逻辑是依次扫描处理文本文件的每一行,每一列(字段).我们经常使用它来处理大量的日志文件,csv文件.下面只讲,命令方法.假如我们有这样一段csv文件.会员列表吧.[user.csv]123451001,阿金,13800013801,user001@163.com1002,阿木,13800013802,user002@163.com1003,阿水,13800013803,user003@163.com1004,阿火,13800013804,user004@163.com1005,阿土,13800013805,user004@163.com 基本语法:1awk 参数 动作 文件名 逐行打印1awk '&#123;print&#125;' user.csv 解释:{print} 为动作 print命令 为打印显示print命令默认尾部会加换行.可以使用printf 命令不会加换行. 显示指定列如:姓名,手机号1awk -F ',' '&#123;print $2,$3&#125;' user.csv 效果如下:解释:‘-F’: 代表 列(字段)分割符,默认使用空白符 (空格或Tab)‘\$2’: 表示 第2个字段,即是第2列‘\$3’: 表示 第3个字段$0:表示整行.‘,’: 逗号表示,空格除了这些,还有很多内置的变量,和方法,参考awk官方文档.如:NR代表行号.1awk -F ',' '&#123;print NR".手机号是:"$3&#125;' user.csv 双引号是字符串. 这样就可以生成,一些脚本,如PHP,bash批量发送短信脚本. 变量和运算awk可以用变量和运算结果echo &quot;&quot; | awk &#39;{a=1+2;print a;}&#39;解释:awk脚本使用 ;作来代码分隔符. 处理函数内置很多处理函数,如大小写转换，切割截取文本,正则,数学处理,随机数等等.详细参考官方文档.《内置函数文档》 如把substr(string,start,length)注意字符集,中文utf8按3个字节.1awk -F ',' '&#123;print substr($2,4,3)&#125;' user.csv 条件输出基础语法,动作为空时,默认print输出awk &#39;条件语句 {动作}&#39;比如第1表用户ID,大于1002的1awk -F ',' '$1&gt;1002 &amp;&amp; $1&lt;1005' user.csv 说明:条件符如: &lt;,&gt;,=,&gt;=,&lt;=,!不等于,&amp;&amp;合,|| 或等.例:从第2行开始1awk -F ',' 'NR&gt;1 &#123;print $2,$3&#125;' user.csv 也可以支持正则.例,查找包含”阿金”的行:1awk -F ',' '/阿金/ &#123;print $2,$3&#125;' user.csv IF语句复杂的条件,可以使用if条件.可以使用if() ;else例:只输出偶数行.1awk -F ',' '&#123;if($1%2 ==0)print $2;&#125;' user.csv 例:使用else if ,else1awk -F ',' '&#123;if($1%2 ==0)print $2;else if($1==1001) print "第1行";else print "--"&#125;' BEGIN和END基本语法BEGIN{读取前前执行} 条件 {动作} END{最后退出前}可以单独使用,注意大写.例,BEGIN1awk -F ',' 'BEGIN &#123;print "我们要开始遍历行了:"&#125; &#123;print $0&#125;' user.csv 例:END一般用于统计结果,如求ID的总和. 稍微复杂的经典案例:计算目录下的文本总大小.需要个知识:ls -l 目录 : 显示目录的文件列表|: 管道符,把前面的结果传给后面命令例:计算当前目录下,.gz文件的总大小1ls -l ./ | awk '/.gz$/ &#123;size+=$5&#125; END &#123;print "大小为:" size&#125;' PS,查看文件和目录大小有专用的命令.du -sk 目录或文件如du -skh ./*.gzh:友好显示大小k: Kbm: Mb 上面求大小可以改成.1du -sk ./*.gz | awk '&#123;size+=$1;&#125; END&#123;print size&#125;' 独立脚本运行awk是一个脚本语言,类似python,JS一样.由于是很多linux系统自带,所以流行度很高.脚本演示. awk -f 脚本 处理文件1awk -f user.awk user.csv 例: 处理成json 123456789101112131415161718#!/bin/awk BEGIN&#123; FS=","; RS="\r"#MacOs 是'\r' print "&#123;" &gt; "user.json"&#125;&#123; obj="&#123;" obj=obj"\id\":\""$1"\","; obj=obj"\"name\":\""$2"\","; obj=obj"\"phone\":\""$3"\","; obj=obj"\"email\":\""$4"\","; obj=obj"&#125;," print obj &gt;&gt; "user.json"&#125;END&#123; print "&#125;" &gt;&gt; "user.json";&#125; 解释:FS : 修改字段分隔符RS : 修改行分隔符,默认\n&gt;&gt; : 重定向到文件]]></content>
       <categories>
         <category>Linux</category>
       </categories>
@@ -27,7 +15,19 @@
   <entry>
     <title><![CDATA[Linux三剑客之sed]]></title>
     <url>%2F2019%2F04%2F20%2FLinux%2Fsed%2F</url>
-    <content type="text"><![CDATA[Linux之 sed 命令]]></content>
+    <content type="text"><![CDATA[Linux之 sed 命令sed命令主要用来修改文本文件用的,使用命令的方式来快速修改文件.和vim一样,但是它是使用交互式命令的.一般和管道命令一起使用.主要功能: 插入,删除,选中,替换以之前user.csv文件举例.文件如下: 由于MacOs的sed和gnu-sed不一样,我们以gnu-sed为准.mac安装.brew install gnu-sed修改sed alias sed=gsed 在.zsh或bash环境改.或者改软链接.ln /usr/local/bin/gsed /usr/local/bin/sed 必须前置知识:标准输入/输出,有时间再细说.linux有三种标准输入/输出. 名称 文件描述 含义 设备 STDIN 0 标准输入 键盘 STDOUT 1 标准输出 显示器 STDERR 2 标准错误 显示器 STDIN: 标准输入,普通的键盘输入比如我们收集一个输入当成变量. 12read -p "用户名:" usernameecho $username ps: zsh和bash的语法稍微不同.zsh环境使用12read -s "pwd?密码:"echo $pwd 提示:zsh用 “变量?提示符代替-p”-s: 隐藏输入 废话说. 这里的输入就是标准的STDIN STDOUT:意思是输出到显示器的内容.echo 输出来的内容就是 标准输出.我们常见的一个语句.xxx.sh 2&gt;&amp;1 &gt; /dev/null这语句表示”所有的错误和输出都重定向到黑洞里面”解释一下这语句.主要是 2&gt;&amp;1 &gt; /dev/null2: 表示STDERR,错误消息1: 表示STDOUT,标准输出&gt;: 表示重定向,全写应该是 1&gt; 代表标准输出重定向.还有 2&gt;,代表错误重定向./dev/null: 表示文件,只是dev/null是一个特殊空文件 关键是 2&gt;&amp;1 &gt; ,全写应该是 2&gt;&amp;1 1&gt; xxx,意思是把2也是STDERR错误输出 重定向到1标准输出,最后标准输出,重定向到 某个文件.也可 反着写.把 2&gt;&amp;1放到最后. |:管道符,表示 把 前面命令的标准输出当到后面命令的标准输入.如:123cat user.csv | awk &#123;print&#125;# 相当于awk &#123;print&#125; user.csv 了解了标准输入输出和管道符,重定向,开始sed的正题 参数-e : 在命令行模式下编辑,默认就是-e,可以省略-i : 写入文件,-n : 只显示匹配行,不加该参数,默认打印最终结果-f : 使用外部脚本,相对于-e,太复杂不讲 写入文件sed 标准输入,只能在内存和标准输出中修改,只有使用 &gt; 重定向 才能写入到文件.平时我们使用 sed 只在标准输出中修改,一般不直接修改文件,因为直接修改文件有风险.怎么修改文件呢?使用 sed -i &#39;备份后缀名&#39; &#39;操作命令&#39; 文件注:macOS必须填写备份后缀名,但允许为空例:我们要删除文件的第1行.1sed -ie '1d' user.csv 1d 代表删除第1行,后面 “删除” 再细讲.在使用标准输入时就不能用 -i 参数了.echo &quot;lalalalal&quot; | sed -ie &#39;1d&#39; 这个就会出错.意思. 使用 -i 必须带文件.实际修改文件 使用 -i参数. 标准输入后面基演示都在标准输入和标准输出.不修改文件本身. 删除行操作使用 d 命令按行删除sed -e &#39;1d&#39; user.csv解释:1d: 1为第1行,d代表删除操作符, 1,4: 代表1至4行$:代表最后一行例: 正则删除sed &#39;/正则/d&#39;删除带关键字”阿木”的行:sed &#39;/阿木/d&#39; user.csv删除空白行sed &#39;/^[\( \)|\s]*$/d&#39; user.csv注意:sed 的正则很变态,()或{}有时需要转义,有时不需要. 增加行使用a和i操作符a: 在后面追加i: 在前面添加格式:sed -e &#39;/模式/a 内容&#39; 文件 在第1行前加1行内容:sed -e &#39;1i 内容&#39; user.csv 在最后一行添加1行内容:sed -e &#39;$a 最后一行&#39; user.csv注意空文件的情况.文件必须存在且不能为空.避免空文件空行,一般用&gt;或 ‘&gt;&gt;’ 添加.echo &#39;&#39; &gt; tmp.txt 查找到正则添加:sed -e &#39;/阿金/i &quot;# 这就是我&quot;&#39; user.csv 修改内容修改内容是很常用的功能.使用s命令语法:sed -e &#39;s/正则/替换/模式&#39; 如修改配置文件:把root变成admin1sed -i -e 's/username=\(.*\);/username=admin;/' config.ini 打印行p来打印输出行.打印奇数行sed -n -e &#39;1~2p&#39; user.csv解释: ~表示递增,从1行开始递增,1,1+2,3+2行偶数行:sed -n -e &#39;0~2p&#39; user.csv0,2,2+2行匹配行的下一行sed -n -e &#39;2{n;p}&#39; //第2行的下1行,第3行上一行:sed -n -e &#39;2{p;n}&#39; //第2行的上1行,第1行 范围打印:sed -n -e &#39;/开始正则/,/结束正则/&#39; 读取文件r命令在匹配行下,读取加载文件内容.例,在php类中为每个函数里面加载一段代码.1sed -e '/function \([A-Za-z0-9_]*\)(\(.*\))&#123;/r log_hook.php' class.php 效果如下. 写入文件w,把匹配的每一行写入到某个文件,和上面刚好相反. 1sed -e '/function \([A-Za-z0-9_]*\)(\(.*\))&#123;/w function.php' class.php 跨行匹配sed默认是按行处理的.有时候有大段文字是跨多行的,就不好处理了.sed &#39;/开始标准/,/结束标记/&#39;比如上面截取函数列表.1sed -n -e '/function /,/\&#125;/w function.php' class.php 得到这样的结果.]]></content>
+      <categories>
+        <category>Linux</category>
+      </categories>
+      <tags>
+        <tag>Shell</tag>
+        <tag>Bash</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Linux三剑客之grep]]></title>
+    <url>%2F2019%2F04%2F20%2FLinux%2Fgrep%2F</url>
+    <content type="text"><![CDATA[Linux之 grep 命令]]></content>
       <categories>
         <category>Linux</category>
       </categories>
@@ -167,8 +167,8 @@
         <category>Project</category>
       </categories>
       <tags>
-        <tag>项目管理</tag>
         <tag>产品经理</tag>
+        <tag>项目管理</tag>
       </tags>
   </entry>
   <entry>
