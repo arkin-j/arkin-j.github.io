@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+  <meta name="description" content="Hi~我是阿金,也可以叫我Arkin,做开发的阿金同学">
+  <meta name="baidu-site-verification" content="KAIz07eWp9" />
+  <meta name="baidu_union_verify" content="89761f418e2e32d488f0c783a8616865">
+  <meta name="keyword" content="阿金,开发,前端,后端,产品,架构师">
+  
+    <link rel="shortcut icon" href="/css/images/logo.png">
+  
+  <title>
+    
+      使用Composer搭建自己的框架 | Hi,阿金
+    
+  </title>
+  <link href="//cdn.staticfile.org/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+  <link href="//cdn.staticfile.org/nprogress/0.2.0/nprogress.min.css" rel="stylesheet">
+  <link href="//cdn.staticfile.org/highlight.js/9.12.0/styles/tomorrow.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="/css/style.css">
+  <script src="//cdn.staticfile.org/jquery/3.2.1/jquery.min.js"></script>
+  <script src="//cdn.staticfile.org/geopattern/1.2.3/js/geopattern.min.js"></script>
+  <script src="//cdn.staticfile.org/nprogress/0.2.0/nprogress.min.js"></script>
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="/js/qrious.js"></script>
+  
+  
+    <!-- MathJax support START -->
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.staticfile.org/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <!-- MathJax support END -->
+  
+
+
+</head>
+<div class="wechat-share">
+  <img src="/css/images/logo.svg" />
+</div>
+
+  <body>
+    <header class="header fixed-header">
+  <div class="header-container">
+    <a class="home-link" href="/">
+      <div class="logo"></div>
+      <span>Hi,阿金 <span class="jumping-dots"><i>.</i><i>.</i><i>.</i></span></span>
+    </a>
+    <ul class="right-list">
+      
+        <li class="list-item">
+          
+            <a href="/" class="item-link">首页</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/categories/" class="item-link">分类</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/tags/" class="item-link">标签</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/archives/" class="item-link">归档</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/about/" class="item-link">whois</a>
+          
+        </li>
+      
+    </ul>
+
+    
+  <!-- div id="site_search">
+   <div class="form-group">
+    <input type="text" id="local-search-input" autocomplete="off" name="q" results="0" placeholder="search" class="st-search-input st-default-search-input form-control"/>
+   </div>  
+  <div id="local-search-result"></div>
+  </div -->
+
+
+    
+    <div class="menu">
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </div>
+    <div class="menu-mask">
+      <ul class="menu-list">
+        
+          <li class="menu-item">
+            
+              <a href="/" class="menu-link">首页</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/categories/" class="menu-link">分类</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/tags/" class="menu-link">标签</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/archives/" class="menu-link">归档</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/about/" class="menu-link">whois</a>
+            
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</header>
+
+    <div id="article-banner">
+  <h2>使用Composer搭建自己的框架</h2>
+  <div class="post-date">
+    发表:<span> 2019-04-21 </span>
+    分类:
+      <span class="article-category">
+        <a class="article-category-link" href="/categories/PHP/">PHP</a>
+      </span>
+    
+  </div>
+  <div class="arrow-down">
+    <a href="javascript:;"></a>
+  </div>
+</div>
+<main class="app-body flex-box">
+  <!-- Article START -->
+  <article class="post-article">
+    <section class="markdown-content"><h1 id="composer-的安装"><a href="#composer-的安装" class="headerlink" title="composer 的安装"></a>composer 的安装</h1><p>先安装composer,官网安装就行<br><a href="https://docs.phpcomposer.com/" target="_blank" rel="noopener">中文官方网站</a><br><code>curl -sS https://getcomposer.org/installer | php</code></p>
+<h1 id="初始化"><a href="#初始化" class="headerlink" title="初始化"></a>初始化</h1><p><code>composer init</code><br>composer.json文件可以手写.<br><figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="attr">"name"</span>: <span class="string">"arkin/okool"</span>,</span><br><span class="line">    <span class="attr">"require"</span>: &#123;&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h1 id="引用自动加载类"><a href="#引用自动加载类" class="headerlink" title="引用自动加载类"></a>引用自动加载类</h1><p>执行<br><code>composer dump-autoload --optimize</code><br>自动创建vendor目录和autoload文件<br><img src="http://img.hi-arkin.com/2019-04-21-15557892252490.jpg" alt></p>
+<h1 id="新建入口文件"><a href="#新建入口文件" class="headerlink" title="新建入口文件"></a>新建入口文件</h1><p>入口index.php,如下目录名没要求.能访问就行.<br><img src="http://img.hi-arkin.com/2019-04-21-15557898488119.jpg" alt></p>
+<p>引用自动加载类,根据目录相对路径引用.<br><img src="http://img.hi-arkin.com/2019-04-21-15557898821667.jpg" alt></p>
+<h1 id="创建框架核心文件"><a href="#创建框架核心文件" class="headerlink" title="创建框架核心文件"></a>创建框架核心文件</h1><p>与业务独立,单独创建一个目录如<code>bootstrap</code>放框架核心文件.<br><img src="http://img.hi-arkin.com/2019-04-21-15557905163816.jpg" alt></p>
+<p>这样一个最原始的框架就运行起来了.</p>
+<h1 id="新建src源码目录"><a href="#新建src源码目录" class="headerlink" title="新建src源码目录"></a>新建src源码目录</h1><p>如上我们使用了<code>app</code>目录作为<code>src</code>目录<br>创建基础 MVC三层结构.<br>在<code>composer.json</code>中加入 自动加载命名空间.<br><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">"autoload": &#123;</span><br><span class="line">    "psr-4": &#123;</span><br><span class="line">        "App\\": "app/"</span><br><span class="line">    &#125;,</span><br><span class="line">    "files":[</span><br><span class="line">        <span class="string">"app/Helpers/functions.php"</span></span><br><span class="line">    ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>说明:<br>尽量使用<code>psr-4</code>命名空间标准.<br><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">"psr-4": &#123;</span><br><span class="line">    "App\\": "app/"</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>表示使用psr4的标准,<code>App</code>命名空间指向 <code>app/</code>这个目录.自动加载类会按psr4的标准到app这个目录寻找加载类.<br><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">"files":[</span><br><span class="line">    <span class="string">"app/Helpers/functions.php"</span></span><br><span class="line">]</span><br></pre></td></tr></table></figure></p>
+<p><code>files</code>是一个加载文件数组,一般放公共函数等与业务无关代码,这里会提前加载.</p>
+<p>修改<code>autoload</code>配置后需要重新执行<br><code>composer dump-autoload --optimize</code><br>以便autoload 类优化完成缓存.</p>
+<p>文件目录如下:<br><img src="http://img.hi-arkin.com/2019-04-21-15557923312178.jpg" alt></p>
+<p>现在我们可以使用命名空间执行<code>controller</code>的方法了.<br>一个项目不可能只有一个控制器,那么就需要使用到<code>路由</code>自动加载控制器了.</p>
+<h1 id="路由"><a href="#路由" class="headerlink" title="路由"></a>路由</h1><p>一个框架,最关键的是路由,不然就是一堆代码,不叫框架.<br>可以引用别人的路由类,也可以自己写.<br>我们先写一个简单的,了解原理后,再引用别人成熟的.<br>.</p>
+<h2 id="解析URL-Cli路由"><a href="#解析URL-Cli路由" class="headerlink" title="解析URL/Cli路由"></a>解析URL/Cli路由</h2><p>我们想要访问的如 <code>http://xxx.com/home/index</code> 这样的地址,home代表home控制器 index方法<br>实现步骤:</p>
+<ol>
+<li>把index.php隐藏掉,需要用到URL重写,方法有<code>.htaccess</code>,’apache重写’,’nginx的重写’</li>
+<li>获取到<code>home</code>和<code>index</code></li>
+<li>其它参数,其它参数先不考虑.</li>
+<li>支持默认控制器和方法</li>
+</ol>
+<p>为了方便,我们还支持<code>cli</code>模式的访问,如<code>php index.php home index</code></p>
+<p>Router类如下:<br><img src="http://img.hi-arkin.com/2019-04-21-15557938229082.jpg" alt></p>
+<p>测试一下:<br><img src="http://img.hi-arkin.com/2019-04-21-15557938670599.jpg" alt><br>OK.</p>
+<h2 id="路由自动加载"><a href="#路由自动加载" class="headerlink" title="路由自动加载"></a>路由自动加载</h2><p>得到了<code>Controler</code>和<code>Action</code>,我们要拼装成访问类,并执行.<br>App 类改造一下.<br>如下:<br><img src="http://img.hi-arkin.com/2019-04-21-15557943211971.jpg" alt></p>
+<p>测试结果:<br><img src="http://img.hi-arkin.com/2019-04-21-15557943807493.jpg" alt></p>
+<p>至此,一个包含路由和自动加载的框架完成.</p>
+<h1 id="配置文件"><a href="#配置文件" class="headerlink" title="配置文件"></a>配置文件</h1><p>可定制化的框架,不能用硬编码,可配置原则.<br>我们引用配置文件.<br>配置文件一般使用,<code>array</code>,<code>.ini</code>,<code>json</code>,<code>yaml</code>等.<br>框架内部,使用php 数组配置,框架外部我们使用<code>.env</code>文件.<br>分析,原理:</p>
+<ol>
+<li>解析<code>.env</code>文件</li>
+<li>使用 <code>putenv</code> 把环境变量注册到$_ENV中</li>
+<li>其它地方便可以使用 <code>getenv</code> 函数获取环境变量的值了<br>这么麻烦的事我们使用现成的吧.优秀的类 <code>Dotenv</code><br>使用composer安装<br><code>composer require vlucas/phpdotenv</code><br><code>.env</code>,文件放在根目录下,文件如下<br><img src="http://img.hi-arkin.com/2019-04-21-15557964827900.jpg" alt></li>
+</ol>
+<p>完成后就可以使用了,一般在框架加载前载入配置文件.<br><img src="http://img.hi-arkin.com/2019-04-21-15557964390026.jpg" alt></p>
+<h1 id="使用ORM类"><a href="#使用ORM类" class="headerlink" title="使用ORM类"></a>使用ORM类</h1><p>数据库操作,避免手写SQL带来的不可控问题,统一管理,做数据迁移,更换数据驱动等.我们需要使用ORM操作.<br>网上有很多优先的ORM操作类,这里我使用的是.Laravel 的 Eloquent </p>
+<h2 id="安装Eloquent"><a href="#安装Eloquent" class="headerlink" title="安装Eloquent"></a>安装Eloquent</h2><p><a href="https://github.com/illuminate/database" target="_blank" rel="noopener">官方github</a></p>
+<p>composer 安装<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">composer require illuminate/database</span><br></pre></td></tr></table></figure></p>
+<p>注意要求,官方现在(201904)必须要php7.1以上</p>
+<h2 id="编写配置文件"><a href="#编写配置文件" class="headerlink" title="编写配置文件"></a>编写配置文件</h2><p>按官方文档写,也可以参考laravel写.<br><img src="http://img.hi-arkin.com/2019-04-21-15558022273637.jpg" alt></p>
+<h2 id="连接数据库"><a href="#连接数据库" class="headerlink" title="连接数据库"></a>连接数据库</h2><p><img src="http://img.hi-arkin.com/2019-04-21-15558023321723.jpg" alt><br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">connection</span><span class="params">()</span></span>&#123;</span><br><span class="line">        $capsule = <span class="keyword">new</span> Capsule;</span><br><span class="line">        $config=<span class="keyword">require</span> (<span class="keyword">self</span>::$ROOT.<span class="string">'/./config/database.php'</span>);</span><br><span class="line">        $capsule-&gt;addConnection($config[<span class="string">'connections'</span>][$config[<span class="string">'default'</span>]]);</span><br><span class="line">        $capsule-&gt;bootEloquent();</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure></p>
+<h2 id="编写Model"><a href="#编写Model" class="headerlink" title="编写Model"></a>编写Model</h2><p>继承Model就行.<br><img src="http://img.hi-arkin.com/2019-04-21-15558024352413.jpg" alt><br>创建表<br><img src="http://img.hi-arkin.com/2019-04-21-15558024676417.jpg" alt></p>
+<p>使用Model<br><img src="http://img.hi-arkin.com/2019-04-21-15558025070554.jpg" alt></p>
+<p>测试,OK.<br>至此,框架已经使用了ORM操作类.<br>如果纯写API,基本差不多了.</p>
+<h1 id="日志"><a href="#日志" class="headerlink" title="日志"></a>日志</h1><p>每个系统都需要一个日志系统,去分析记录系统运行情况.<br>关于日志,强烈介意,反感没有规范的日志系统.<br>日志除了开发人员看,还需要对接其它日志组件,必须符合规范,不然以后日志处理成本很大.<br>我们必须使用<code>psr-3</code>日志规范,符合这个规范的才能使用.<br>我们这里引用 <code>monolog</code>.<br><a href="https://github.com/Seldaek/monolog" target="_blank" rel="noopener">官方GIT</a></p>
+<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><p><code>composer require monolog/monolog</code></p>
+<h2 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h2><p>重写一个<code>Log</code>单例.<br><img src="http://img.hi-arkin.com/2019-04-21-15558065394967.jpg" alt></p>
+<p>重载几个主要方法 info,debug,log,error等.</p>
+<p>使用 <code>Log::log(&#39;msg&#39;,&#39;content&#39;);</code></p>
+<p>一个小小的框架就完成了.<br>完整的框架,包含事件,异常处理,队列,视图,前端模板等.</p>
+</section>
+    <!-- 版权开始 -->
+    <div class="post-copyright">
+      <p><strong>本文作者：</strong>阿金 </p>
+      <p><strong>本文链接：</strong><a href="http://www.hi-arkin.com/2019/04/21/PHP/composer/">http://www.hi-arkin.com/2019/04/21/PHP/composer/</a></p>
+      <p><strong>版权声明：</strong>本博客所有文章除特别声明外，均采用 
+      <a target="__blank" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> 许可协议。转载请注明出处！</p>
+    </div>
+    <!-- 版权结束 -->
+
+    <!-- Tags START -->
+    
+      <div class="tags">
+        <span>Tags:</span>
+        
+  <a href="/tags#PHP" >
+    <span class="tag-code">PHP</span>
+  </a>
+
+  <a href="/tags#设计模式" >
+    <span class="tag-code">设计模式</span>
+  </a>
+
+  <a href="/tags#Laravel" >
+    <span class="tag-code">Laravel</span>
+  </a>
+
+      </div>
+    
+    <!-- Tags END -->
+    <!-- NAV START -->
+    
+  <div class="nav-container">
+    <!-- reverse left and right to put prev and next in a more logic postition -->
+    
+      <a class="nav-left" href="/2019/04/20/Linux/awk/">
+        <span class="nav-arrow">← </span>
+        
+          Linux三剑客之awk
+        
+      </a>
+    
+    
+  </div>
+
+    <!-- NAV END -->
+
+    <!-- 二维码 START -->
+    
+      <div class="qrcode">
+        <canvas id="share-qrcode"></canvas>
+        <p class="notice">扫描二维码，分享此文章</p>
+      </div>
+    
+    <!-- 二维码 END -->
+    
+      <!-- Gitment START -->
+      <div id="vcomments"></div>
+      <script src='//unpkg.com/valine/dist/Valine.min.js'></script>
+      <!-- Gitment END -->
+    
+  </article>
+  <!-- Article END -->
+  <!-- Catalog START -->
+  
+    <aside class="catalog-container">
+  <div class="toc-main">
+    <strong class="toc-title">Catalog</strong>
+    
+      <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#composer-的安装"><span class="toc-nav-text">composer 的安装</span></a></li><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#初始化"><span class="toc-nav-text">初始化</span></a></li><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#引用自动加载类"><span class="toc-nav-text">引用自动加载类</span></a></li><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#新建入口文件"><span class="toc-nav-text">新建入口文件</span></a></li><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#创建框架核心文件"><span class="toc-nav-text">创建框架核心文件</span></a></li><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#新建src源码目录"><span class="toc-nav-text">新建src源码目录</span></a></li><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#路由"><span class="toc-nav-text">路由</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#解析URL-Cli路由"><span class="toc-nav-text">解析URL/Cli路由</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#路由自动加载"><span class="toc-nav-text">路由自动加载</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#配置文件"><span class="toc-nav-text">配置文件</span></a></li><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#使用ORM类"><span class="toc-nav-text">使用ORM类</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#安装Eloquent"><span class="toc-nav-text">安装Eloquent</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#编写配置文件"><span class="toc-nav-text">编写配置文件</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#连接数据库"><span class="toc-nav-text">连接数据库</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#编写Model"><span class="toc-nav-text">编写Model</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#日志"><span class="toc-nav-text">日志</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#安装"><span class="toc-nav-text">安装</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#使用"><span class="toc-nav-text">使用</span></a></li></ol></li></ol>
+    
+  </div>
+</aside>
+  
+  <!-- Catalog END -->
+</main>
+
+<script>
+  (function () {
+    var url = 'http://www.hi-arkin.com/2019/04/21/PHP/composer/';
+    var banner = ''
+    if (banner !== '' && banner !== 'undefined' && banner !== 'null') {
+      $('#article-banner').css({
+        'background-image': 'url(' + banner + ')'
+      })
+    } else {
+      $('#article-banner').geopattern(url)
+    }
+    $('.header').removeClass('fixed-header')
+
+     // error image
+    $(".markdown-content img").on('error', function() {
+      $(this).attr('src', '/css/images/error-img.svg')
+      $(this).css({
+        'cursor': 'default'
+      })
+    })
+
+    // zoom image
+    $(".markdown-content img").on('click', function() {
+      var src = $(this).attr('src')
+      if (src !== '/css/images/error-img.svg') {
+        var imageW = $(this).width()
+        var imageH = $(this).height()
+        
+        var zoom = ($(window).width() * 0.95 / imageW).toFixed(2)
+        zoom = zoom < 1 ? 1 : zoom
+        zoom = zoom > 2 ? 2 : zoom
+        var transY = (($(window).height() - imageH) / 2).toFixed(2)
+
+        $('body').append('<div class="image-view-wrap"><div class="image-view-inner"><img src="'+ src +'" /></div></div>')
+        $('.image-view-wrap').addClass('wrap-active')
+        $('.image-view-wrap img').css({
+          'width': `${imageW}`,
+          'transform': `translate3d(0, ${transY}px, 0) scale3d(${zoom}, ${zoom}, 1)`
+        })
+        $('html').css('overflow', 'hidden')
+
+        $('.image-view-wrap').on('click', function() {
+          $(this).remove()
+          $('html').attr('style', '')
+        })
+      }
+    })
+
+    // qrcode
+    var qr = new QRious({
+      element: document.getElementById('share-qrcode'),
+      value: document.location.href
+    });
+
+  
+   
+  
+
+  })();
+</script>
+<!-- 评论 -->
+
+<script>
+    Valine && new Valine({
+              el: '#vcomments',
+              placeholder: '欢迎大家吐槽~ ',
+              appId: 's00pjsgpQfTMhup6C0IC1e5w-gzGzoHsz',
+              appKey: 'L1jipTeNE3kEt8GGtbJvGMvV',
+
+    })
+</script>
+
+
+    <div class="scroll-top">
+  <span class="arrow-icon"></span>
+</div>
+    
+<footer class="app-footer">
+  <div id="vcomments" style="max-width:800px"></div>
+  <p class="copyright">
+    <a href="http://tongji.baidu.com/web/welcome/ico?s=371952d9b83cd706a4702ef0c232e3de" target="_blank">...</a>
+    &copy; 2019 |  Powered by 阿金 
+   <br/> <a href="http://www.miitbeian.gov.cn" rel="nofollow" target="_blank"> 京ICP备18064786号-1 </a>
+  </p>
+</footer>
+<script src="/js/search.js"></script> 
+
+<script>
+  function async(u, c) {
+    var d = document, t = 'script',
+      o = d.createElement(t),
+      s = d.getElementsByTagName(t)[0];
+    o.src = u;
+    if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+    s.parentNode.insertBefore(o, s);
+  }
+</script>
+<script>
+  async("//cdn.staticfile.org/fastclick/1.0.6/fastclick.min.js", function(){
+    FastClick.attach(document.body);
+  })
+</script>
+
+<script>
+  var hasLine = 'true';
+  async("//cdn.staticfile.org/highlight.js/9.12.0/highlight.min.js", function(){
+    $('figure pre').each(function(i, block) {
+      var figure = $(this).parents('figure');
+      if (hasLine === 'false') {
+        figure.find('.gutter').hide();
+      }
+      var lang = figure.attr('class').split(' ')[1] || 'code';
+      var codeHtml = $(this).html();
+      var codeTag = document.createElement('code');
+      codeTag.className = lang;
+      codeTag.innerHTML = codeHtml;
+      $(this).attr('class', '').empty().html(codeTag);
+      figure.attr('data-lang', lang.toUpperCase());
+      hljs.highlightBlock(block);
+    });
+  })
+</script>
+
+
+
+   <script type="text/javascript">   
+     var search_path = "search.xml";
+   if (search_path.length == 0) {
+    search_path = "search.xml";
+   }
+   var path = "/" + search_path;
+     searchFunc(path, 'local-search-input', 'local-search-result');
+   </script>
+
+
+
+<!-- Baidu Tongji -->
+
+<script>
+    var _baId = '371952d9b83cd706a4702ef0c232e3de';
+    // Originial
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?" + _baId;
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+
+
+<script src="/js/script.js"></script>
+
+  </body>
+</html>
