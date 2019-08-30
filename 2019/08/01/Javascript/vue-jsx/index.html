@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+  <meta name="description" content="Hi~我是阿金,也可以叫我Arkin,做开发的阿金同学">
+  <meta name="baidu-site-verification" content="KAIz07eWp9" />
+  <meta name="baidu_union_verify" content="89761f418e2e32d488f0c783a8616865">
+  <meta name="keyword" content="阿金,开发,前端,后端,产品,架构师">
+  
+    <link rel="shortcut icon" href="/css/images/logo.png">
+  
+  <title>
+    
+      Vue中使用JSX | Hi,阿金
+    
+  </title>
+  <link href="//cdn.staticfile.org/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+  <link href="//cdn.staticfile.org/nprogress/0.2.0/nprogress.min.css" rel="stylesheet">
+  <link href="//cdn.staticfile.org/highlight.js/9.12.0/styles/tomorrow.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="/css/style.css">
+  <script src="//cdn.staticfile.org/jquery/3.2.1/jquery.min.js"></script>
+  <script src="//cdn.staticfile.org/geopattern/1.2.3/js/geopattern.min.js"></script>
+  <script src="//cdn.staticfile.org/nprogress/0.2.0/nprogress.min.js"></script>
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="/js/qrious.js"></script>
+  
+  
+    <!-- MathJax support START -->
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.staticfile.org/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <!-- MathJax support END -->
+  
+
+
+</head>
+<div class="wechat-share">
+  <img src="/css/images/logo.svg" />
+</div>
+
+  <body>
+    <header class="header fixed-header">
+  <div class="header-container">
+    <a class="home-link" href="/">
+      <div class="logo"></div>
+      <span>Hi,阿金 <span class="jumping-dots"><i>.</i><i>.</i><i>.</i></span></span>
+    </a>
+    <ul class="right-list">
+      
+        <li class="list-item">
+          
+            <a href="/" class="item-link">首页</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/categories/" class="item-link">分类</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/tags/" class="item-link">标签</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/archives/" class="item-link">归档</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/about/" class="item-link">whois</a>
+          
+        </li>
+      
+    </ul>
+
+    
+  <!-- div id="site_search">
+   <div class="form-group">
+    <input type="text" id="local-search-input" autocomplete="off" name="q" results="0" placeholder="search" class="st-search-input st-default-search-input form-control"/>
+   </div>  
+  <div id="local-search-result"></div>
+  </div -->
+
+
+    
+    <div class="menu">
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </div>
+    <div class="menu-mask">
+      <ul class="menu-list">
+        
+          <li class="menu-item">
+            
+              <a href="/" class="menu-link">首页</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/categories/" class="menu-link">分类</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/tags/" class="menu-link">标签</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/archives/" class="menu-link">归档</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/about/" class="menu-link">whois</a>
+            
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</header>
+
+    <div id="article-banner">
+  <h2>Vue中使用JSX</h2>
+  <div class="post-date">
+    发表:<span> 2019-08-01 </span>
+    分类:
+      <span class="article-category">
+        <a class="article-category-link" href="/categories/Javascript/">Javascript</a>
+      </span>
+    
+  </div>
+  <div class="arrow-down">
+    <a href="javascript:;"></a>
+  </div>
+</div>
+<main class="app-body flex-box">
+  <!-- Article START -->
+  <article class="post-article">
+    <section class="markdown-content"><h1 id="VueJs中使用JSX"><a href="#VueJs中使用JSX" class="headerlink" title="VueJs中使用JSX"></a>VueJs中使用JSX</h1><p>新项目前端使用的是vue框架,写了1个多月的vue,大部分使用Jsx,记录一下在vue中jsx遇到的问题,我最讨厌框架之争,语言之争.<br>关于<code>html中写Js</code>还是<code>Js中写html</code>孰优孰劣不作评价,都是个人喜好.<br>就像<code>Vue</code>和<code>React</code>哪个好,个人感觉vue易入门,适合刚入门的程序员或非前端人员快速出东西,轻量化应用.React更适合有专门的前端团队,组件化工程化.</p>
+<p>为了减少Vue和React之间差异化,减少使用vue中的语法糖,我选择使用Jsx来封装通用组件,template来调用.1个月来封装了:数据表格组件,常用表单组件,弹框组件,权限控制组件,页面组件,抽屉组件,日历排期组件等.由于vue和react设计不同,jsx并不完全一样,有很多差异的地方.下面介绍,几个注意的地方.</p>
+<h2 id="webpack插件"><a href="#webpack插件" class="headerlink" title="webpack插件"></a>webpack插件</h2><p>开始使用,使用babel转换插件,<code>babel-plugin-transform-vue-jsx</code>,<br>安装参考:<a href="https://github.com/vuejs/babel-plugin-transform-vue-jsx" target="_blank" rel="noopener">https://github.com/vuejs/babel-plugin-transform-vue-jsx</a></p>
+<p>vue文档:<a href="https://cn.vuejs.org/v2/guide/render-function.html" target="_blank" rel="noopener">https://cn.vuejs.org/v2/guide/render-function.html</a></p>
+<h2 id="render"><a href="#render" class="headerlink" title="render"></a>render</h2><p>render,也叫渲染函数,无论React还是Vue在组件最关键的是render,它也是前端的灵魂.</p>
+<p>在React离不开它,Vue中设计者有意隐藏了,降低了入门成本,也就是大家常用的<code>&lt;template&gt;</code>标签.<br>网上有专门讲解这部分的文章,详情搜索引擎搜索”vue template 原理”.</p>
+<h3 id="渲染编译过程"><a href="#渲染编译过程" class="headerlink" title="渲染编译过程"></a>渲染编译过程</h3><p><code>vue</code>的渲染编译大概过程: </p>
+<pre class="mermaid">graph TB;
+　　A(解析模板)-->B(编译成AST语法树);
+　　B-->C(生成render函数);
+　　C.->J(解析JSX);
+　　J.->F(渲染表达式);
+　　C-->F;
+　　F-->D(生成虚拟DOM);
+　　D-->E(生成html);</pre>
+
+<p><code>React</code>的渲染编译过程:</p>
+<p><pre class="mermaid">graph TB;<br>    A(解析render)–&gt;B(解析JSX);<br>    B–&gt;C(渲染表达式);<br>    C–&gt;D(生成虚拟DOM);<br>    D–&gt;E(生成html);</pre><br>vue和react渲染过程都一样,都是通过<code>babel</code>转化成真正的渲染表达式,最后转成虚拟Dom,生成html.</p>
+<h3 id="渲染表达函数"><a href="#渲染表达函数" class="headerlink" title="渲染表达函数"></a>渲染表达函数</h3><p>渲染表达式,简单理解就是,虚拟dom生成函数.<br>vue中叫<code>vnode</code>,react中叫<code>virtual-dom</code>,具体参考官方文档.<br>想知道virtual-dom的原理,可以参考网上文章,手写virtual-dom.<br>看一下渲染表达式函数长得什么亚子.<br>举例渲染:<code>&lt;h1&gt;大表哥&lt;/h1&gt;</code><br>vue:<br>参考:<a href="https://cn.vuejs.org/v2/guide/render-function.html#%E8%99%9A%E6%8B%9F-DOM" target="_blank" rel="noopener">https://cn.vuejs.org/v2/guide/render-function.html#%E8%99%9A%E6%8B%9F-DOM</a><br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">render: <span class="function"><span class="keyword">function</span> (<span class="params">createElement</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> createElement(<span class="string">'h1'</span>,&#123;&#125;,<span class="string">'大表哥'</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>react:<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">render()&#123;</span><br><span class="line">    <span class="keyword">return</span> React.createElement(<span class="string">'h1'</span>,&#123;&#125;,<span class="string">'大表哥'</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>对比一下是不是一蚂一样.<br>通过babel把jsx转成这样的函数就行了.就是第一节中的babel插件做的事情.<br>这种写法是完整的功能,但明显不直观.所以.vue使用template,react使用jsx.<br>通一使用<code>jsx</code>写法,更直观.<br>template:<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">template</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">h1</span>&gt;</span>大表哥<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">template</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>jsx:<br><figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">render()&#123;</span><br><span class="line">    <span class="keyword">return</span> (<span class="xml"><span class="tag">&lt;<span class="name">h1</span>&gt;</span>大表哥<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>对比一下.template只能使用vue提供的语法糖.如 <code>v-for,v-if,v-show等</code>.缺少原生JS的所有能力.需要配合method使用.<br>而Jsx不提供语法糖.<br>如加事件.<br>vue template写法:<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">template</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">h1</span> <span class="attr">v-on:click</span>=<span class="string">"onClick"</span>&gt;</span>大表哥<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">template</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="undefined"></span></span><br><span class="line"><span class="undefined">methods:&#123;</span></span><br><span class="line"><span class="undefined">    onClick()&#123;</span></span><br><span class="line"><span class="javascript">        <span class="built_in">console</span>.log(<span class="string">'click'</span>)</span></span><br><span class="line"><span class="undefined">    &#125;</span></span><br><span class="line"><span class="undefined">&#125;</span></span><br><span class="line"><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>jsx 写法:<br><figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">render()&#123;</span><br><span class="line">    &lt;h1 onClick=&#123;()=&gt;&#123;<span class="built_in">console</span>.log(<span class="string">'click'</span>)&#125;&#125; &gt;</span><br><span class="line">    大表哥</span><br><span class="line">    &lt;<span class="regexp">/h1&gt;</span></span><br><span class="line"><span class="regexp">&#125;</span></span><br></pre></td></tr></table></figure></p>
+<p>哪种写法好呢?我个人认为,综合使用.<br>显示为主的用template,操作控制为主的使用jsx.<br>一般在通用组件使用jsx写法,调用组件使用template写法.<br>举个例子,5分钟手写个弹框组件.<br>弹框组件.dialog.<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="undefined"></span></span><br><span class="line"><span class="javascript"><span class="keyword">export</span> <span class="keyword">default</span> &#123;</span></span><br><span class="line"><span class="javascript">  name: <span class="string">"MyDialog"</span>,</span></span><br><span class="line"><span class="undefined">  props: &#123;</span></span><br><span class="line"><span class="undefined">    title: &#123;</span></span><br><span class="line"><span class="javascript">      type: <span class="built_in">String</span>,</span></span><br><span class="line"><span class="javascript">      <span class="keyword">default</span>: <span class="string">""</span></span></span><br><span class="line"><span class="undefined">    &#125;</span></span><br><span class="line"><span class="undefined">  &#125;,</span></span><br><span class="line"><span class="undefined">  data()&#123;</span></span><br><span class="line"><span class="javascript">    <span class="keyword">return</span> &#123;</span></span><br><span class="line"><span class="javascript">      visible:<span class="literal">false</span>,</span></span><br><span class="line"><span class="undefined">    &#125;;</span></span><br><span class="line"><span class="undefined">  &#125;,</span></span><br><span class="line"><span class="undefined">  methods:&#123;</span></span><br><span class="line"><span class="undefined">    show()&#123;</span></span><br><span class="line"><span class="javascript">        <span class="keyword">this</span>.visible=<span class="literal">true</span></span></span><br><span class="line"><span class="undefined">    &#125;</span></span><br><span class="line"><span class="undefined">  &#125;,</span></span><br><span class="line"><span class="undefined">  render(h)&#123;</span></span><br><span class="line"><span class="javascript">    <span class="keyword">const</span> sub = <span class="keyword">this</span>.$slots.default;</span></span><br><span class="line"><span class="javascript">    <span class="keyword">const</span> display=<span class="keyword">this</span>.visible?<span class="string">'block'</span>:<span class="string">'none'</span>;</span></span><br><span class="line"><span class="javascript">    <span class="keyword">return</span> (</span></span><br><span class="line"><span class="javascript">    &lt;div <span class="class"><span class="keyword">class</span></span>=<span class="string">"dialog"</span> style=&#123;&#123;<span class="attr">display</span>:display&#125;&#125;&gt;</span></span><br><span class="line"><span class="xml">        <span class="tag">&lt;<span class="name">h3</span>&gt;</span>&#123;this.title&#125;<span class="tag">&lt;/<span class="name">h3</span>&gt;</span></span></span><br><span class="line"><span class="javascript">        &lt;div <span class="class"><span class="keyword">class</span></span>=<span class="string">"body"</span>&gt;</span></span><br><span class="line"><span class="undefined">            &#123;sub&#125;</span></span><br><span class="line"><span class="xml">        <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line"><span class="javascript">        &lt;div <span class="class"><span class="keyword">class</span></span>=<span class="string">"footer"</span>&gt;</span></span><br><span class="line"><span class="xml">            <span class="tag">&lt;<span class="name">button</span> <span class="attr">onClick</span>=<span class="string">&#123;()</span>=&gt;</span>&#123;</span></span><br><span class="line"><span class="javascript">                <span class="keyword">this</span>.visible=<span class="literal">false</span>;</span></span><br><span class="line"><span class="javascript">                <span class="keyword">this</span>.$emit(<span class="string">'close'</span>,<span class="string">'我要自闭了.'</span>)</span></span><br><span class="line"><span class="xml">            &#125;&#125;&gt;关闭<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span></span><br><span class="line"><span class="xml">        <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line"><span class="xml">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span>)</span></span><br><span class="line"><span class="undefined">  &#125;</span></span><br><span class="line"><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">style</span>&gt;</span><span class="undefined"></span></span><br><span class="line"><span class="undefined">    .dialog&#123;</span></span><br><span class="line"><span class="undefined">        position:fixed;</span></span><br><span class="line"><span class="undefined">        width:320px;</span></span><br><span class="line"><span class="undefined">        height:400px;</span></span><br><span class="line"><span class="undefined">        top:10%;</span></span><br><span class="line"><span class="undefined">        left:50%;</span></span><br><span class="line"><span class="undefined">        margin-left:-160px;</span></span><br><span class="line"><span class="undefined">    &#125;</span></span><br><span class="line"><span class="undefined"></span><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>调用时<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="undefined"></span></span><br><span class="line"><span class="javascript"><span class="keyword">import</span> MyDialog <span class="keyword">from</span> <span class="string">"./MyDialog.vue"</span></span></span><br><span class="line"><span class="javascript"><span class="keyword">export</span> <span class="keyword">default</span> &#123;</span></span><br><span class="line"><span class="undefined">    components:&#123;</span></span><br><span class="line"><span class="undefined">        MyDialog</span></span><br><span class="line"><span class="undefined">    &#125;</span></span><br><span class="line"><span class="undefined">    methods:&#123;</span></span><br><span class="line"><span class="undefined">        onOpen()&#123;</span></span><br><span class="line"><span class="javascript">            <span class="keyword">this</span>.$refs.dialog.show();</span></span><br><span class="line"><span class="undefined">        &#125;,</span></span><br><span class="line"><span class="undefined">        onClose(msg)&#123;</span></span><br><span class="line"><span class="javascript">            <span class="built_in">console</span>.log(msg)</span></span><br><span class="line"><span class="undefined">        &#125;</span></span><br><span class="line"><span class="undefined">    &#125;</span></span><br><span class="line"><span class="undefined">&#125;</span></span><br><span class="line"><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">template</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"app"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">button</span> @<span class="attr">click</span>=<span class="string">"onOpen"</span>&gt;</span>打开弹窗<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">MyDialog</span> <span class="attr">ref</span>=<span class="string">"dialog"</span> @<span class="attr">close</span>=<span class="string">"onClose"</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">template</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>todo: 补充event,props,v-model等使用.</p>
+</section>
+    <!-- 版权开始 -->
+    <div class="post-copyright">
+      <p><strong>本文作者：</strong>阿金 </p>
+      <p><strong>本文链接：</strong><a href="http://www.hi-arkin.com/2019/08/01/Javascript/vue-jsx/">http://www.hi-arkin.com/2019/08/01/Javascript/vue-jsx/</a></p>
+      <p><strong>版权声明：</strong>本博客所有文章除特别声明外，均采用 
+      <a target="__blank" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> 许可协议。转载请注明出处！</p>
+    </div>
+    <!-- 版权结束 -->
+
+    <!-- Tags START -->
+    
+      <div class="tags">
+        <span>Tags:</span>
+        
+  <a href="/tags#Vue" >
+    <span class="tag-code">Vue</span>
+  </a>
+
+  <a href="/tags#Jsx" >
+    <span class="tag-code">Jsx</span>
+  </a>
+
+  <a href="/tags#Render" >
+    <span class="tag-code">Render</span>
+  </a>
+
+      </div>
+    
+    <!-- Tags END -->
+    <!-- NAV START -->
+    
+  <div class="nav-container">
+    <!-- reverse left and right to put prev and next in a more logic postition -->
+    
+      <a class="nav-left" href="/2019/04/26/DevOps/2019-04-26/">
+        <span class="nav-arrow">← </span>
+        
+          (untitled)
+        
+      </a>
+    
+    
+  </div>
+
+    <!-- NAV END -->
+
+    <!-- 二维码 START -->
+    
+      <div class="qrcode">
+        <canvas id="share-qrcode"></canvas>
+        <p class="notice">扫描二维码，分享此文章</p>
+      </div>
+    
+    <!-- 二维码 END -->
+    
+      <!-- Gitment START -->
+      <div id="vcomments"></div>
+      <script src='//unpkg.com/valine/dist/Valine.min.js'></script>
+      <!-- Gitment END -->
+    
+  </article>
+  <!-- Article END -->
+  <!-- Catalog START -->
+  
+    <aside class="catalog-container">
+  <div class="toc-main">
+    <strong class="toc-title">Catalog</strong>
+    
+      <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#VueJs中使用JSX"><span class="toc-nav-text">VueJs中使用JSX</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#webpack插件"><span class="toc-nav-text">webpack插件</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#render"><span class="toc-nav-text">render</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#渲染编译过程"><span class="toc-nav-text">渲染编译过程</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#渲染表达函数"><span class="toc-nav-text">渲染表达函数</span></a></li></ol></li></ol></li></ol>
+    
+  </div>
+</aside>
+  
+  <!-- Catalog END -->
+</main>
+
+<script>
+  (function () {
+    var url = 'http://www.hi-arkin.com/2019/08/01/Javascript/vue-jsx/';
+    var banner = ''
+    if (banner !== '' && banner !== 'undefined' && banner !== 'null') {
+      $('#article-banner').css({
+        'background-image': 'url(' + banner + ')'
+      })
+    } else {
+      $('#article-banner').geopattern(url)
+    }
+    $('.header').removeClass('fixed-header')
+
+     // error image
+    $(".markdown-content img").on('error', function() {
+      $(this).attr('src', '/css/images/error-img.svg')
+      $(this).css({
+        'cursor': 'default'
+      })
+    })
+
+    // zoom image
+    $(".markdown-content img").on('click', function() {
+      var src = $(this).attr('src')
+      if (src !== '/css/images/error-img.svg') {
+        var imageW = $(this).width()
+        var imageH = $(this).height()
+        
+        var zoom = ($(window).width() * 0.95 / imageW).toFixed(2)
+        zoom = zoom < 1 ? 1 : zoom
+        zoom = zoom > 2 ? 2 : zoom
+        var transY = (($(window).height() - imageH) / 2).toFixed(2)
+
+        $('body').append('<div class="image-view-wrap"><div class="image-view-inner"><img src="'+ src +'" /></div></div>')
+        $('.image-view-wrap').addClass('wrap-active')
+        $('.image-view-wrap img').css({
+          'width': `${imageW}`,
+          'transform': `translate3d(0, ${transY}px, 0) scale3d(${zoom}, ${zoom}, 1)`
+        })
+        $('html').css('overflow', 'hidden')
+
+        $('.image-view-wrap').on('click', function() {
+          $(this).remove()
+          $('html').attr('style', '')
+        })
+      }
+    })
+
+    // qrcode
+    var qr = new QRious({
+      element: document.getElementById('share-qrcode'),
+      value: document.location.href
+    });
+
+  
+   
+  
+
+  })();
+</script>
+<!-- 评论 -->
+
+<script>
+    Valine && new Valine({
+              el: '#vcomments',
+              placeholder: '欢迎大家吐槽~ ',
+              appId: 's00pjsgpQfTMhup6C0IC1e5w-gzGzoHsz',
+              appKey: 'L1jipTeNE3kEt8GGtbJvGMvV',
+
+    })
+</script>
+
+
+    <div class="scroll-top">
+  <span class="arrow-icon"></span>
+</div>
+    
+<footer class="app-footer">
+  <div id="vcomments" style="max-width:800px"></div>
+  <p class="copyright">
+    <a href="http://tongji.baidu.com/web/welcome/ico?s=371952d9b83cd706a4702ef0c232e3de" target="_blank">...</a>
+    &copy; 2019 |  Powered by 阿金 
+   <br/> <a href="http://www.miitbeian.gov.cn" rel="nofollow" target="_blank"> 京ICP备18064786号-1 </a>
+  </p>
+</footer>
+<script src="/js/search.js"></script> 
+
+<script>
+  function async(u, c) {
+    var d = document, t = 'script',
+      o = d.createElement(t),
+      s = d.getElementsByTagName(t)[0];
+    o.src = u;
+    if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+    s.parentNode.insertBefore(o, s);
+  }
+</script>
+<script>
+  async("//cdn.staticfile.org/fastclick/1.0.6/fastclick.min.js", function(){
+    FastClick.attach(document.body);
+  })
+</script>
+
+<script>
+  var hasLine = 'true';
+  async("//cdn.staticfile.org/highlight.js/9.12.0/highlight.min.js", function(){
+    $('figure pre').each(function(i, block) {
+      var figure = $(this).parents('figure');
+      if (hasLine === 'false') {
+        figure.find('.gutter').hide();
+      }
+      var lang = figure.attr('class').split(' ')[1] || 'code';
+      var codeHtml = $(this).html();
+      var codeTag = document.createElement('code');
+      codeTag.className = lang;
+      codeTag.innerHTML = codeHtml;
+      $(this).attr('class', '').empty().html(codeTag);
+      figure.attr('data-lang', lang.toUpperCase());
+      hljs.highlightBlock(block);
+    });
+  })
+</script>
+
+<{% if (theme.mermaid.enable)  %}>
+  <script src='https://unpkg.com/mermaid@7.1.2/dist/mermaid.min.js'></script>
+  <script>
+    if (window.mermaid) {
+      mermaid.initialize({theme: 'forest'});
+    }
+  </script>
+<{% endif %}>
+
+
+
+   <script type="text/javascript">   
+     var search_path = "search.xml";
+   if (search_path.length == 0) {
+    search_path = "search.xml";
+   }
+   var path = "/" + search_path;
+     searchFunc(path, 'local-search-input', 'local-search-result');
+   </script>
+
+
+
+<!-- Baidu Tongji -->
+
+<script>
+    var _baId = '371952d9b83cd706a4702ef0c232e3de';
+    // Originial
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?" + _baId;
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+
+
+<script src="/js/script.js"></script>
+
+  </body>
+</html>

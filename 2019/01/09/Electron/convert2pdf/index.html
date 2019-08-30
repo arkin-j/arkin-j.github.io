@@ -175,7 +175,7 @@
 <li>下载,上传PDF</li>
 </ol>
 <h3 id="读取URL"><a href="#读取URL" class="headerlink" title="读取URL"></a>读取URL</h3><p>在服务器使用php模板渲染生成html页面,写打印样式.<br>统一使用A4纸标准.<br>打印注意,请参考关于html打印相关文章.</p>
-<p>下面都是基于electron-vue的代码.<br>关键代码:<br><img src="http://img.hi-arkin.com/2019-01-09-15469770708587.jpg" alt></p>
+<p>下面都是基于electron-vue的代码.<br>关键代码:<br><img src="http://img.hi-arkin.com/2019-01-09-15469770708587.jpg" alt=""></p>
 </section>
     <!-- 版权开始 -->
     <div class="post-copyright">
@@ -382,6 +382,15 @@
     });
   })
 </script>
+
+<{% if (theme.mermaid.enable)  %}>
+  <script src='https://unpkg.com/mermaid@7.1.2/dist/mermaid.min.js'></script>
+  <script>
+    if (window.mermaid) {
+      mermaid.initialize({theme: 'forest'});
+    }
+  </script>
+<{% endif %}>
 
 
 

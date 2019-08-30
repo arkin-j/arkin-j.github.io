@@ -165,6 +165,16 @@
     
     
       <div class="section-list-item">
+        <a href="/2019/03/13/DevOps/2019-03-13/" class="archive-title">Parallels Centos 安装</a>
+        <p class="archive-date">03-13</p>
+      </div>
+    
+      <div class="section-list-item">
+        <a href="/2019/03/08/DevOps/xmrig_script/" class="archive-title">记一次比特币病毒木马事件</a>
+        <p class="archive-date">03-08</p>
+      </div>
+    
+      <div class="section-list-item">
         <a href="/2019/03/04/Javascript/routerlister/" class="archive-title">路由事件</a>
         <p class="archive-date">03-04</p>
       </div>
@@ -265,6 +275,15 @@
     });
   })
 </script>
+
+<{% if (theme.mermaid.enable)  %}>
+  <script src='https://unpkg.com/mermaid@7.1.2/dist/mermaid.min.js'></script>
+  <script>
+    if (window.mermaid) {
+      mermaid.initialize({theme: 'forest'});
+    }
+  </script>
+<{% endif %}>
 
 
 

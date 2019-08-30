@@ -168,16 +168,16 @@
   <article class="post-article">
     <section class="markdown-content"><h1 id="parallels-安装-centos"><a href="#parallels-安装-centos" class="headerlink" title="parallels 安装 centos"></a>parallels 安装 centos</h1><p>parallels 是 MacOs下的一个虚拟化工具,和Mac整合得很好.<br>支持融入模式,macos和虚拟机结合,虚拟机配置都默认帮配置完成了.文件共享.剪贴板工具都帮安好.就像安装软件一样方便.</p>
 <h2 id="root密码"><a href="#root密码" class="headerlink" title="root密码"></a>root密码</h2><p>默认创建一个parallels账号,登录的也是parallels.<br>没有初始化root密码.<br>修改root密码:<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo passwd</span><br></pre></td></tr></table></figure></p>
-<p>然后输入 当前parallels账号的密码<br><img src="http://img.hi-arkin.com/2019-03-13-15524712150526.jpg" alt></p>
+<p>然后输入 当前parallels账号的密码<br><img src="http://img.hi-arkin.com/2019-03-13-15524712150526.jpg" alt=""></p>
 <p>然后就可以修改 root密码了.</p>
-<p><img src="http://img.hi-arkin.com/2019-03-13-15524712756831.jpg" alt></p>
+<p><img src="http://img.hi-arkin.com/2019-03-13-15524712756831.jpg" alt=""></p>
 <h2 id="配置免密连接"><a href="#配置免密连接" class="headerlink" title="配置免密连接"></a>配置免密连接</h2><p>避免手动配置麻烦,只需要两步就完成.</p>
-<p>第一步: 打开配置<br><img src="http://img.hi-arkin.com/2019-03-13-15524716496509.jpg" alt></p>
+<p>第一步: 打开配置<br><img src="http://img.hi-arkin.com/2019-03-13-15524716496509.jpg" alt=""></p>
 <p>第二步: 选中 “使用macOS SSH 公钥进行身份验证”</p>
-<p><img src="http://img.hi-arkin.com/2019-03-13-15524715842849.jpg" alt></p>
+<p><img src="http://img.hi-arkin.com/2019-03-13-15524715842849.jpg" alt=""></p>
 <p>这样便把mac电脑当前的ssh key复制到 centos 中 parallels 用户的 ~/.ssh/authorized_keys里面.<br>我们验证一下.</p>
-<p><img src="http://img.hi-arkin.com/2019-03-13-15524718469480.jpg" alt></p>
-<p>测试一下远程连接.<br>“ssh <a href="mailto:parallels@10.211.55.4" target="_blank" rel="noopener">parallels@10.211.55.4</a>“是centos虚拟机的IP.<br><img src="http://img.hi-arkin.com/2019-03-13-15524719083241.jpg" alt></p>
+<p><img src="http://img.hi-arkin.com/2019-03-13-15524718469480.jpg" alt=""></p>
+<p>测试一下远程连接.<br>“ssh <a href="mailto:parallels@10.211.55.4" target="_blank" rel="noopener">parallels@10.211.55.4</a>“是centos虚拟机的IP.<br><img src="http://img.hi-arkin.com/2019-03-13-15524719083241.jpg" alt=""></p>
 <p>就可以使用mac自带的命令行工具了.</p>
 <h2 id="parallels-显示模式"><a href="#parallels-显示模式" class="headerlink" title="parallels 显示模式"></a>parallels 显示模式</h2><p>有三种查看模式</p>
 <ul>
@@ -186,7 +186,7 @@
 <li>画中画: 把虚拟机当成单独Mac应用,就像看视频一样,可以无限缩小.放大</li>
 </ul>
 <p><strong>旅行模式</strong>: 相当于节能模式,Linux最好开启这种模式.<br>减少磁盘 “嗡嗡~”吵个不停.</p>
-<p><strong>后台运行模式</strong>: linux大部分情况不需要界面,只需要在后台运行可以了.<br>关闭后就虚拟机还能运行.<br><img src="http://img.hi-arkin.com/2019-03-13-15524740034541.jpg" alt></p>
+<p><strong>后台运行模式</strong>: linux大部分情况不需要界面,只需要在后台运行可以了.<br>关闭后就虚拟机还能运行.<br><img src="http://img.hi-arkin.com/2019-03-13-15524740034541.jpg" alt=""></p>
 <h2 id="静态IP"><a href="#静态IP" class="headerlink" title="静态IP"></a>静态IP</h2><p>虚拟机默认使用动态IP,这样我们使用ssh连接时,不方便.<br>可以修改网卡设置成固定IP.</p>
 </section>
     <!-- 版权开始 -->
@@ -390,6 +390,15 @@
     });
   })
 </script>
+
+<{% if (theme.mermaid.enable)  %}>
+  <script src='https://unpkg.com/mermaid@7.1.2/dist/mermaid.min.js'></script>
+  <script>
+    if (window.mermaid) {
+      mermaid.initialize({theme: 'forest'});
+    }
+  </script>
+<{% endif %}>
 
 
 

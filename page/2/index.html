@@ -153,6 +153,57 @@
   
     <article class="article-card">
       <h2 class="article-head">
+        <a href="/2019/03/13/DevOps/2019-03-13/">Parallels Centos 安装</a>
+      </h2>
+      <p class="article-date">
+      发表:<span> 2019-03-13 05:51 </span>
+      分类:
+      
+      <span class="article-category">
+        <a class="article-category-link" href="/categories/DevOps/">DevOps</a>
+      </span>
+    
+    </p>
+      <div class="article-summary">
+        
+          parallels 安装 centosparallels 是 MacOs下的一个虚拟化工具,和Mac整合得很好.支持融入模式,macos和虚拟机结合,虚拟机配置都默认帮配置完成了.文件共享.剪贴板工具都帮安好.就像安装软件一样方便.
+root密码默认创建一个parallels账号,登录的也是 ...
+        
+      </div>
+      <a class="more" href="/2019/03/13/DevOps/2019-03-13/">阅读全文</a>
+    </article>
+  
+    <article class="article-card">
+      <h2 class="article-head">
+        <a href="/2019/03/08/DevOps/xmrig_script/">记一次比特币病毒木马事件</a>
+      </h2>
+      <p class="article-date">
+      发表:<span> 2019-03-08 07:06 </span>
+      分类:
+      
+      <span class="article-category">
+        <a class="article-category-link" href="/categories/DevOps/">DevOps</a>
+      </span>
+    
+    </p>
+      <div class="article-summary">
+        
+          记一次比特币病毒木马事件这两天开发同事突然反应代码无法上线,经排查是阿里云服务器不能正常git pull 代码.
+开始排查.记录如下.
+排查git第一感觉就是可能git问题,代码冲突.
+
+1.手动pull
+
+结果 :连接超时.
+
+2.ping git.xxx.comgit.xxx.com 我 ...
+        
+      </div>
+      <a class="more" href="/2019/03/08/DevOps/xmrig_script/">阅读全文</a>
+    </article>
+  
+    <article class="article-card">
+      <h2 class="article-head">
         <a href="/2019/03/04/Javascript/routerlister/">路由事件</a>
       </h2>
       <p class="article-date">
@@ -349,53 +400,6 @@ PS中, ...
       <a class="more" href="/2019/01/07/Javascript/isLight/">阅读全文</a>
     </article>
   
-    <article class="article-card">
-      <h2 class="article-head">
-        <a href="/2018/12/24/Electron/electron-rebuild/">Electron Build 安装使用</a>
-      </h2>
-      <p class="article-date">
-      发表:<span> 2018-12-24 06:10 </span>
-      分类:
-      
-      <span class="article-category">
-        <a class="article-category-link" href="/categories/Electron/">Electron</a>
-      </span>
-    
-    </p>
-      <div class="article-summary">
-        
-          Electron Build 安装使用NodeJs原生插件因为版本系统问题,需要重新编译.
-Electron环境下,最好固定版本,备份定指定版本数据,避免NPM或源被和谐.electron有快捷build方法.
-依赖node,npm
-electron-rebuild官方文档(cn)
-安装no ...
-        
-      </div>
-      <a class="more" href="/2018/12/24/Electron/electron-rebuild/">阅读全文</a>
-    </article>
-  
-    <article class="article-card">
-      <h2 class="article-head">
-        <a href="/2018/12/20/Electron/usb/">Node获取Usb信息</a>
-      </h2>
-      <p class="article-date">
-      发表:<span> 2018-12-20 11:16 </span>
-      分类:
-      
-      <span class="article-category">
-        <a class="article-category-link" href="/categories/NodeJs/">NodeJs</a>
-      </span>
-    
-    </p>
-      <div class="article-summary">
-        
-          Node获取Usb信息MacOS获取Usb相关资料如果已经安装 lsusb 可以使用lsusb获取没有則使用 system_profiler SPUSBDataType
-Windows可以通过 Wmic获取
-        
-      </div>
-      <a class="more" href="/2018/12/20/Electron/usb/">阅读全文</a>
-    </article>
-  
 
   
     <div class="guide-pager">
@@ -459,6 +463,15 @@ Windows可以通过 Wmic获取
     });
   })
 </script>
+
+<{% if (theme.mermaid.enable)  %}>
+  <script src='https://unpkg.com/mermaid@7.1.2/dist/mermaid.min.js'></script>
+  <script>
+    if (window.mermaid) {
+      mermaid.initialize({theme: 'forest'});
+    }
+  </script>
+<{% endif %}>
 
 
 

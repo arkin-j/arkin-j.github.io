@@ -168,17 +168,17 @@
   <article class="post-article">
     <section class="markdown-content"><h1 id="composer-的安装"><a href="#composer-的安装" class="headerlink" title="composer 的安装"></a>composer 的安装</h1><p>先安装composer,官网安装就行<br><a href="https://docs.phpcomposer.com/" target="_blank" rel="noopener">中文官方网站</a><br><code>curl -sS https://getcomposer.org/installer | php</code></p>
 <h1 id="初始化"><a href="#初始化" class="headerlink" title="初始化"></a>初始化</h1><p><code>composer init</code><br>composer.json文件可以手写.<br><figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="attr">"name"</span>: <span class="string">"arkin/okool"</span>,</span><br><span class="line">    <span class="attr">"require"</span>: &#123;&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<h1 id="引用自动加载类"><a href="#引用自动加载类" class="headerlink" title="引用自动加载类"></a>引用自动加载类</h1><p>执行<br><code>composer dump-autoload --optimize</code><br>自动创建vendor目录和autoload文件<br><img src="http://img.hi-arkin.com/2019-04-21-15557892252490.jpg" alt></p>
-<h1 id="新建入口文件"><a href="#新建入口文件" class="headerlink" title="新建入口文件"></a>新建入口文件</h1><p>入口index.php,如下目录名没要求.能访问就行.<br><img src="http://img.hi-arkin.com/2019-04-21-15557898488119.jpg" alt></p>
-<p>引用自动加载类,根据目录相对路径引用.<br><img src="http://img.hi-arkin.com/2019-04-21-15557898821667.jpg" alt></p>
-<h1 id="创建框架核心文件"><a href="#创建框架核心文件" class="headerlink" title="创建框架核心文件"></a>创建框架核心文件</h1><p>与业务独立,单独创建一个目录如<code>bootstrap</code>放框架核心文件.<br><img src="http://img.hi-arkin.com/2019-04-21-15557905163816.jpg" alt></p>
+<h1 id="引用自动加载类"><a href="#引用自动加载类" class="headerlink" title="引用自动加载类"></a>引用自动加载类</h1><p>执行<br><code>composer dump-autoload --optimize</code><br>自动创建vendor目录和autoload文件<br><img src="http://img.hi-arkin.com/2019-04-21-15557892252490.jpg" alt=""></p>
+<h1 id="新建入口文件"><a href="#新建入口文件" class="headerlink" title="新建入口文件"></a>新建入口文件</h1><p>入口index.php,如下目录名没要求.能访问就行.<br><img src="http://img.hi-arkin.com/2019-04-21-15557898488119.jpg" alt=""></p>
+<p>引用自动加载类,根据目录相对路径引用.<br><img src="http://img.hi-arkin.com/2019-04-21-15557898821667.jpg" alt=""></p>
+<h1 id="创建框架核心文件"><a href="#创建框架核心文件" class="headerlink" title="创建框架核心文件"></a>创建框架核心文件</h1><p>与业务独立,单独创建一个目录如<code>bootstrap</code>放框架核心文件.<br><img src="http://img.hi-arkin.com/2019-04-21-15557905163816.jpg" alt=""></p>
 <p>这样一个最原始的框架就运行起来了.</p>
 <h1 id="新建src源码目录"><a href="#新建src源码目录" class="headerlink" title="新建src源码目录"></a>新建src源码目录</h1><p>如上我们使用了<code>app</code>目录作为<code>src</code>目录<br>创建基础 MVC三层结构.<br>在<code>composer.json</code>中加入 自动加载命名空间.<br><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">"autoload": &#123;</span><br><span class="line">    "psr-4": &#123;</span><br><span class="line">        "App\\": "app/"</span><br><span class="line">    &#125;,</span><br><span class="line">    "files":[</span><br><span class="line">        <span class="string">"app/Helpers/functions.php"</span></span><br><span class="line">    ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <p>说明:<br>尽量使用<code>psr-4</code>命名空间标准.<br><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">"psr-4": &#123;</span><br><span class="line">    "App\\": "app/"</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <p>表示使用psr4的标准,<code>App</code>命名空间指向 <code>app/</code>这个目录.自动加载类会按psr4的标准到app这个目录寻找加载类.<br><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">"files":[</span><br><span class="line">    <span class="string">"app/Helpers/functions.php"</span></span><br><span class="line">]</span><br></pre></td></tr></table></figure></p>
 <p><code>files</code>是一个加载文件数组,一般放公共函数等与业务无关代码,这里会提前加载.</p>
 <p>修改<code>autoload</code>配置后需要重新执行<br><code>composer dump-autoload --optimize</code><br>以便autoload 类优化完成缓存.</p>
-<p>文件目录如下:<br><img src="http://img.hi-arkin.com/2019-04-21-15557923312178.jpg" alt></p>
+<p>文件目录如下:<br><img src="http://img.hi-arkin.com/2019-04-21-15557923312178.jpg" alt=""></p>
 <p>现在我们可以使用命名空间执行<code>controller</code>的方法了.<br>一个项目不可能只有一个控制器,那么就需要使用到<code>路由</code>自动加载控制器了.</p>
 <h1 id="路由"><a href="#路由" class="headerlink" title="路由"></a>路由</h1><p>一个框架,最关键的是路由,不然就是一堆代码,不叫框架.<br>可以引用别人的路由类,也可以自己写.<br>我们先写一个简单的,了解原理后,再引用别人成熟的.<br>.</p>
 <h2 id="解析URL-Cli路由"><a href="#解析URL-Cli路由" class="headerlink" title="解析URL/Cli路由"></a>解析URL/Cli路由</h2><p>我们想要访问的如 <code>http://xxx.com/home/index</code> 这样的地址,home代表home控制器 index方法<br>实现步骤:</p>
@@ -189,30 +189,30 @@
 <li>支持默认控制器和方法</li>
 </ol>
 <p>为了方便,我们还支持<code>cli</code>模式的访问,如<code>php index.php home index</code></p>
-<p>Router类如下:<br><img src="http://img.hi-arkin.com/2019-04-21-15557938229082.jpg" alt></p>
-<p>测试一下:<br><img src="http://img.hi-arkin.com/2019-04-21-15557938670599.jpg" alt><br>OK.</p>
-<h2 id="路由自动加载"><a href="#路由自动加载" class="headerlink" title="路由自动加载"></a>路由自动加载</h2><p>得到了<code>Controler</code>和<code>Action</code>,我们要拼装成访问类,并执行.<br>App 类改造一下.<br>如下:<br><img src="http://img.hi-arkin.com/2019-04-21-15557943211971.jpg" alt></p>
-<p>测试结果:<br><img src="http://img.hi-arkin.com/2019-04-21-15557943807493.jpg" alt></p>
+<p>Router类如下:<br><img src="http://img.hi-arkin.com/2019-04-21-15557938229082.jpg" alt=""></p>
+<p>测试一下:<br><img src="http://img.hi-arkin.com/2019-04-21-15557938670599.jpg" alt=""><br>OK.</p>
+<h2 id="路由自动加载"><a href="#路由自动加载" class="headerlink" title="路由自动加载"></a>路由自动加载</h2><p>得到了<code>Controler</code>和<code>Action</code>,我们要拼装成访问类,并执行.<br>App 类改造一下.<br>如下:<br><img src="http://img.hi-arkin.com/2019-04-21-15557943211971.jpg" alt=""></p>
+<p>测试结果:<br><img src="http://img.hi-arkin.com/2019-04-21-15557943807493.jpg" alt=""></p>
 <p>至此,一个包含路由和自动加载的框架完成.</p>
 <h1 id="配置文件"><a href="#配置文件" class="headerlink" title="配置文件"></a>配置文件</h1><p>可定制化的框架,不能用硬编码,可配置原则.<br>我们引用配置文件.<br>配置文件一般使用,<code>array</code>,<code>.ini</code>,<code>json</code>,<code>yaml</code>等.<br>框架内部,使用php 数组配置,框架外部我们使用<code>.env</code>文件.<br>分析,原理:</p>
 <ol>
 <li>解析<code>.env</code>文件</li>
 <li>使用 <code>putenv</code> 把环境变量注册到$_ENV中</li>
-<li>其它地方便可以使用 <code>getenv</code> 函数获取环境变量的值了<br>这么麻烦的事我们使用现成的吧.优秀的类 <code>Dotenv</code><br>使用composer安装<br><code>composer require vlucas/phpdotenv</code><br><code>.env</code>,文件放在根目录下,文件如下<br><img src="http://img.hi-arkin.com/2019-04-21-15557964827900.jpg" alt></li>
+<li>其它地方便可以使用 <code>getenv</code> 函数获取环境变量的值了<br>这么麻烦的事我们使用现成的吧.优秀的类 <code>Dotenv</code><br>使用composer安装<br><code>composer require vlucas/phpdotenv</code><br><code>.env</code>,文件放在根目录下,文件如下<br><img src="http://img.hi-arkin.com/2019-04-21-15557964827900.jpg" alt=""></li>
 </ol>
-<p>完成后就可以使用了,一般在框架加载前载入配置文件.<br><img src="http://img.hi-arkin.com/2019-04-21-15557964390026.jpg" alt></p>
+<p>完成后就可以使用了,一般在框架加载前载入配置文件.<br><img src="http://img.hi-arkin.com/2019-04-21-15557964390026.jpg" alt=""></p>
 <h1 id="使用ORM类"><a href="#使用ORM类" class="headerlink" title="使用ORM类"></a>使用ORM类</h1><p>数据库操作,避免手写SQL带来的不可控问题,统一管理,做数据迁移,更换数据驱动等.我们需要使用ORM操作.<br>网上有很多优先的ORM操作类,这里我使用的是.Laravel 的 Eloquent </p>
 <h2 id="安装Eloquent"><a href="#安装Eloquent" class="headerlink" title="安装Eloquent"></a>安装Eloquent</h2><p><a href="https://github.com/illuminate/database" target="_blank" rel="noopener">官方github</a></p>
 <p>composer 安装<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">composer require illuminate/database</span><br></pre></td></tr></table></figure></p>
 <p>注意要求,官方现在(201904)必须要php7.1以上</p>
-<h2 id="编写配置文件"><a href="#编写配置文件" class="headerlink" title="编写配置文件"></a>编写配置文件</h2><p>按官方文档写,也可以参考laravel写.<br><img src="http://img.hi-arkin.com/2019-04-21-15558022273637.jpg" alt></p>
-<h2 id="连接数据库"><a href="#连接数据库" class="headerlink" title="连接数据库"></a>连接数据库</h2><p><img src="http://img.hi-arkin.com/2019-04-21-15558023321723.jpg" alt><br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">connection</span><span class="params">()</span></span>&#123;</span><br><span class="line">        $capsule = <span class="keyword">new</span> Capsule;</span><br><span class="line">        $config=<span class="keyword">require</span> (<span class="keyword">self</span>::$ROOT.<span class="string">'/./config/database.php'</span>);</span><br><span class="line">        $capsule-&gt;addConnection($config[<span class="string">'connections'</span>][$config[<span class="string">'default'</span>]]);</span><br><span class="line">        $capsule-&gt;bootEloquent();</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure></p>
-<h2 id="编写Model"><a href="#编写Model" class="headerlink" title="编写Model"></a>编写Model</h2><p>继承Model就行.<br><img src="http://img.hi-arkin.com/2019-04-21-15558024352413.jpg" alt><br>创建表<br><img src="http://img.hi-arkin.com/2019-04-21-15558024676417.jpg" alt></p>
-<p>使用Model<br><img src="http://img.hi-arkin.com/2019-04-21-15558025070554.jpg" alt></p>
+<h2 id="编写配置文件"><a href="#编写配置文件" class="headerlink" title="编写配置文件"></a>编写配置文件</h2><p>按官方文档写,也可以参考laravel写.<br><img src="http://img.hi-arkin.com/2019-04-21-15558022273637.jpg" alt=""></p>
+<h2 id="连接数据库"><a href="#连接数据库" class="headerlink" title="连接数据库"></a>连接数据库</h2><p><img src="http://img.hi-arkin.com/2019-04-21-15558023321723.jpg" alt=""><br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">connection</span><span class="params">()</span></span>&#123;</span><br><span class="line">        $capsule = <span class="keyword">new</span> Capsule;</span><br><span class="line">        $config=<span class="keyword">require</span> (<span class="keyword">self</span>::$ROOT.<span class="string">'/./config/database.php'</span>);</span><br><span class="line">        $capsule-&gt;addConnection($config[<span class="string">'connections'</span>][$config[<span class="string">'default'</span>]]);</span><br><span class="line">        $capsule-&gt;bootEloquent();</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure></p>
+<h2 id="编写Model"><a href="#编写Model" class="headerlink" title="编写Model"></a>编写Model</h2><p>继承Model就行.<br><img src="http://img.hi-arkin.com/2019-04-21-15558024352413.jpg" alt=""><br>创建表<br><img src="http://img.hi-arkin.com/2019-04-21-15558024676417.jpg" alt=""></p>
+<p>使用Model<br><img src="http://img.hi-arkin.com/2019-04-21-15558025070554.jpg" alt=""></p>
 <p>测试,OK.<br>至此,框架已经使用了ORM操作类.<br>如果纯写API,基本差不多了.</p>
 <h1 id="日志"><a href="#日志" class="headerlink" title="日志"></a>日志</h1><p>每个系统都需要一个日志系统,去分析记录系统运行情况.<br>关于日志,强烈介意,反感没有规范的日志系统.<br>日志除了开发人员看,还需要对接其它日志组件,必须符合规范,不然以后日志处理成本很大.<br>我们必须使用<code>psr-3</code>日志规范,符合这个规范的才能使用.<br>我们这里引用 <code>monolog</code>.<br><a href="https://github.com/Seldaek/monolog" target="_blank" rel="noopener">官方GIT</a></p>
 <h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><p><code>composer require monolog/monolog</code></p>
-<h2 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h2><p>重写一个<code>Log</code>单例.<br><img src="http://img.hi-arkin.com/2019-04-21-15558065394967.jpg" alt></p>
+<h2 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h2><p>重写一个<code>Log</code>单例.<br><img src="http://img.hi-arkin.com/2019-04-21-15558065394967.jpg" alt=""></p>
 <p>重载几个主要方法 info,debug,log,error等.</p>
 <p>使用 <code>Log::log(&#39;msg&#39;,&#39;content&#39;);</code></p>
 <p>一个小小的框架就完成了.<br>完整的框架,包含事件,异常处理,队列,视图,前端模板等.</p>
@@ -258,6 +258,13 @@
         
       </a>
     
+    
+      <a class="nav-right" href="/2019/04/26/DevOps/2019-04-26/">
+        
+          (untitled)
+        
+        <span class="nav-arrow"> →</span>
+      </a>
     
   </div>
 
@@ -415,6 +422,15 @@
     });
   })
 </script>
+
+<{% if (theme.mermaid.enable)  %}>
+  <script src='https://unpkg.com/mermaid@7.1.2/dist/mermaid.min.js'></script>
+  <script>
+    if (window.mermaid) {
+      mermaid.initialize({theme: 'forest'});
+    }
+  </script>
+<{% endif %}>
 
 
 

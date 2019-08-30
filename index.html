@@ -153,6 +153,52 @@
   
     <article class="article-card">
       <h2 class="article-head">
+        <a href="/2019/08/01/Javascript/vue-jsx/">Vue中使用JSX</a>
+      </h2>
+      <p class="article-date">
+      发表:<span> 2019-08-01 12:15 </span>
+      分类:
+      
+      <span class="article-category">
+        <a class="article-category-link" href="/categories/Javascript/">Javascript</a>
+      </span>
+    
+    </p>
+      <div class="article-summary">
+        
+          VueJs中使用JSX新项目前端使用的是vue框架,写了1个多月的vue,大部分使用Jsx,记录一下在vue中jsx遇到的问题,我最讨厌框架之争,语言之争.关于html中写Js还是Js中写html孰优孰劣不作评价,都是个人喜好.就像Vue和React哪个好,个人感觉vue易入门,适合刚入门的 ...
+        
+      </div>
+      <a class="more" href="/2019/08/01/Javascript/vue-jsx/">阅读全文</a>
+    </article>
+  
+    <article class="article-card">
+      <h2 class="article-head">
+        <a href="/2019/04/26/DevOps/2019-04-26/"></a>
+      </h2>
+      <p class="article-date">
+      发表:<span> 2019-04-26 07:55 </span>
+      分类:
+      
+    </p>
+      <div class="article-summary">
+        
+          [toc]
+第一层graph LR
+Client-->|TCP/IP|Server;
+
+1&lt;i class="fas fa-biohazard"&gt;&lt;/i&gt;
+graph TD
+m[fa:fa-biohazard Model];
+v[View];
+c[Controller]
+        
+      </div>
+      <a class="more" href="/2019/04/26/DevOps/2019-04-26/">阅读全文</a>
+    </article>
+  
+    <article class="article-card">
+      <h2 class="article-head">
         <a href="/2019/04/21/PHP/composer/">使用Composer搭建自己的框架</a>
       </h2>
       <p class="article-date">
@@ -255,9 +301,11 @@ Linux之 awk 命令awk是处理文本文件的一 ...
     </p>
       <div class="article-summary">
         
-          依赖注入 (Dependency Injection)控制反转 (Inversion of Control)传统依赖对象都由于对象自己主动去找,而IoC由IoC容器找相应的对象并注入
-依赖注入何为依赖注入? 简单说就是自动实例化对象(不需要new)
-控制反转
+          依赖注入 (Dependency Injection)控制反转 (Inversion of Control)一直解释不清楚IoC,下面尝试使用产品分析5W1H原则来解释IoC.
+
+What? 是什么,解释它是什么,能做什么
+Why? 为什么,为什么要用
+Where/When? 什么场景,一般 ...
         
       </div>
       <a class="more" href="/2019/04/19/PHP/IOC_DI/">阅读全文</a>
@@ -372,57 +420,6 @@ Linux之 awk 命令awk是处理文本文件的一 ...
       <a class="more" href="/2019/03/16/PHP/laravel-event/">阅读全文</a>
     </article>
   
-    <article class="article-card">
-      <h2 class="article-head">
-        <a href="/2019/03/13/DevOps/2019-03-13/">Parallels Centos 安装</a>
-      </h2>
-      <p class="article-date">
-      发表:<span> 2019-03-13 05:51 </span>
-      分类:
-      
-      <span class="article-category">
-        <a class="article-category-link" href="/categories/DevOps/">DevOps</a>
-      </span>
-    
-    </p>
-      <div class="article-summary">
-        
-          parallels 安装 centosparallels 是 MacOs下的一个虚拟化工具,和Mac整合得很好.支持融入模式,macos和虚拟机结合,虚拟机配置都默认帮配置完成了.文件共享.剪贴板工具都帮安好.就像安装软件一样方便.
-root密码默认创建一个parallels账号,登录的也是 ...
-        
-      </div>
-      <a class="more" href="/2019/03/13/DevOps/2019-03-13/">阅读全文</a>
-    </article>
-  
-    <article class="article-card">
-      <h2 class="article-head">
-        <a href="/2019/03/08/DevOps/xmrig_script/">记一次比特币病毒木马事件</a>
-      </h2>
-      <p class="article-date">
-      发表:<span> 2019-03-08 07:06 </span>
-      分类:
-      
-      <span class="article-category">
-        <a class="article-category-link" href="/categories/DevOps/">DevOps</a>
-      </span>
-    
-    </p>
-      <div class="article-summary">
-        
-          记一次比特币病毒木马事件这两天开发同事突然反应代码无法上线,经排查是阿里云服务器不能正常git pull 代码.
-开始排查.记录如下.
-排查git第一感觉就是可能git问题,代码冲突.
-
-1.手动pull
-
-结果 :连接超时.
-
-2.ping git.xxx.comgit.xxx.com 我 ...
-        
-      </div>
-      <a class="more" href="/2019/03/08/DevOps/xmrig_script/">阅读全文</a>
-    </article>
-  
 
   
     <div class="guide-pager">
@@ -486,6 +483,15 @@ root密码默认创建一个parallels账号,登录的也是 ...
     });
   })
 </script>
+
+<{% if (theme.mermaid.enable)  %}>
+  <script src='https://unpkg.com/mermaid@7.1.2/dist/mermaid.min.js'></script>
+  <script>
+    if (window.mermaid) {
+      mermaid.initialize({theme: 'forest'});
+    }
+  </script>
+<{% endif %}>
 
 
 

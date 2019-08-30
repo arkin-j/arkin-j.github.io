@@ -181,7 +181,7 @@
 <li>电子报告是必须流程;</li>
 </ul>
 <h1 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h1><h2 id="HTML转WORD方案"><a href="#HTML转WORD方案" class="headerlink" title="HTML转WORD方案"></a>HTML转WORD方案</h2><p>通过html生成pdf或word,也研究过markdown转word.<br>虽然能达到要求,但是由于前端html的使用分辨率px来计算,打印使用点pi来计算,很难精确控制页面样式.</p>
-<p>html转pdf的方案工具很多,<br>文档格式的瑞士军刀pandoc,很多格式都可以转换<br>官网:<a href="http://www.pandoc.org/" target="_blank" rel="noopener">http://www.pandoc.org/</a><br>在macos,window,linux下都可以安装使用.<br>常用转换格式,看下图<br><img src="http://www.pandoc.org/diagram.jpg" alt></p>
+<p>html转pdf的方案工具很多,<br>文档格式的瑞士军刀pandoc,很多格式都可以转换<br>官网:<a href="http://www.pandoc.org/" target="_blank" rel="noopener">http://www.pandoc.org/</a><br>在macos,window,linux下都可以安装使用.<br>常用转换格式,看下图<br><img src="http://www.pandoc.org/diagram.jpg" alt=""></p>
 <p>虽然很强大,但生成文档质量差强人意,个人使用可以,客户很挑,有可能为了个空格折腾一星期都解决不了.</p>
 <h2 id="PHPWord方案"><a href="#PHPWord方案" class="headerlink" title="PHPWord方案"></a>PHPWord方案</h2><p>设想通过word模板生成word,设想很美好,现实很骨感.<br>PHPOffice的GitHub:<br><a href="https://github.com/PHPOffice/PHPWord" target="_blank" rel="noopener">https://github.com/PHPOffice/PHPWord</a></p>
 <p>选型阶段,测试了几个简单的模板,文本变量替换完全没问题,就匆匆使用了.<br>经过几天试用,完全解决不了问题.<br>问题:</p>
@@ -439,6 +439,15 @@
     });
   })
 </script>
+
+<{% if (theme.mermaid.enable)  %}>
+  <script src='https://unpkg.com/mermaid@7.1.2/dist/mermaid.min.js'></script>
+  <script>
+    if (window.mermaid) {
+      mermaid.initialize({theme: 'forest'});
+    }
+  </script>
+<{% endif %}>
 
 
 

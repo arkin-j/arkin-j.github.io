@@ -174,29 +174,29 @@
 <h2 id="逐行打印"><a href="#逐行打印" class="headerlink" title="逐行打印"></a>逐行打印</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">awk <span class="string">'&#123;print&#125;'</span> user.csv</span><br></pre></td></tr></table></figure>
 <p>解释:<br>{print} 为动作 print命令 为打印显示<br>print命令默认尾部会加换行.<br>可以使用printf 命令不会加换行.</p>
 <h2 id="显示指定列"><a href="#显示指定列" class="headerlink" title="显示指定列"></a>显示指定列</h2><p>如:姓名,手机号<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">awk -F <span class="string">','</span> <span class="string">'&#123;print $2,$3&#125;'</span> user.csv</span><br></pre></td></tr></table></figure></p>
-<p>效果如下:<br><img src="http://img.hi-arkin.com/2019-04-20-15557101998115.jpg" alt><br>解释:<br>‘-F’: 代表 列(字段)分割符,默认使用空白符 (空格或Tab)<br>‘\$2’: 表示 第2个字段,即是第2列<br>‘\$3’: 表示 第3个字段<br><code>$0</code>:表示整行.<br>‘,’: 逗号表示,空格<br>除了这些,还有很多内置的变量,和方法,参考awk官方文档.<br>如:NR代表行号.<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">awk -F <span class="string">','</span> <span class="string">'&#123;print NR".手机号是:"$3&#125;'</span> user.csv</span><br></pre></td></tr></table></figure></p>
-<p><img src="http://img.hi-arkin.com/2019-04-20-15557106621913.jpg" alt><br>双引号是字符串.</p>
+<p>效果如下:<br><img src="http://img.hi-arkin.com/2019-04-20-15557101998115.jpg" alt=""><br>解释:<br>‘-F’: 代表 列(字段)分割符,默认使用空白符 (空格或Tab)<br>‘\$2’: 表示 第2个字段,即是第2列<br>‘\$3’: 表示 第3个字段<br><code>$0</code>:表示整行.<br>‘,’: 逗号表示,空格<br>除了这些,还有很多内置的变量,和方法,参考awk官方文档.<br>如:NR代表行号.<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">awk -F <span class="string">','</span> <span class="string">'&#123;print NR".手机号是:"$3&#125;'</span> user.csv</span><br></pre></td></tr></table></figure></p>
+<p><img src="http://img.hi-arkin.com/2019-04-20-15557106621913.jpg" alt=""><br>双引号是字符串.</p>
 <p>这样就可以生成,一些脚本,如PHP,bash批量发送短信脚本.</p>
 <h2 id="变量和运算"><a href="#变量和运算" class="headerlink" title="变量和运算"></a>变量和运算</h2><p>awk可以用变量和运算结果<br><code>echo &quot;&quot; | awk &#39;{a=1+2;print a;}&#39;</code><br>解释:<br>awk脚本使用 <code>;</code>作来代码分隔符.</p>
 <h2 id="处理函数"><a href="#处理函数" class="headerlink" title="处理函数"></a>处理函数</h2><p>内置很多处理函数,如大小写转换，切割截取文本,正则,数学处理,随机数等等.<br>详细参考官方文档.<br><a href="https://www.gnu.org/software/gawk/manual/html_node/Built_002din.html#Built_002din" target="_blank" rel="noopener">《内置函数文档》</a></p>
 <p>如把substr(string,start,length)注意字符集,中文utf8按3个字节.<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">awk -F <span class="string">','</span> <span class="string">'&#123;print substr($2,4,3)&#125;'</span>  user.csv</span><br></pre></td></tr></table></figure></p>
-<p><img src="http://img.hi-arkin.com/2019-04-20-15557137809190.jpg" alt></p>
+<p><img src="http://img.hi-arkin.com/2019-04-20-15557137809190.jpg" alt=""></p>
 <h2 id="条件输出"><a href="#条件输出" class="headerlink" title="条件输出"></a>条件输出</h2><p>基础语法,动作为空时,默认print输出<br><code>awk &#39;条件语句 {动作}&#39;</code><br>比如第1表用户ID,大于1002的<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">awk -F <span class="string">','</span> <span class="string">'$1&gt;1002 &amp;&amp; $1&lt;1005'</span>  user.csv</span><br></pre></td></tr></table></figure></p>
-<p><img src="http://img.hi-arkin.com/2019-04-20-15557122726918.jpg" alt><br>说明:<br>条件符如: &lt;,&gt;,=,&gt;=,&lt;=,!不等于,&amp;&amp;合,|| 或等.<br>例:从第2行开始<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">awk -F <span class="string">','</span> <span class="string">'NR&gt;1 &#123;print $2,$3&#125;'</span>  user.csv</span><br></pre></td></tr></table></figure></p>
+<p><img src="http://img.hi-arkin.com/2019-04-20-15557122726918.jpg" alt=""><br>说明:<br>条件符如: &lt;,&gt;,=,&gt;=,&lt;=,!不等于,&amp;&amp;合,|| 或等.<br>例:从第2行开始<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">awk -F <span class="string">','</span> <span class="string">'NR&gt;1 &#123;print $2,$3&#125;'</span>  user.csv</span><br></pre></td></tr></table></figure></p>
 <p>也可以支持正则.<br>例,查找包含”阿金”的行:<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">awk -F <span class="string">','</span> <span class="string">'/阿金/ &#123;print $2,$3&#125;'</span>  user.csv</span><br></pre></td></tr></table></figure></p>
-<p><img src="http://img.hi-arkin.com/2019-04-20-15557142712755.jpg" alt></p>
+<p><img src="http://img.hi-arkin.com/2019-04-20-15557142712755.jpg" alt=""></p>
 <h2 id="IF语句"><a href="#IF语句" class="headerlink" title="IF语句"></a>IF语句</h2><p>复杂的条件,可以使用if条件.<br>可以使用if() ;else<br>例:只输出偶数行.<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">awk -F <span class="string">','</span> <span class="string">'&#123;if($1%2 ==0)print $2;&#125;'</span>  user.csv</span><br></pre></td></tr></table></figure></p>
-<p><img src="http://img.hi-arkin.com/2019-04-20-15557147251253.jpg" alt></p>
+<p><img src="http://img.hi-arkin.com/2019-04-20-15557147251253.jpg" alt=""></p>
 <p>例:使用else if ,else<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">awk -F <span class="string">','</span> <span class="string">'&#123;if($1%2 ==0)print $2;else if($1==1001) print "第1行";else print "--"&#125;'</span></span><br></pre></td></tr></table></figure></p>
-<p><img src="http://img.hi-arkin.com/2019-04-20-15557149669483.jpg" alt></p>
+<p><img src="http://img.hi-arkin.com/2019-04-20-15557149669483.jpg" alt=""></p>
 <h2 id="BEGIN和END"><a href="#BEGIN和END" class="headerlink" title="BEGIN和END"></a>BEGIN和END</h2><p>基本语法<br><code>BEGIN{读取前前执行} 条件 {动作} END{最后退出前}</code><br>可以单独使用,注意大写.<br>例,BEGIN<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">awk -F <span class="string">','</span> <span class="string">'BEGIN &#123;print "我们要开始遍历行了:"&#125; &#123;print $0&#125;'</span> user.csv</span><br></pre></td></tr></table></figure></p>
-<p><img src="http://img.hi-arkin.com/2019-04-20-15557171370838.jpg" alt></p>
-<p>例:END<br>一般用于统计结果,如求ID的总和.<br><img src="http://img.hi-arkin.com/2019-04-20-15557173477315.jpg" alt></p>
+<p><img src="http://img.hi-arkin.com/2019-04-20-15557171370838.jpg" alt=""></p>
+<p>例:END<br>一般用于统计结果,如求ID的总和.<br><img src="http://img.hi-arkin.com/2019-04-20-15557173477315.jpg" alt=""></p>
 <p>稍微复杂的经典案例:<br>计算目录下的文本总大小.<br>需要个知识:<br><code>ls -l 目录</code> : 显示目录的文件列表<br><code>|</code>: 管道符,把前面的结果传给后面命令<br>例:计算当前目录下,.gz文件的总大小<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ls -l ./ | awk <span class="string">'/.gz$/ &#123;size+=$5&#125; END &#123;print "大小为:" size&#125;'</span></span><br></pre></td></tr></table></figure></p>
-<p><img src="http://img.hi-arkin.com/2019-04-20-15557177558373.jpg" alt></p>
+<p><img src="http://img.hi-arkin.com/2019-04-20-15557177558373.jpg" alt=""></p>
 <p>PS,查看文件和目录大小有专用的命令.<br><code>du -sk 目录或文件</code><br>如<br><code>du -skh ./*.gz</code><br>h:友好显示大小<br>k: Kb<br>m: Mb</p>
 <p>上面求大小可以改成.<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">du -sk ./*.gz | awk <span class="string">'&#123;size+=$1;&#125; END&#123;print size&#125;'</span></span><br></pre></td></tr></table></figure></p>
-<p><img src="http://img.hi-arkin.com/2019-04-20-15557187113787.jpg" alt></p>
+<p><img src="http://img.hi-arkin.com/2019-04-20-15557187113787.jpg" alt=""></p>
 <h2 id="独立脚本运行"><a href="#独立脚本运行" class="headerlink" title="独立脚本运行"></a>独立脚本运行</h2><p>awk是一个脚本语言,类似python,JS一样.<br>由于是很多linux系统自带,所以流行度很高.<br>脚本演示.</p>
 <p><code>awk -f 脚本 处理文件</code><br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">awk -f user.awk user.csv</span><br></pre></td></tr></table></figure></p>
 <p>例: 处理成json</p>
@@ -404,6 +404,15 @@
     });
   })
 </script>
+
+<{% if (theme.mermaid.enable)  %}>
+  <script src='https://unpkg.com/mermaid@7.1.2/dist/mermaid.min.js'></script>
+  <script>
+    if (window.mermaid) {
+      mermaid.initialize({theme: 'forest'});
+    }
+  </script>
+<{% endif %}>
 
 
 

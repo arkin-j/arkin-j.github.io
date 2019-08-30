@@ -169,7 +169,7 @@
     <section class="markdown-content"><h1 id="OAuth授权原理"><a href="#OAuth授权原理" class="headerlink" title="OAuth授权原理"></a>OAuth授权原理</h1><blockquote>
 <p>OAuth第三开放平台授权</p>
 </blockquote>
-<p>绕口令: 第3方用户想获取第1方用户在第2方上的权限.<br>如JD的QQ,微信授权登录.<br><img src="http://img.hi-arkin.com/2019-03-01-15514352809303.jpg" alt></p>
+<p>绕口令: 第3方用户想获取第1方用户在第2方上的权限.<br>如JD的QQ,微信授权登录.<br><img src="http://img.hi-arkin.com/2019-03-01-15514352809303.jpg" alt=""></p>
 <p>举个生活中的例子,就明白了.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">小明要取他爸爸王叔叔在招商银行存的500块钱.</span><br></pre></td></tr></table></figure></p>
 <p>角色:</p>
 <ul>
@@ -186,7 +186,7 @@
 <li><strong>招商银行</strong> 确定<strong>小明</strong>的身份没问题后,再验证 <strong>授权书</strong> 的内容无误然后再把钱给<strong>小明</strong></li>
 </ol>
 <p>上面就是一个简单的第三方授权,可以算上Oauth1.0;<br>支票系统,可以算上OAuth2.0</p>
-<p>支票的样子:<br><img src="http://img.hi-arkin.com/2019-03-01-15514327630872.jpg" alt></p>
+<p>支票的样子:<br><img src="http://img.hi-arkin.com/2019-03-01-15514327630872.jpg" alt=""></p>
 <p>支票系统不需要用户的银行卡及密码.</p>
 <p>支票的基本内容:<br>平台: 招商银行<br>用户: 出票人账号和签名<br>第三方: 收款人<br>模式类型: 转账/现金<br>权限: 金额和用途<br>时间: 有效期,开票日期 </p>
 <p><strong>支票</strong> 相当于 <strong>AccessToken</strong></p>
@@ -198,7 +198,7 @@
 <li>有效期限</li>
 </ul>
 <p>支票系统肯定包含很多细节,如支票的防伪,防篡改,鉴别,有效性.<br>有记名支票,不记名支票.</p>
-<p>Oauth2.0 交易流程如下.<br><img src="http://img.hi-arkin.com/2019-03-01-15514340414117.jpg" alt></p>
+<p>Oauth2.0 交易流程如下.<br><img src="http://img.hi-arkin.com/2019-03-01-15514340414117.jpg" alt=""></p>
 <p>解释:<br>认证服务器,如QQ开放平台,微信平方平台,微博开放平台等.<br>第三方平台,指我们开发的第三方应用,如论坛,商城等.可以使用微信微博登录.<br>用户,需要用微信等去登录第三方平台的用户.<br>权限,一般平台,授权第三方获取用户头像,昵称,手机号,也有操作,如支付,发微博,分享朋友圈等.</p>
 <p>OAuth2.0关键点,授权码code,授权凭证AccessToken.<br>其它都是这些实现过程的中安全控制,边界控制,操作记录,性能优化,防伪方案,账号系统,权限管理等等.</p>
 </section>
@@ -399,6 +399,15 @@
     });
   })
 </script>
+
+<{% if (theme.mermaid.enable)  %}>
+  <script src='https://unpkg.com/mermaid@7.1.2/dist/mermaid.min.js'></script>
+  <script>
+    if (window.mermaid) {
+      mermaid.initialize({theme: 'forest'});
+    }
+  </script>
+<{% endif %}>
 
 
 

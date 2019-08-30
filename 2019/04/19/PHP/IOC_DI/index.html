@@ -166,9 +166,17 @@
 <main class="app-body flex-box">
   <!-- Article START -->
   <article class="post-article">
-    <section class="markdown-content"><p>依赖注入 (Dependency Injection)<br>控制反转 (Inversion of Control)<br>传统依赖对象都由于对象自己主动去找,而IoC由IoC容器找相应的对象并注入</p>
-<h1 id="依赖注入"><a href="#依赖注入" class="headerlink" title="依赖注入"></a>依赖注入</h1><p>何为依赖注入? 简单说就是自动实例化对象(不需要new)</p>
-<h1 id="控制反转"><a href="#控制反转" class="headerlink" title="控制反转"></a>控制反转</h1></section>
+    <section class="markdown-content"><p>依赖注入 (Dependency Injection)<br>控制反转 (Inversion of Control)<br>一直解释不清楚IoC,下面尝试使用产品分析5W1H原则来解释IoC.</p>
+<ol>
+<li><strong>What</strong>? 是什么,解释它是什么,能做什么</li>
+<li><strong>Why</strong>? 为什么,为什么要用</li>
+<li><strong>Where/When</strong>? 什么场景,一般使用在哪些场景</li>
+<li><strong>Who</strong>? 都什么人在用</li>
+<li><strong>How</strong>? 怎么做,演示使用PHP怎么实现</li>
+<li>优缺点</li>
+</ol>
+<h1 id="What"><a href="#What" class="headerlink" title="What?"></a>What?</h1><p>IoC(全称:Dependency Injection),意为控制反转;<br>IoC容器:装IoC对象的对象盒子.<br>它们都是面向对象编程的一种设计思想.<br>它长的是什么样?下面使用PHP代码来展示,看是否值得花时间了解.</p>
+</section>
     <!-- 版权开始 -->
     <div class="post-copyright">
       <p><strong>本文作者：</strong>阿金 </p>
@@ -244,7 +252,7 @@
   <div class="toc-main">
     <strong class="toc-title">Catalog</strong>
     
-      <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#依赖注入"><span class="toc-nav-text">依赖注入</span></a></li><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#控制反转"><span class="toc-nav-text">控制反转</span></a></li></ol>
+      <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#What"><span class="toc-nav-text">What?</span></a></li></ol>
     
   </div>
 </aside>
@@ -374,6 +382,15 @@
     });
   })
 </script>
+
+<{% if (theme.mermaid.enable)  %}>
+  <script src='https://unpkg.com/mermaid@7.1.2/dist/mermaid.min.js'></script>
+  <script>
+    if (window.mermaid) {
+      mermaid.initialize({theme: 'forest'});
+    }
+  </script>
+<{% endif %}>
 
 
 

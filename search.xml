@@ -1,6 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[Vue中使用JSX]]></title>
+    <url>%2F2019%2F08%2F01%2FJavascript%2Fvue-jsx%2F</url>
+    <content type="text"><![CDATA[VueJs中使用JSX新项目前端使用的是vue框架,写了1个多月的vue,大部分使用Jsx,记录一下在vue中jsx遇到的问题,我最讨厌框架之争,语言之争.关于html中写Js还是Js中写html孰优孰劣不作评价,都是个人喜好.就像Vue和React哪个好,个人感觉vue易入门,适合刚入门的程序员或非前端人员快速出东西,轻量化应用.React更适合有专门的前端团队,组件化工程化. 为了减少Vue和React之间差异化,减少使用vue中的语法糖,我选择使用Jsx来封装通用组件,template来调用.1个月来封装了:数据表格组件,常用表单组件,弹框组件,权限控制组件,页面组件,抽屉组件,日历排期组件等.由于vue和react设计不同,jsx并不完全一样,有很多差异的地方.下面介绍,几个注意的地方. webpack插件开始使用,使用babel转换插件,babel-plugin-transform-vue-jsx,安装参考:https://github.com/vuejs/babel-plugin-transform-vue-jsx vue文档:https://cn.vuejs.org/v2/guide/render-function.html renderrender,也叫渲染函数,无论React还是Vue在组件最关键的是render,它也是前端的灵魂. 在React离不开它,Vue中设计者有意隐藏了,降低了入门成本,也就是大家常用的&lt;template&gt;标签.网上有专门讲解这部分的文章,详情搜索引擎搜索”vue template 原理”. 渲染编译过程vue的渲染编译大概过程: graph TB; A(解析模板)-->B(编译成AST语法树); B-->C(生成render函数); C.->J(解析JSX); J.->F(渲染表达式); C-->F; F-->D(生成虚拟DOM); D-->E(生成html); React的渲染编译过程: graph TB; A(解析render)–&gt;B(解析JSX); B–&gt;C(渲染表达式); C–&gt;D(生成虚拟DOM); D–&gt;E(生成html);vue和react渲染过程都一样,都是通过babel转化成真正的渲染表达式,最后转成虚拟Dom,生成html. 渲染表达函数渲染表达式,简单理解就是,虚拟dom生成函数.vue中叫vnode,react中叫virtual-dom,具体参考官方文档.想知道virtual-dom的原理,可以参考网上文章,手写virtual-dom.看一下渲染表达式函数长得什么亚子.举例渲染:&lt;h1&gt;大表哥&lt;/h1&gt;vue:参考:https://cn.vuejs.org/v2/guide/render-function.html#%E8%99%9A%E6%8B%9F-DOM123render: function (createElement) &#123; return createElement('h1',&#123;&#125;,'大表哥')&#125; react:123render()&#123; return React.createElement('h1',&#123;&#125;,'大表哥')&#125; 对比一下是不是一蚂一样.通过babel把jsx转成这样的函数就行了.就是第一节中的babel插件做的事情.这种写法是完整的功能,但明显不直观.所以.vue使用template,react使用jsx.通一使用jsx写法,更直观.template:123&lt;template&gt; &lt;h1&gt;大表哥&lt;/h1&gt;&lt;/template&gt; jsx:123render()&#123; return (&lt;h1&gt;大表哥&lt;/h1&gt;)&#125; 对比一下.template只能使用vue提供的语法糖.如 v-for,v-if,v-show等.缺少原生JS的所有能力.需要配合method使用.而Jsx不提供语法糖.如加事件.vue template写法:12345678910&lt;template&gt; &lt;h1 v-on:click="onClick"&gt;大表哥&lt;/h1&gt;&lt;/template&gt;&lt;script&gt;methods:&#123; onClick()&#123; console.log('click') &#125;&#125;&lt;/script&gt; jsx 写法:12345render()&#123; &lt;h1 onClick=&#123;()=&gt;&#123;console.log('click')&#125;&#125; &gt; 大表哥 &lt;/h1&gt;&#125; 哪种写法好呢?我个人认为,综合使用.显示为主的用template,操作控制为主的使用jsx.一般在通用组件使用jsx写法,调用组件使用template写法.举个例子,5分钟手写个弹框组件.弹框组件.dialog.1234567891011121314151617181920212223242526272829303132333435363738394041424344454647&lt;script&gt;export default &#123; name: "MyDialog", props: &#123; title: &#123; type: String, default: "" &#125; &#125;, data()&#123; return &#123; visible:false, &#125;; &#125;, methods:&#123; show()&#123; this.visible=true &#125; &#125;, render(h)&#123; const sub = this.$slots.default; const display=this.visible?'block':'none'; return ( &lt;div class="dialog" style=&#123;&#123;display:display&#125;&#125;&gt; &lt;h3&gt;&#123;this.title&#125;&lt;/h3&gt; &lt;div class="body"&gt; &#123;sub&#125; &lt;/div&gt; &lt;div class="footer"&gt; &lt;button onClick=&#123;()=&gt;&#123; this.visible=false; this.$emit('close','我要自闭了.') &#125;&#125;&gt;关闭&lt;/button&gt; &lt;/div&gt; &lt;/div&gt;) &#125;&lt;/script&gt;&lt;style&gt; .dialog&#123; position:fixed; width:320px; height:400px; top:10%; left:50%; margin-left:-160px; &#125;&lt;/style&gt; 调用时12345678910111213141516171819202122&lt;script&gt;import MyDialog from "./MyDialog.vue"export default &#123; components:&#123; MyDialog &#125; methods:&#123; onOpen()&#123; this.$refs.dialog.show(); &#125;, onClose(msg)&#123; console.log(msg) &#125; &#125;&#125;&lt;/script&gt;&lt;template&gt; &lt;div class="app"&gt; &lt;button @click="onOpen"&gt;打开弹窗&lt;/button&gt; &lt;MyDialog ref="dialog" @close="onClose" /&gt; &lt;/div&gt;&lt;/template&gt; todo: 补充event,props,v-model等使用.]]></content>
+      <categories>
+        <category>Javascript</category>
+      </categories>
+      <tags>
+        <tag>Vue</tag>
+        <tag>Jsx</tag>
+        <tag>Render</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title></title>
+    <url>%2F2019%2F04%2F26%2FDevOps%2F2019-04-26%2F</url>
+    <content type="text"><![CDATA[[toc] 第一层graph LR Client-->|TCP/IP|Server; 1&lt;i class="fas fa-biohazard"&gt;&lt;/i&gt; graph TD m[fa:fa-biohazard Model]; v[View]; c[Controller]]]></content>
+  </entry>
+  <entry>
     <title><![CDATA[使用Composer搭建自己的框架]]></title>
     <url>%2F2019%2F04%2F21%2FPHP%2Fcomposer%2F</url>
     <content type="text"><![CDATA[composer 的安装先安装composer,官网安装就行中文官方网站curl -sS https://getcomposer.org/installer | php 初始化composer initcomposer.json文件可以手写.1234&#123; "name": "arkin/okool", "require": &#123;&#125;&#125; 引用自动加载类执行composer dump-autoload --optimize自动创建vendor目录和autoload文件 新建入口文件入口index.php,如下目录名没要求.能访问就行. 引用自动加载类,根据目录相对路径引用. 创建框架核心文件与业务独立,单独创建一个目录如bootstrap放框架核心文件. 这样一个最原始的框架就运行起来了. 新建src源码目录如上我们使用了app目录作为src目录创建基础 MVC三层结构.在composer.json中加入 自动加载命名空间.12345678"autoload": &#123; "psr-4": &#123; "App\\": "app/" &#125;, "files":[ "app/Helpers/functions.php" ]&#125; 说明:尽量使用psr-4命名空间标准.123"psr-4": &#123; "App\\": "app/"&#125; 表示使用psr4的标准,App命名空间指向 app/这个目录.自动加载类会按psr4的标准到app这个目录寻找加载类.123"files":[ "app/Helpers/functions.php"] files是一个加载文件数组,一般放公共函数等与业务无关代码,这里会提前加载. 修改autoload配置后需要重新执行composer dump-autoload --optimize以便autoload 类优化完成缓存. 文件目录如下: 现在我们可以使用命名空间执行controller的方法了.一个项目不可能只有一个控制器,那么就需要使用到路由自动加载控制器了. 路由一个框架,最关键的是路由,不然就是一堆代码,不叫框架.可以引用别人的路由类,也可以自己写.我们先写一个简单的,了解原理后,再引用别人成熟的.. 解析URL/Cli路由我们想要访问的如 http://xxx.com/home/index 这样的地址,home代表home控制器 index方法实现步骤: 把index.php隐藏掉,需要用到URL重写,方法有.htaccess,’apache重写’,’nginx的重写’ 获取到home和index 其它参数,其它参数先不考虑. 支持默认控制器和方法 为了方便,我们还支持cli模式的访问,如php index.php home index Router类如下: 测试一下:OK. 路由自动加载得到了Controler和Action,我们要拼装成访问类,并执行.App 类改造一下.如下: 测试结果: 至此,一个包含路由和自动加载的框架完成. 配置文件可定制化的框架,不能用硬编码,可配置原则.我们引用配置文件.配置文件一般使用,array,.ini,json,yaml等.框架内部,使用php 数组配置,框架外部我们使用.env文件.分析,原理: 解析.env文件 使用 putenv 把环境变量注册到$_ENV中 其它地方便可以使用 getenv 函数获取环境变量的值了这么麻烦的事我们使用现成的吧.优秀的类 Dotenv使用composer安装composer require vlucas/phpdotenv.env,文件放在根目录下,文件如下 完成后就可以使用了,一般在框架加载前载入配置文件. 使用ORM类数据库操作,避免手写SQL带来的不可控问题,统一管理,做数据迁移,更换数据驱动等.我们需要使用ORM操作.网上有很多优先的ORM操作类,这里我使用的是.Laravel 的 Eloquent 安装Eloquent官方github composer 安装1composer require illuminate/database 注意要求,官方现在(201904)必须要php7.1以上 编写配置文件按官方文档写,也可以参考laravel写. 连接数据库123456public function connection()&#123; $capsule = new Capsule; $config=require (self::$ROOT.'/./config/database.php'); $capsule-&gt;addConnection($config['connections'][$config['default']]); $capsule-&gt;bootEloquent(); &#125; 编写Model继承Model就行.创建表 使用Model 测试,OK.至此,框架已经使用了ORM操作类.如果纯写API,基本差不多了. 日志每个系统都需要一个日志系统,去分析记录系统运行情况.关于日志,强烈介意,反感没有规范的日志系统.日志除了开发人员看,还需要对接其它日志组件,必须符合规范,不然以后日志处理成本很大.我们必须使用psr-3日志规范,符合这个规范的才能使用.我们这里引用 monolog.官方GIT 安装composer require monolog/monolog 使用重写一个Log单例. 重载几个主要方法 info,debug,log,error等. 使用 Log::log(&#39;msg&#39;,&#39;content&#39;); 一个小小的框架就完成了.完整的框架,包含事件,异常处理,队列,视图,前端模板等.]]></content>
@@ -52,7 +70,7 @@
   <entry>
     <title><![CDATA[依赖注入(DI)/控制反转(IoC)]]></title>
     <url>%2F2019%2F04%2F19%2FPHP%2FIOC_DI%2F</url>
-    <content type="text"><![CDATA[依赖注入 (Dependency Injection)控制反转 (Inversion of Control)传统依赖对象都由于对象自己主动去找,而IoC由IoC容器找相应的对象并注入 依赖注入何为依赖注入? 简单说就是自动实例化对象(不需要new) 控制反转]]></content>
+    <content type="text"><![CDATA[依赖注入 (Dependency Injection)控制反转 (Inversion of Control)一直解释不清楚IoC,下面尝试使用产品分析5W1H原则来解释IoC. What? 是什么,解释它是什么,能做什么 Why? 为什么,为什么要用 Where/When? 什么场景,一般使用在哪些场景 Who? 都什么人在用 How? 怎么做,演示使用PHP怎么实现 优缺点 What?IoC(全称:Dependency Injection),意为控制反转;IoC容器:装IoC对象的对象盒子.它们都是面向对象编程的一种设计思想.它长的是什么样?下面使用PHP代码来展示,看是否值得花时间了解.]]></content>
       <categories>
         <category>PHP</category>
       </categories>
@@ -180,8 +198,8 @@
         <category>Project</category>
       </categories>
       <tags>
-        <tag>项目管理</tag>
         <tag>产品经理</tag>
+        <tag>项目管理</tag>
       </tags>
   </entry>
   <entry>
