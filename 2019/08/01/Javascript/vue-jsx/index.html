@@ -172,7 +172,7 @@
 <p>vue文档:<a href="https://cn.vuejs.org/v2/guide/render-function.html" target="_blank" rel="noopener">https://cn.vuejs.org/v2/guide/render-function.html</a></p>
 <h2 id="render"><a href="#render" class="headerlink" title="render"></a>render</h2><p>render,也叫渲染函数,无论React还是Vue在组件最关键的是render,它也是前端的灵魂.</p>
 <p>在React离不开它,Vue中设计者有意隐藏了,降低了入门成本,也就是大家常用的<code>&lt;template&gt;</code>标签.<br>网上有专门讲解这部分的文章,详情搜索引擎搜索”vue template 原理”.</p>
-<h3 id="渲染编译过程"><a href="#渲染编译过程" class="headerlink" title="渲染编译过程"></a>渲染编译过程</h3><p><code>vue</code>的渲染编译大概过程: </p>
+<h3 id="渲染编译过程"><a href="#渲染编译过程" class="headerlink" title="渲染编译过程"></a>渲染编译过程</h3><p>vue的渲染编译大概过程:</p>
 <pre class="mermaid">graph TB;
 　　A(解析模板)-->B(编译成AST语法树);
 　　B-->C(生成render函数);
@@ -182,8 +182,13 @@
 　　F-->D(生成虚拟DOM);
 　　D-->E(生成html);</pre>
 
-<p><code>React</code>的渲染编译过程:</p>
-<p><pre class="mermaid">graph TB;<br>    A(解析render)–&gt;B(解析JSX);<br>    B–&gt;C(渲染表达式);<br>    C–&gt;D(生成虚拟DOM);<br>    D–&gt;E(生成html);</pre><br>vue和react渲染过程都一样,都是通过<code>babel</code>转化成真正的渲染表达式,最后转成虚拟Dom,生成html.</p>
+<p>react:</p>
+<pre class="mermaid">graph TB;
+　　J(解析JSX)-->F(渲染表达式);
+　　F-->D(生成虚拟DOM);
+　　D-->E(生成html);</pre>
+
+<p>vue和react渲染过程都一样,都是通过<code>babel</code>转化成真正的渲染表达式,最后转成虚拟Dom,生成html.</p>
 <h3 id="渲染表达函数"><a href="#渲染表达函数" class="headerlink" title="渲染表达函数"></a>渲染表达函数</h3><p>渲染表达式,简单理解就是,虚拟dom生成函数.<br>vue中叫<code>vnode</code>,react中叫<code>virtual-dom</code>,具体参考官方文档.<br>想知道virtual-dom的原理,可以参考网上文章,手写virtual-dom.<br>看一下渲染表达式函数长得什么亚子.<br>举例渲染:<code>&lt;h1&gt;大表哥&lt;/h1&gt;</code><br>vue:<br>参考:<a href="https://cn.vuejs.org/v2/guide/render-function.html#%E8%99%9A%E6%8B%9F-DOM" target="_blank" rel="noopener">https://cn.vuejs.org/v2/guide/render-function.html#%E8%99%9A%E6%8B%9F-DOM</a><br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">render: <span class="function"><span class="keyword">function</span> (<span class="params">createElement</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> createElement(<span class="string">'h1'</span>,&#123;&#125;,<span class="string">'大表哥'</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <p>react:<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">render()&#123;</span><br><span class="line">    <span class="keyword">return</span> React.createElement(<span class="string">'h1'</span>,&#123;&#125;,<span class="string">'大表哥'</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <p>对比一下是不是一蚂一样.<br>通过babel把jsx转成这样的函数就行了.就是第一节中的babel插件做的事情.<br>这种写法是完整的功能,但明显不直观.所以.vue使用template,react使用jsx.<br>通一使用<code>jsx</code>写法,更直观.<br>template:<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">template</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">h1</span>&gt;</span>大表哥<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">template</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
@@ -394,7 +399,7 @@
 </script>
 
 <{% if (theme.mermaid.enable)  %}>
-  <script src='https://unpkg.com/mermaid@7.1.2/dist/mermaid.min.js'></script>
+  <script src='https://unpkg.com/mermaid@7.1.0/dist/mermaid.min.js'></script>
   <script>
     if (window.mermaid) {
       mermaid.initialize({theme: 'forest'});
@@ -414,20 +419,6 @@
    </script>
 
 
-
-<!-- Baidu Tongji -->
-
-<script>
-    var _baId = '371952d9b83cd706a4702ef0c232e3de';
-    // Originial
-    var _hmt = _hmt || [];
-    (function() {
-      var hm = document.createElement("script");
-      hm.src = "//hm.baidu.com/hm.js?" + _baId;
-      var s = document.getElementsByTagName("script")[0];
-      s.parentNode.insertBefore(hm, s);
-    })();
-</script>
 
 
 <script src="/js/script.js"></script>
