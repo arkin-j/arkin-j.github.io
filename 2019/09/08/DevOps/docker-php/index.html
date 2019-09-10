@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+  <meta name="description" content="Hi~我是阿金,也可以叫我Arkin,做开发的阿金同学">
+  <meta name="baidu-site-verification" content="KAIz07eWp9" />
+  <meta name="baidu_union_verify" content="89761f418e2e32d488f0c783a8616865">
+  <meta name="keyword" content="阿金,开发,前端,后端,产品,架构师">
+  
+    <link rel="shortcut icon" href="/css/images/logo.png">
+  
+  <title>
+    
+      基于Docker的php开发环境 | Hi,阿金
+    
+  </title>
+  <link href="//cdn.staticfile.org/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+  <link href="//cdn.staticfile.org/nprogress/0.2.0/nprogress.min.css" rel="stylesheet">
+  <link href="//cdn.staticfile.org/highlight.js/9.12.0/styles/tomorrow.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="/css/style.css">
+  <script src="//cdn.staticfile.org/jquery/3.2.1/jquery.min.js"></script>
+  <script src="//cdn.staticfile.org/geopattern/1.2.3/js/geopattern.min.js"></script>
+  <script src="//cdn.staticfile.org/nprogress/0.2.0/nprogress.min.js"></script>
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="/js/qrious.js"></script>
+  
+  
+    <!-- MathJax support START -->
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.staticfile.org/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <!-- MathJax support END -->
+  
+
+
+</head>
+<div class="wechat-share">
+  <img src="/css/images/logo.svg" />
+</div>
+
+  <body>
+    <header class="header fixed-header">
+  <div class="header-container">
+    <a class="home-link" href="/">
+      <div class="logo"></div>
+      <span>Hi,阿金 <span class="jumping-dots"><i>.</i><i>.</i><i>.</i></span></span>
+    </a>
+    <ul class="right-list">
+      
+        <li class="list-item">
+          
+            <a href="/" class="item-link">首页</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/categories/" class="item-link">分类</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/tags/" class="item-link">标签</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/archives/" class="item-link">归档</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/about/" class="item-link">whois</a>
+          
+        </li>
+      
+    </ul>
+
+    
+  <!-- div id="site_search">
+   <div class="form-group">
+    <input type="text" id="local-search-input" autocomplete="off" name="q" results="0" placeholder="search" class="st-search-input st-default-search-input form-control"/>
+   </div>  
+  <div id="local-search-result"></div>
+  </div -->
+
+
+    
+    <div class="menu">
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </div>
+    <div class="menu-mask">
+      <ul class="menu-list">
+        
+          <li class="menu-item">
+            
+              <a href="/" class="menu-link">首页</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/categories/" class="menu-link">分类</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/tags/" class="menu-link">标签</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/archives/" class="menu-link">归档</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/about/" class="menu-link">whois</a>
+            
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</header>
+
+    <div id="article-banner">
+  <h2>基于Docker的php开发环境</h2>
+  <div class="post-date">
+    发表:<span> 2019-09-08 </span>
+    分类:
+      <span class="article-category">
+        <a class="article-category-link" href="/categories/DevOps/">DevOps</a>
+      </span>
+    
+  </div>
+  <div class="arrow-down">
+    <a href="javascript:;"></a>
+  </div>
+</div>
+<main class="app-body flex-box">
+  <!-- Article START -->
+  <article class="post-article">
+    <section class="markdown-content"><h1 id="docker下的php开发环境"><a href="#docker下的php开发环境" class="headerlink" title="docker下的php开发环境"></a>docker下的php开发环境</h1><blockquote>
+<p>开发环境布署是每个开发应该掌握的技能,通常这个工作由技术主管或运维人员提供.然而一般公司都不会重视基础环境建设.</p>
+</blockquote>
+<h2 id="开发环境部署方案选择"><a href="#开发环境部署方案选择" class="headerlink" title="开发环境部署方案选择"></a>开发环境部署方案选择</h2><p>搭建开发环境经常出现如下问题:</p>
+<ol>
+<li>不同项目不同技术栈</li>
+<li>php,mysql等等版本与测试环境,生产环境不统一</li>
+<li>搭建时间太长.在不熟悉或网络不好的情况下,下载资源,编译,摸索等需要时间.新人或新项目往往花费一两天来做基础环境搭建</li>
+<li>配置不一致.生产环境,测试环境,不同开发人员环境除了版本,配置也不一致.经常出现这样的对话”在我电脑上是好好的.”</li>
+<li>切换电脑或环境需要重新配置.不能良好的迁移和备份.</li>
+</ol>
+<p>一般我们统一环境,常用的方法是,虚拟机镜像,Vagrant(Homestaed),Docker.</p>
+<p>对比一下:</p>
+<table>
+<thead>
+<tr>
+<th>环境</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>虚拟机</td>
+<td><strong>场景</strong>:虚拟硬件,<br>如:一台PC机虚拟出多个PC;<br>每个PC共享同一硬件;<br>每台PC可以装不同的操作系统.<br><strong>解决问题</strong>:<br>1,模拟硬件(磁盘,cpu,内存);<br>2.与硬件隔离的系统环境,如在虚拟中格式化磁盘操作.<br><strong>性能</strong>:一般,生产环境只有云厂商能用.<br><strong>镜像跨平台</strong>:支持同一虚拟应用下迁移<br><strong>镜像大小</strong>:大<br><strong>启动</strong>:慢</td>
+</tr>
+<tr>
+<td>Vagrant</td>
+<td><strong>场景</strong>:在虚拟机基础上,对镜像管理.<br>如通用的laravel homestaed 的运行环境,<br>包含:php+nginx+mysql+laravel框架,以及配置.<br><strong>解决问题</strong>:一般解决统一开发环境问题.<br><strong>性能</strong>:一般<br><strong>镜像跨平台</strong>:只能在同宿主系统+虚拟应用下迁移<br><strong>镜像大小</strong>:大<br><strong>启动</strong>:慢</td>
+</tr>
+<tr>
+<td>Docker</td>
+<td><strong>场景</strong>: 与平台无关的虚拟化应用<br>如:nginx 镜像运行在:<br>1.Windows+docker;<br>2.MacOs+docker;<br>3.Linux+docker<br>4.云平台+docker<br>5.虚拟机+docker.<br><strong>解决问题</strong>:1.跨平台应用部署;2.统一环境;<br><strong>镜像跨平台</strong>:支持同一种docker环境使用<br><strong>性能</strong>:优,可生产环境使用<br><strong>镜像大小</strong>:小<br><strong>启动</strong>:快</td>
+</tr>
+</tbody>
+</table>
+<p>统一开发环境:这三种都可以用,但统一运行环境,包含开发环境,测试环境,生产环境一致的话,目前只能使用docker的方案.</p>
+<h2 id="PHP的环境分析"><a href="#PHP的环境分析" class="headerlink" title="PHP的环境分析"></a>PHP的环境分析</h2><p>现在流行的php基础支持环境,学用的应用有:nginx,php,mysql,redis.<br>操作系统统一使用linux,docker常用的容器系统有三种:Centos,Ubuntu,Alpine</p>
+<p>Centos: 开源的操作系统,有企业级的RedHat背书,生产环境下支持的软件多.<br>Ubuntu: 常用于个人家用操作系统,用户群体多,很多人刚接触的linux是它.<br>Alpine: 是一个微型的linux操作系统,大小只有5MB左右,适合用于docker的镜像.</p>
+<p>综合考虑PHP的基本环境:alpine/centos+php+nginx+mysql+php<br>下面要准备这些镜像.</p>
+<h1 id="php的docker环境"><a href="#php的docker环境" class="headerlink" title="php的docker环境"></a>php的docker环境</h1><p>下面开始进入正题.<br>工具: docker, phpstrom, 命令行</p>
+<h2 id="安装docker"><a href="#安装docker" class="headerlink" title="安装docker"></a>安装docker</h2><p>docker官网找到自己系统对应的安装方法.<br><a href="https://www.docker.com/get-started" target="_blank" rel="noopener">https://www.docker.com/get-started</a><br>如:windows,目前(2019.09.09),安装docker-desktop就行.</p>
+<h3 id="注册并登录docker-官方账号"><a href="#注册并登录docker-官方账号" class="headerlink" title="注册并登录docker 官方账号"></a>注册并登录docker 官方账号</h3><p><a href="https://id.docker.com/login/" target="_blank" rel="noopener">https://id.docker.com/login/</a><br>不是必须的,但下载安装docker需要登录.后面从docker hub下载东西也需要登录.<br><img src="http://img.hi-arkin.com/2019-09-08-15679582292110.jpg" alt=""></p>
+<h3 id="下载安装"><a href="#下载安装" class="headerlink" title="下载安装"></a>下载安装</h3><p>省略.</p>
+<h3 id="启动docker桌面版"><a href="#启动docker桌面版" class="headerlink" title="启动docker桌面版"></a>启动docker桌面版</h3><h3 id="设置docker-hub国内源"><a href="#设置docker-hub国内源" class="headerlink" title="设置docker hub国内源"></a>设置docker hub国内源</h3><p><img src="http://img.hi-arkin.com/2019-09-09-15679636872017.jpg" alt=""></p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="attr">"registry-mirrors"</span> : [</span><br><span class="line">    <span class="string">"http://registry.docker-cn.com"</span>,</span><br><span class="line">    <span class="string">"http://docker.mirrors.ustc.edu.cn"</span>,</span><br><span class="line">    <span class="string">"http://hub-mirror.c.163.com"</span></span><br><span class="line">  ],</span><br><span class="line">  <span class="attr">"insecure-registries"</span> : [</span><br><span class="line">    <span class="string">"registry.docker-cn.com"</span>,</span><br><span class="line">    <span class="string">"docker.mirrors.ustc.edu.cn"</span></span><br><span class="line">  ],</span><br><span class="line">  <span class="attr">"debug"</span> : <span class="literal">true</span>,</span><br><span class="line">  <span class="attr">"experimental"</span> : <span class="literal">true</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="设置compose监听地址"><a href="#设置compose监听地址" class="headerlink" title="设置compose监听地址"></a>设置compose监听地址</h3><p>端口为2375<br>windows如下图.<br><img src="http://img.hi-arkin.com/2019-09-09-15679585769903.jpg" alt=""><br>macOs不需要配置.</p>
+<h3 id="配置共享"><a href="#配置共享" class="headerlink" title="配置共享"></a>配置共享</h3><p>比如,你数据库,代码等需要共享的,设置共享盘.如C:\,D:\<br>windows配置:<br><img src="http://img.hi-arkin.com/2019-09-09-15679600757783.jpg" alt=""><br>MacOs:<br><img src="http://img.hi-arkin.com/2019-09-09-15679601601800.jpg" alt=""></p>
+<h2 id="phpstrom-配置"><a href="#phpstrom-配置" class="headerlink" title="phpstrom 配置"></a>phpstrom 配置</h2><p>打开配置–&gt;Build–&gt;Docker.<br>获取直接搜索”docker”就行.<br>新建一个配置<br><img src="http://img.hi-arkin.com/2019-09-09-15679597765529.jpg" alt=""></p>
+<h2 id="编写docker-compose-yml"><a href="#编写docker-compose-yml" class="headerlink" title="编写docker-compose.yml"></a>编写docker-compose.yml</h2><p>docker-compose是docker编排工具.<br>在项目根目录下,创建一个<code>docker-compose.yml</code>配置文件.<br>services: 运行的服务<br>container_name: 自定义的容器名<br>image: docker 镜像<br>restart: 是否重启<br>volumes: 挂载的目录, 本地:docker容器<br>depends_on: 依赖<br>新版docker-compose 需要link设备网络了.<br>默认可以通过 service名来访问容器.<br>如在nginx中可以通过,<a href="http://my-php:9000,为什么不用IP地址,IP地址除非设置静态IP,不然IP地址每次启动都不一样" target="_blank" rel="noopener">http://my-php:9000,为什么不用IP地址,IP地址除非设置静态IP,不然IP地址每次启动都不一样</a>.</p>
+<p>举例:nginx+php-fpm 的docker<br><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">version:</span> <span class="string">'3.4'</span><span class="attr">services:</span><span class="attr">  my-php:</span><span class="attr">    image:</span> <span class="attr">php:7.2-fpm</span><span class="attr">    container_name:</span> <span class="string">my-phpfpm</span><span class="attr">    restart:</span> <span class="string">always</span><span class="attr">    volumes:</span><span class="bullet">      -</span> <span class="string">./www:/www</span><span class="attr">  my-nginx:</span><span class="attr">    image:</span> <span class="string">nginx</span><span class="attr">    container_name:</span> <span class="string">my-nginx</span><span class="attr">    restart:</span> <span class="string">always</span><span class="attr">    ports:</span><span class="bullet">      -</span> <span class="string">"1800:80"</span><span class="attr">    volumes:</span><span class="bullet">      -</span> <span class="string">./www:/usr/share/nginx/html</span><span class="bullet">      -</span> <span class="string">./config/nginx:/etc/nginx/conf.d/</span><span class="attr">    depends_on:</span><span class="bullet">      -</span> <span class="string">my-php</span><span class="attr">  my-composer:</span><span class="attr">    image:</span> <span class="string">composer</span><span class="attr">    container_name:</span> <span class="string">my-composer</span><span class="attr">    restart:</span> <span class="string">always</span><span class="attr">    volumes:</span><span class="bullet">      -</span> <span class="string">./www:/app</span><span class="attr">    working_dir:</span> <span class="string">/app</span></span><br></pre></td></tr></table></figure></p>
+<p>目录结构如下:<br><img src="http://img.hi-arkin.com/2019-09-11-15681385999585.jpg" alt=""></p>
+<p>nginx 配置如下:<br><figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">server</span> &#123;    <span class="attribute">listen</span>       <span class="number">80</span>;    <span class="attribute">server_name</span>  localhost;    <span class="attribute">location</span> / &#123;        <span class="attribute">root</span>   /usr/share/nginx/html;        <span class="attribute">index</span>  index.html index.htm index.php;    &#125;    <span class="attribute">error_page</span>   <span class="number">500</span> <span class="number">502</span> <span class="number">503</span> <span class="number">504</span>  /50x.html;    <span class="attribute">location</span> = /50x.html &#123;        <span class="attribute">root</span>   /usr/share/nginx/html;    &#125;    <span class="attribute">location</span> <span class="regexp">~ \.php$</span> &#123;        <span class="attribute">fastcgi_pass</span>   my-php:<span class="number">9000</span>;        <span class="attribute">fastcgi_index</span>  index.php;        <span class="attribute">fastcgi_param</span>  SCRIPT_FILENAME  /www/<span class="variable">$fastcgi_script_name</span>;        <span class="attribute">include</span>        fastcgi_params;    &#125;&#125;</span><br></pre></td></tr></table></figure></p>
+<p>注意: <code>/www</code>指的是 php-fpm容器中的目录,而不是nginx容器的路径; <code>my-app</code>指的是php-fpm的host.就像<code>localhost</code>一样的.</p>
+<h2 id="运行docker-compose"><a href="#运行docker-compose" class="headerlink" title="运行docker-compose"></a>运行docker-compose</h2><p>使用docker-compose up xxx.docker-compse.yml<br>也可以使用phpstrom 管理,推荐使用这种方式,更直观,好理解docker使用的场景.</p>
+<p>在phpstrom 中运行.<br><img src="http://img.hi-arkin.com/2019-09-11-15681390078775.jpg" alt=""><br>可以直接右键运行docker-compose.yml.<br>会自动pull 对应的镜像文件.<br>运行之后可以,映射本地代码路径.<br>也可进入对应的容器,如修改docker的配置等等,这是不允许的.<br>进入容品的方法:通过exec 运行bash或sh<br><img src="http://img.hi-arkin.com/2019-09-11-15681392935068.jpg" alt=""></p>
+<p><img src="http://img.hi-arkin.com/2019-09-11-15681393422115.jpg" alt=""><br>就像正常的ssh登录一样.</p>
+<p>运行完compose.yml后.就能通过映射的端口查看.如1800.<br><img src="http://img.hi-arkin.com/2019-09-11-15681394982443.jpg" alt=""></p>
+<p>便成功.</p>
+<p>测试环境和开发环境可以使用一套方案.<br>生产环境,需要重新生成新项目配置,数据库,缓存.运维会安排好.</p>
+</section>
+    <!-- 版权开始 -->
+    <div class="post-copyright">
+      <p><strong>本文作者：</strong>阿金 </p>
+      <p><strong>本文链接：</strong><a href="http://www.hi-arkin.com/2019/09/08/DevOps/docker-php/">http://www.hi-arkin.com/2019/09/08/DevOps/docker-php/</a></p>
+      <p><strong>版权声明：</strong>本博客所有文章除特别声明外，均采用 
+      <a target="__blank" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> 许可协议。转载请注明出处！</p>
+    </div>
+    <!-- 版权结束 -->
+
+    <!-- Tags START -->
+    
+      <div class="tags">
+        <span>Tags:</span>
+        
+  <a href="/tags#PHP" >
+    <span class="tag-code">PHP</span>
+  </a>
+
+  <a href="/tags#Docker" >
+    <span class="tag-code">Docker</span>
+  </a>
+
+      </div>
+    
+    <!-- Tags END -->
+    <!-- NAV START -->
+    
+  <div class="nav-container">
+    <!-- reverse left and right to put prev and next in a more logic postition -->
+    
+      <a class="nav-left" href="/2019/08/01/Javascript/vue-jsx/">
+        <span class="nav-arrow">← </span>
+        
+          Vue中使用JSX
+        
+      </a>
+    
+    
+  </div>
+
+    <!-- NAV END -->
+
+    <!-- 二维码 START -->
+    
+      <div class="qrcode">
+        <canvas id="share-qrcode"></canvas>
+        <p class="notice">扫描二维码，分享此文章</p>
+      </div>
+    
+    <!-- 二维码 END -->
+    
+      <!-- Gitment START -->
+      <div id="vcomments"></div>
+      <script src='//unpkg.com/valine/dist/Valine.min.js'></script>
+      <!-- Gitment END -->
+    
+  </article>
+  <!-- Article END -->
+  <!-- Catalog START -->
+  
+    <aside class="catalog-container">
+  <div class="toc-main">
+    <strong class="toc-title">Catalog</strong>
+    
+      <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#docker下的php开发环境"><span class="toc-nav-text">docker下的php开发环境</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#开发环境部署方案选择"><span class="toc-nav-text">开发环境部署方案选择</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#PHP的环境分析"><span class="toc-nav-text">PHP的环境分析</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#php的docker环境"><span class="toc-nav-text">php的docker环境</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#安装docker"><span class="toc-nav-text">安装docker</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#注册并登录docker-官方账号"><span class="toc-nav-text">注册并登录docker 官方账号</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#下载安装"><span class="toc-nav-text">下载安装</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#启动docker桌面版"><span class="toc-nav-text">启动docker桌面版</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#设置docker-hub国内源"><span class="toc-nav-text">设置docker hub国内源</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#设置compose监听地址"><span class="toc-nav-text">设置compose监听地址</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#配置共享"><span class="toc-nav-text">配置共享</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#phpstrom-配置"><span class="toc-nav-text">phpstrom 配置</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#编写docker-compose-yml"><span class="toc-nav-text">编写docker-compose.yml</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#运行docker-compose"><span class="toc-nav-text">运行docker-compose</span></a></li></ol></li></ol>
+    
+  </div>
+</aside>
+  
+  <!-- Catalog END -->
+</main>
+
+<script>
+  (function () {
+    var url = 'http://www.hi-arkin.com/2019/09/08/DevOps/docker-php/';
+    var banner = ''
+    if (banner !== '' && banner !== 'undefined' && banner !== 'null') {
+      $('#article-banner').css({
+        'background-image': 'url(' + banner + ')'
+      })
+    } else {
+      $('#article-banner').geopattern(url)
+    }
+    $('.header').removeClass('fixed-header')
+
+     // error image
+    $(".markdown-content img").on('error', function() {
+      $(this).attr('src', '/css/images/error-img.svg')
+      $(this).css({
+        'cursor': 'default'
+      })
+    })
+
+    // zoom image
+    $(".markdown-content img").on('click', function() {
+      var src = $(this).attr('src')
+      if (src !== '/css/images/error-img.svg') {
+        var imageW = $(this).width()
+        var imageH = $(this).height()
+        
+        var zoom = ($(window).width() * 0.95 / imageW).toFixed(2)
+        zoom = zoom < 1 ? 1 : zoom
+        zoom = zoom > 2 ? 2 : zoom
+        var transY = (($(window).height() - imageH) / 2).toFixed(2)
+
+        $('body').append('<div class="image-view-wrap"><div class="image-view-inner"><img src="'+ src +'" /></div></div>')
+        $('.image-view-wrap').addClass('wrap-active')
+        $('.image-view-wrap img').css({
+          'width': `${imageW}`,
+          'transform': `translate3d(0, ${transY}px, 0) scale3d(${zoom}, ${zoom}, 1)`
+        })
+        $('html').css('overflow', 'hidden')
+
+        $('.image-view-wrap').on('click', function() {
+          $(this).remove()
+          $('html').attr('style', '')
+        })
+      }
+    })
+
+    // qrcode
+    var qr = new QRious({
+      element: document.getElementById('share-qrcode'),
+      value: document.location.href
+    });
+
+  
+   
+  
+
+  })();
+</script>
+<!-- 评论 -->
+
+<script>
+    Valine && new Valine({
+              el: '#vcomments',
+              placeholder: '欢迎大家吐槽~ ',
+              appId: 's00pjsgpQfTMhup6C0IC1e5w-gzGzoHsz',
+              appKey: 'L1jipTeNE3kEt8GGtbJvGMvV',
+
+    })
+</script>
+
+
+    <div class="scroll-top">
+  <span class="arrow-icon"></span>
+</div>
+    
+<footer class="app-footer">
+  <div id="vcomments" style="max-width:800px"></div>
+  <p class="copyright">
+    <a href="http://tongji.baidu.com/web/welcome/ico?s=371952d9b83cd706a4702ef0c232e3de" target="_blank">...</a>
+    &copy; 2019 |  Powered by 阿金 
+   <br/> <a href="http://www.miitbeian.gov.cn" rel="nofollow" target="_blank"> 京ICP备18064786号-1 </a>
+  </p>
+</footer>
+<script src="/js/search.js"></script> 
+
+<script>
+  function async(u, c) {
+    var d = document, t = 'script',
+      o = d.createElement(t),
+      s = d.getElementsByTagName(t)[0];
+    o.src = u;
+    if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+    s.parentNode.insertBefore(o, s);
+  }
+</script>
+<script>
+  async("//cdn.staticfile.org/fastclick/1.0.6/fastclick.min.js", function(){
+    FastClick.attach(document.body);
+  })
+</script>
+
+<script>
+  var hasLine = 'true';
+  async("//cdn.staticfile.org/highlight.js/9.12.0/highlight.min.js", function(){
+    $('figure pre').each(function(i, block) {
+      var figure = $(this).parents('figure');
+      if (hasLine === 'false') {
+        figure.find('.gutter').hide();
+      }
+      var lang = figure.attr('class').split(' ')[1] || 'code';
+      var codeHtml = $(this).html();
+      var codeTag = document.createElement('code');
+      codeTag.className = lang;
+      codeTag.innerHTML = codeHtml;
+      $(this).attr('class', '').empty().html(codeTag);
+      figure.attr('data-lang', lang.toUpperCase());
+      hljs.highlightBlock(block);
+    });
+  })
+</script>
+
+<{% if (theme.mermaid.enable)  %}>
+  <script src='https://unpkg.com/mermaid@7.1.0/dist/mermaid.min.js'></script>
+  <script>
+    if (window.mermaid) {
+      mermaid.initialize({theme: 'forest'});
+    }
+  </script>
+<{% endif %}>
+
+
+
+   <script type="text/javascript">   
+     var search_path = "search.xml";
+   if (search_path.length == 0) {
+    search_path = "search.xml";
+   }
+   var path = "/" + search_path;
+     searchFunc(path, 'local-search-input', 'local-search-result');
+   </script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+  </body>
+</html>
