@@ -165,8 +165,28 @@
     
     
       <div class="section-list-item">
-        <a href="/2019/03/16/PHP/laravel-event/" class="archive-title">Laravel事件</a>
-        <p class="archive-date">03-16</p>
+        <a href="/2019/09/08/DevOps/docker-php/" class="archive-title">基于Docker的php开发环境</a>
+        <p class="archive-date">09-08</p>
+      </div>
+    
+      <div class="section-list-item">
+        <a href="/2019/04/21/PHP/composer/" class="archive-title">使用Composer搭建自己的框架</a>
+        <p class="archive-date">04-21</p>
+      </div>
+    
+      <div class="section-list-item">
+        <a href="/2019/04/19/PHP/IOC_DI/" class="archive-title">依赖注入(DI)/控制反转(IoC)</a>
+        <p class="archive-date">04-19</p>
+      </div>
+    
+      <div class="section-list-item">
+        <a href="/2019/04/14/PHP/design_parttern/" class="archive-title">PHP的设计模式</a>
+        <p class="archive-date">04-14</p>
+      </div>
+    
+      <div class="section-list-item">
+        <a href="/2019/04/13/DevOps/2019-04-13/" class="archive-title">PHP架构师技能树</a>
+        <p class="archive-date">04-13</p>
       </div>
     
   </div>
@@ -176,7 +196,7 @@
 
 <script>
   (function () {
-    var url = 'http://www.hi-arkin.com/tags/Php/index.html';
+    var url = 'http://www.hi-arkin.com/tags/PHP/index.html';
     $('#article-banner').geopattern(url);
     $('.header').removeClass('fixed-header');
   })();
@@ -189,7 +209,7 @@
   <div id="vcomments" style="max-width:800px"></div>
   <p class="copyright">
     <a href="http://tongji.baidu.com/web/welcome/ico?s=371952d9b83cd706a4702ef0c232e3de" target="_blank">...</a>
-    &copy; 2019 |  Powered by 阿金 
+    &copy; 2020 |  Powered by 阿金 
    <br/> <a href="http://www.miitbeian.gov.cn" rel="nofollow" target="_blank"> 京ICP备18064786号-1 </a>
   </p>
 </footer>
@@ -222,42 +242,6 @@
       var lang = figure.attr('class').split(' ')[1] || 'code';
       var codeHtml = $(this).html();
       var codeTag = document.createElement('code');
-      codeTag.className = lang;
-      codeTag.innerHTML = codeHtml;
-      $(this).attr('class', '').empty().html(codeTag);
-      figure.attr('data-lang', lang.toUpperCase());
-      hljs.highlightBlock(block);
-    });
-  })
-</script>
-
-<{% if (theme.mermaid.enable)  %}>
-  <script src='https://unpkg.com/mermaid@7.1.0/dist/mermaid.min.js'></script>
-  <script>
-    if (window.mermaid) {
-      mermaid.initialize({theme: 'forest'});
-    }
-  </script>
-<{% endif %}>
-
-
-
-   <script type="text/javascript">   
-     var search_path = "search.xml";
-   if (search_path.length == 0) {
-    search_path = "search.xml";
-   }
-   var path = "/" + search_path;
-     searchFunc(path, 'local-search-input', 'local-search-result');
-   </script>
-
-
-
-
-<script src="/js/script.js"></script>
-
-  </body>
-</html>ment.createElement('code');
       codeTag.className = lang;
       codeTag.innerHTML = codeHtml;
       $(this).attr('class', '').empty().html(codeTag);
