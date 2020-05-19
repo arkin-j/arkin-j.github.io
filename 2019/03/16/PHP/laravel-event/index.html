@@ -365,16 +365,15 @@
     <div class="scroll-top">
   <span class="arrow-icon"></span>
 </div>
-    
-<footer class="app-footer">
+    <footer class="app-footer">
   <div id="vcomments" style="max-width:800px"></div>
   <p class="copyright">
     <a href="http://tongji.baidu.com/web/welcome/ico?s=371952d9b83cd706a4702ef0c232e3de" target="_blank">...</a>
-    &copy; 2020 |  Powered by 阿金 
-   <br/> <a href="http://www.miitbeian.gov.cn" rel="nofollow" target="_blank"> 京ICP备18064786号-1 </a>
+    &copy; 2020 | Powered by 阿金
+    <br /> <a href="http://www.miitbeian.gov.cn" rel="nofollow" target="_blank"> 京ICP备18064786号-1 </a>
   </p>
 </footer>
-<script src="/js/search.js"></script> 
+<script src="/js/search.js"></script>
 
 <script>
   function async(u, c) {
@@ -387,15 +386,15 @@
   }
 </script>
 <script>
-  async("//cdn.staticfile.org/fastclick/1.0.6/fastclick.min.js", function(){
+  async("//cdn.staticfile.org/fastclick/1.0.6/fastclick.min.js", function () {
     FastClick.attach(document.body);
   })
 </script>
 
 <script>
   var hasLine = 'true';
-  async("//cdn.staticfile.org/highlight.js/9.12.0/highlight.min.js", function(){
-    $('figure pre').each(function(i, block) {
+  async("//cdn.staticfile.org/highlight.js/9.12.0/highlight.min.js", function () {
+    $('figure pre').each(function (i, block) {
       var figure = $(this).parents('figure');
       if (hasLine === 'false') {
         figure.find('.gutter').hide();
@@ -412,30 +411,29 @@
   })
 </script>
 
-<{% if (theme.mermaid.enable)  %}>
+<{% if (theme.mermaid.enable) {  %}>
   <script src='https://unpkg.com/mermaid@7.1.0/dist/mermaid.min.js'></script>
   <script>
     if (window.mermaid) {
-      mermaid.initialize({theme: 'forest'});
+      mermaid.initialize({ theme: 'forest' });
     }
   </script>
-<{% endif %}>
+  <{% } %}>
+
+
+    
+    <script type="text/javascript">
+      var search_path = "search.xml";
+      if (search_path.length == 0) {
+        search_path = "search.xml";
+      }
+      var path = "/" + search_path;
+      searchFunc(path, 'local-search-input', 'local-search-result');
+    </script>
+    
 
 
 
-   <script type="text/javascript">   
-     var search_path = "search.xml";
-   if (search_path.length == 0) {
-    search_path = "search.xml";
-   }
-   var path = "/" + search_path;
-     searchFunc(path, 'local-search-input', 'local-search-result');
-   </script>
-
-
-
-
-<script src="/js/script.js"></script>
-
+    <script src="/js/script.js"></script>
   </body>
 </html>
