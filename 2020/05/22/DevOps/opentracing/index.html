@@ -186,19 +186,27 @@
 <li>SpanContext</li>
 </ul>
 <p>结构图:</p>
-<p><pre class="mermaid">graph TD<br>    A[span1]<br>    B[span2]<br>    A1[span3]<br>    A2[span4]<br>    A3[span5]<br>    subgraph service1<br>     A – span4 child of span3 –&gt; A1<br>     A1  –&gt; A2<br>     A1 –&gt; A3<br>     A –&gt; B<br>    end</pre></p>
-<pre><code>subgraph Network
- C((SpanContent))
- B -.-&gt; C
-end
+<pre class="mermaid">graph TD;   
+    subgraph service1
+     A[span1]-- span4 child of span3 --> A1[span3]
+     A1 --> A2[span4]
+     A1 --> A3[span5]
+     A --> B[span2]
+    end
 
-subgraph service3
- C -.-&gt; D[span]
- D --&gt; D1[span]
- D1--&gt; D2[span]
- D --&gt; E[span]
-end&lt;/pre&gt;
-</code></pre><h2 id="trace"><a href="#trace" class="headerlink" title="trace"></a>trace</h2><p>一次完整的跟踪,由多个span组成.<br>trace主要由,trace-id和span组成.</p>
+    subgraph Network
+     C((Trace-Context))
+     B -.-> C
+    end
+
+    subgraph service3
+     C -.-> D[span]
+     D --> D1[span]
+     D1--> D2[span]
+     D --> E[span]
+    end</pre>
+
+<h2 id="trace"><a href="#trace" class="headerlink" title="trace"></a>trace</h2><p>一次完整的跟踪,由多个span组成.<br>trace主要由,trace-id和span组成.</p>
 <h2 id="span"><a href="#span" class="headerlink" title="span"></a>span</h2><p><code>span</code> 是分布式跟踪的主要构成模块,代表分布式的一个工作单元.<br>分布式系统的每个组件都有一个命名的span.比如”request”,”db”<br>span 可以包含其它span的引用,从而组成一个完整生命周期跟踪图.如上.<br>通常一个span的内容规范.</p>
 <ul>
 <li>name,记录点的名称,用于分类</li>
@@ -211,8 +219,160 @@ end&lt;/pre&gt;
 <h3 id="name"><a href="#name" class="headerlink" title="name"></a>name</h3><p>由字符串组成成的标识,可以用于过滤和标识.</p>
 <h3 id="time"><a href="#time" class="headerlink" title="time"></a>time</h3><p>时间,由开始时间和结束时间</p>
 <h3 id="tag"><a href="#tag" class="headerlink" title="tag"></a>tag</h3><p>标签,可以存放多个.<br>用于过滤.包含一些常用的规范标签.<br><a href="https://github.com/opentracing/specification/blob/master/semantic_conventions.md" target="_blank" rel="noopener">行业约定</a></p>
-<p>如:<br>| Span tag name | Type | Notes and examples |<br>|:————–|:—–|:——————-|<br>| <code>component</code> | string  | 框架,组件,模块. E.g., <code>&quot;grpc&quot;</code>, <code>&quot;django&quot;</code>, <code>&quot;JDBI&quot;</code>. |<br>| <code>db.instance</code> | string | 数据库实例名. E.g.,  jdbc.url=<code>&quot;jdbc:mysql://127.0.0.1:3306/customers&quot;</code>, 实例 <code>&quot;customers&quot;</code>. |<br>| <code>db.statement</code> | string | 语句 E.g., for <code>db.type=&quot;sql&quot;</code>, <code>&quot;SELECT * FROM wuser_table&quot;</code>; for <code>db.type=&quot;redis&quot;</code>, <code>&quot;SET mykey &#39;WuValue&#39;&quot;</code>. |<br>| <code>db.type</code> | string | 数据库类库类型分类,普通数据库用<code>&quot;sql&quot;</code>. 其他使用小写, e.g. <code>&quot;cassandra&quot;</code>, <code>&quot;hbase&quot;</code>, or <code>&quot;redis&quot;</code>. |<br>| <code>db.user</code> | string | 数据库用户名. E.g., <code>&quot;readonly_user&quot;</code> or <code>&quot;reporting_user&quot;</code> |<br>| <code>error</code> | bool | <code>true</code> 当且只当应用程序认为这块操作失败时,才返True |<br>| <code>http.method</code> | string | Http请求的方法. E.g., <code>&quot;GET&quot;</code>, <code>&quot;POST&quot;</code> |<br>| <code>http.status_code</code> | integer | HTTP 状态码. E.g., 200, 503, 404 |<br>| <code>http.url</code> | string | URL. E.g., <code>&quot;https://domain.com/path/to?resource=here&quot;</code> |<br>| <code>message_bus.destination</code> | string | 消息队列标识. E.g. 如kafaka的 <code>&quot;topic name&quot;</code> 生产者或消息者都可以. |<br>| <code>peer.address</code> | string | 远程地址,如网络客户端库 <code>&quot;ip:port&quot;</code>, a bare <code>&quot;hostname&quot;</code>, 甚至可以使用DJBC的<code>&quot;mysql://prod-db:3306&quot;</code> |<br>| <code>peer.hostname</code> | string | 远程主机名. E.g., <code>&quot;www.baidu.com&quot;</code>|<br>| <code>peer.ipv4</code> | string | 远程IPv4地址. E.g., <code>&quot;127.0.0.1&quot;</code> |<br>| <code>peer.ipv6</code> | string | 远程IPv6地址. E.g., <code>&quot;2001:0db8:85a3:0000:0000:8a2e:0370:7334&quot;</code> |<br>| <code>peer.port</code> | integer | 远程端口. E.g., <code>80</code> |<br>| <code>peer.service</code> | string | 远程服务名称 (未指定使用 <code>&quot;service&quot;</code>定义). E.g., <code>&quot;elasticsearch&quot;</code>, <code>&quot;a_custom_microservice&quot;</code>, <code>&quot;memcache&quot;</code> |<br>| <code>sampling.priority</code> | integer | 如果&gt;0,则尽可能捕捉,==0不再跟踪|<br>| <code>span.kind</code> | string | 种类, Rpc使用 <code>&quot;client&quot;</code> ,消息队列使用 <code>&quot;server&quot;</code> , and <code>&quot;producer&quot;</code> or <code>&quot;consumer&quot;</code> 表示|</p>
-<h3 id="log"><a href="#log" class="headerlink" title="log"></a>log</h3><p>日志,用于调试和信息记录.<br>日志的准备字段,参考上面的约定链接.<br>| Span log field name | Type    | Notes and examples |<br>|:——————–|:——–|:——————-|<br>| <code>error.kind</code> | string | 种类 (仅适用于 <code>event=&quot;error&quot;</code> 的日志). E.g., <code>&quot;Exception&quot;</code>, <code>&quot;OSError&quot;</code> |<br>| <code>error.object</code> | object | 异常对象 (e.g., Java, Python),  Throwable/Exception/Error . E.g., A <code>java.lang.UnsupportedOperationException</code>  |<br>| <code>event</code> | string | 事件标识, <a href="https://developer.mozilla.org/en-US/docs/Web/API/PerformanceTiming" target="_blank" rel="noopener">Performance.timing</a> specification. E.g., from <a href="https://zipkin.io/pages/instrumenting.html#core-data-structures" target="_blank" rel="noopener">Zipkin</a>, <code>&quot;cs&quot;</code>, <code>&quot;sr&quot;</code>, <code>&quot;ss&quot;</code>, or <code>&quot;cr&quot;</code>. Or, more generally, <code>&quot;initialized&quot;</code> or <code>&quot;timed out&quot;</code>. For errors, <code>&quot;error&quot;</code> |<br>| <code>message</code> | string | 消息内容 |<br>| <code>stack</code> | string | 堆栈跟踪  |</p>
+<table>
+<thead>
+<tr>
+<th>dd</th>
+<th>a</th>
+<th>a</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>如:</p>
+<table>
+<thead>
+<tr>
+<th>Span tag name</th>
+<th>Type</th>
+<th>Notes and examples</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>component</code></td>
+<td>string</td>
+<td>框架,组件,模块. E.g., <code>&quot;grpc&quot;</code>, <code>&quot;django&quot;</code>, <code>&quot;JDBI&quot;</code>.</td>
+</tr>
+<tr>
+<td><code>db.instance</code></td>
+<td>string</td>
+<td>数据库实例名. E.g.,  jdbc.url=<code>&quot;jdbc:mysql://127.0.0.1:3306/customers&quot;</code>, 实例 <code>&quot;customers&quot;</code>.</td>
+</tr>
+<tr>
+<td><code>db.statement</code></td>
+<td>string</td>
+<td>语句 E.g., for <code>db.type=&quot;sql&quot;</code>, <code>&quot;SELECT * FROM wuser_table&quot;</code>; for <code>db.type=&quot;redis&quot;</code>, <code>&quot;SET mykey &#39;WuValue&#39;&quot;</code>.</td>
+</tr>
+<tr>
+<td><code>db.type</code></td>
+<td>string</td>
+<td>数据库类库类型分类,普通数据库用<code>&quot;sql&quot;</code>. 其他使用小写, e.g. <code>&quot;cassandra&quot;</code>, <code>&quot;hbase&quot;</code>, or <code>&quot;redis&quot;</code>.</td>
+</tr>
+<tr>
+<td><code>db.user</code></td>
+<td>string</td>
+<td>数据库用户名. E.g., <code>&quot;readonly_user&quot;</code> or <code>&quot;reporting_user&quot;</code></td>
+</tr>
+<tr>
+<td><code>error</code></td>
+<td>bool</td>
+<td><code>true</code> 当且只当应用程序认为这块操作失败时,才返True</td>
+</tr>
+<tr>
+<td><code>http.method</code></td>
+<td>string</td>
+<td>Http请求的方法. E.g., <code>&quot;GET&quot;</code>, <code>&quot;POST&quot;</code></td>
+</tr>
+<tr>
+<td><code>http.status_code</code></td>
+<td>integer</td>
+<td>HTTP 状态码. E.g., 200, 503, 404</td>
+</tr>
+<tr>
+<td><code>http.url</code></td>
+<td>string</td>
+<td>URL. E.g., <code>&quot;https://domain.com/path/to?resource=here&quot;</code></td>
+</tr>
+<tr>
+<td><code>message_bus.destination</code></td>
+<td>string</td>
+<td>消息队列标识. E.g. 如kafaka的 <code>&quot;topic name&quot;</code> 生产者或消息者都可以.</td>
+</tr>
+<tr>
+<td><code>peer.address</code></td>
+<td>string</td>
+<td>远程地址,如网络客户端库 <code>&quot;ip:port&quot;</code>, a bare <code>&quot;hostname&quot;</code>, 甚至可以使用DJBC的<code>&quot;mysql://prod-db:3306&quot;</code></td>
+</tr>
+<tr>
+<td><code>peer.hostname</code></td>
+<td>string</td>
+<td>远程主机名. E.g., <code>&quot;www.baidu.com&quot;</code></td>
+</tr>
+<tr>
+<td><code>peer.ipv4</code></td>
+<td>string</td>
+<td>远程IPv4地址. E.g., <code>&quot;127.0.0.1&quot;</code></td>
+</tr>
+<tr>
+<td><code>peer.ipv6</code></td>
+<td>string</td>
+<td>远程IPv6地址. E.g., <code>&quot;2001:0db8:85a3:0000:0000:8a2e:0370:7334&quot;</code></td>
+</tr>
+<tr>
+<td><code>peer.port</code></td>
+<td>integer</td>
+<td>远程端口. E.g., <code>80</code></td>
+</tr>
+<tr>
+<td><code>peer.service</code></td>
+<td>string</td>
+<td>远程服务名称 (未指定使用 <code>&quot;service&quot;</code>定义). E.g., <code>&quot;elasticsearch&quot;</code>, <code>&quot;a_custom_microservice&quot;</code>, <code>&quot;memcache&quot;</code></td>
+</tr>
+<tr>
+<td><code>sampling.priority</code></td>
+<td>integer</td>
+<td>如果&gt;0,则尽可能捕捉,==0不再跟踪</td>
+</tr>
+<tr>
+<td><code>span.kind</code></td>
+<td>string</td>
+<td>种类, Rpc使用 <code>&quot;client&quot;</code> ,消息队列使用 <code>&quot;server&quot;</code> , and <code>&quot;producer&quot;</code> or <code>&quot;consumer&quot;</code> 表示</td>
+</tr>
+</tbody>
+</table>
+<h3 id="log"><a href="#log" class="headerlink" title="log"></a>log</h3><p>日志,用于调试和信息记录.<br>日志的准备字段,参考上面的约定链接.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">Span log field name</th>
+<th style="text-align:left">Type</th>
+<th style="text-align:left">Notes and examples</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><code>error.kind</code></td>
+<td style="text-align:left">string</td>
+<td style="text-align:left">种类 (仅适用于 <code>event=&quot;error&quot;</code> 的日志). E.g., <code>&quot;Exception&quot;</code>, <code>&quot;OSError&quot;</code></td>
+</tr>
+<tr>
+<td style="text-align:left"><code>error.object</code></td>
+<td style="text-align:left">object</td>
+<td style="text-align:left">异常对象 (e.g., Java, Python),  Throwable/Exception/Error . E.g., A <code>java.lang.UnsupportedOperationException</code></td>
+</tr>
+<tr>
+<td style="text-align:left"><code>event</code></td>
+<td style="text-align:left">string</td>
+<td style="text-align:left">事件标识, <a href="https://developer.mozilla.org/en-US/docs/Web/API/PerformanceTiming" target="_blank" rel="noopener">Performance.timing</a> specification. E.g., from <a href="https://zipkin.io/pages/instrumenting.html#core-data-structures" target="_blank" rel="noopener">Zipkin</a>, <code>&quot;cs&quot;</code>, <code>&quot;sr&quot;</code>, <code>&quot;ss&quot;</code>, or <code>&quot;cr&quot;</code>. Or, more generally, <code>&quot;initialized&quot;</code> or <code>&quot;timed out&quot;</code>. For errors, <code>&quot;error&quot;</code></td>
+</tr>
+<tr>
+<td style="text-align:left"><code>message</code></td>
+<td style="text-align:left">string</td>
+<td style="text-align:left">消息内容</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>stack</code></td>
+<td style="text-align:left">string</td>
+<td style="text-align:left">堆栈跟踪</td>
+</tr>
+</tbody>
+</table>
 <h3 id="SpanContext"><a href="#SpanContext" class="headerlink" title="SpanContext"></a>SpanContext</h3><p>span的描述,上下文信息,<br>必须的trace-id,span-id,span-kind</p>
 <h2 id="Trace-Context"><a href="#Trace-Context" class="headerlink" title="Trace-Context"></a>Trace-Context</h2><p>传播上下文,通过Http传播给其他平台.<br><a href="https://w3c.github.io/trace-context/" target="_blank" rel="noopener">W3C Trace-Context规范</a></p>
 <p>现在各种平台规范不一样.Jaeger使用的是.<br><a href="https://www.jaegertracing.io/docs/1.7/client-libraries/#trace-span-identity" target="_blank" rel="noopener">Jaeger标记</a></p>
