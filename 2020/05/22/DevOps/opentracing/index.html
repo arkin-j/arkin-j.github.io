@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+  <meta name="description" content="Hi~我是阿金,也可以叫我Arkin,做开发的阿金同学">
+  <meta name="baidu-site-verification" content="KAIz07eWp9" />
+  <meta name="baidu_union_verify" content="89761f418e2e32d488f0c783a8616865">
+  <meta name="keyword" content="阿金,开发,前端,后端,产品,架构师">
+  
+    <link rel="shortcut icon" href="/css/images/logo.png">
+  
+  <title>
+    
+      OpenTracing | Hi,阿金
+    
+  </title>
+  <link href="//cdn.staticfile.org/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+  <link href="//cdn.staticfile.org/nprogress/0.2.0/nprogress.min.css" rel="stylesheet">
+  <link href="//cdn.staticfile.org/highlight.js/9.12.0/styles/tomorrow.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="/css/style.css">
+  <script src="//cdn.staticfile.org/jquery/3.2.1/jquery.min.js"></script>
+  <script src="//cdn.staticfile.org/geopattern/1.2.3/js/geopattern.min.js"></script>
+  <script src="//cdn.staticfile.org/nprogress/0.2.0/nprogress.min.js"></script>
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="/js/qrious.js"></script>
+  
+  
+    <!-- MathJax support START -->
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.staticfile.org/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <!-- MathJax support END -->
+  
+
+
+</head>
+<div class="wechat-share">
+  <img src="/css/images/logo.svg" />
+</div>
+
+  <body>
+    <header class="header fixed-header">
+  <div class="header-container">
+    <a class="home-link" href="/">
+      <div class="logo"></div>
+      <span>Hi,阿金 <span class="jumping-dots"><i>.</i><i>.</i><i>.</i></span></span>
+    </a>
+    <ul class="right-list">
+      
+        <li class="list-item">
+          
+            <a href="/" class="item-link">首页</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/categories/" class="item-link">分类</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/tags/" class="item-link">标签</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/archives/" class="item-link">归档</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/about/" class="item-link">whois</a>
+          
+        </li>
+      
+    </ul>
+
+    
+  <!-- div id="site_search">
+   <div class="form-group">
+    <input type="text" id="local-search-input" autocomplete="off" name="q" results="0" placeholder="search" class="st-search-input st-default-search-input form-control"/>
+   </div>  
+  <div id="local-search-result"></div>
+  </div -->
+
+
+    
+    <div class="menu">
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </div>
+    <div class="menu-mask">
+      <ul class="menu-list">
+        
+          <li class="menu-item">
+            
+              <a href="/" class="menu-link">首页</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/categories/" class="menu-link">分类</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/tags/" class="menu-link">标签</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/archives/" class="menu-link">归档</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/about/" class="menu-link">whois</a>
+            
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</header>
+
+    <div id="article-banner">
+  <h2>OpenTracing</h2>
+  <div class="post-date">
+    发表:<span> 2020-05-22 </span>
+    分类:
+      <span class="article-category">
+        <a class="article-category-link" href="/categories/Arch/">Arch</a>
+      </span>
+    
+  </div>
+  <div class="arrow-down">
+    <a href="javascript:;"></a>
+  </div>
+</div>
+<main class="app-body flex-box">
+  <!-- Article START -->
+  <article class="post-article">
+    <section class="markdown-content"><p>[toc]</p>
+<h1 id="关键字"><a href="#关键字" class="headerlink" title="关键字"></a>关键字</h1><ul>
+<li>Span</li>
+<li>SpanId</li>
+<li>SpanContext</li>
+<li>TraceId</li>
+<li>Tags</li>
+<li>from_of</li>
+<li>child_of</li>
+<li></li>
+</ul>
+<h1 id="开始"><a href="#开始" class="headerlink" title="开始"></a>开始</h1><h2 id="什么是分布式跟踪"><a href="#什么是分布式跟踪" class="headerlink" title="什么是分布式跟踪?"></a>什么是分布式跟踪?</h2><p>分布式跟踪(也称分布式请求跟踪)是一种用于应用程序进行概要分析和监视的方法.尤其是使用微服务架构构建的应用程序.分布式跟踪有助于查明哪里发生故障以及什么原因导致性能下降.</p>
+<h2 id="谁在使用分布式跟踪"><a href="#谁在使用分布式跟踪" class="headerlink" title="谁在使用分布式跟踪?"></a>谁在使用分布式跟踪?</h2><p>IT和DevOps团队可以使用分布式跟踪应用程序.分布式跟踪特别适合调试和监视现代分布式软件体系. 如微服务.<br>可以帮助开发人员调试和优化代码.</p>
+<h2 id="什么是OpenTracing"><a href="#什么是OpenTracing" class="headerlink" title="什么是OpenTracing?"></a>什么是OpenTracing?</h2><p>OpenTracing由Api规范,规范框架和文档组成.不用关心特定的供应商.</p>
+<h1 id="组成"><a href="#组成" class="headerlink" title="组成"></a>组成</h1><ul>
+<li>Trace</li>
+<li>Span</li>
+<li>SpanContext</li>
+</ul>
+<p>结构图:</p>
+<p><pre class="mermaid">graph TD<br>    A[span1]<br>    B[span2]<br>    A1[span3]<br>    A2[span4]<br>    A3[span5]<br>    subgraph service1<br>     A – span4 child of span3 –&gt; A1<br>     A1  –&gt; A2<br>     A1 –&gt; A3<br>     A –&gt; B<br>    end</pre></p>
+<pre><code>subgraph Network
+ C((SpanContent))
+ B -.-&gt; C
+end
+
+subgraph service3
+ C -.-&gt; D[span]
+ D --&gt; D1[span]
+ D1--&gt; D2[span]
+ D --&gt; E[span]
+end&lt;/pre&gt;
+</code></pre><h2 id="trace"><a href="#trace" class="headerlink" title="trace"></a>trace</h2><p>一次完整的跟踪,由多个span组成.<br>trace主要由,trace-id和span组成.</p>
+<h2 id="span"><a href="#span" class="headerlink" title="span"></a>span</h2><p><code>span</code> 是分布式跟踪的主要构成模块,代表分布式的一个工作单元.<br>分布式系统的每个组件都有一个命名的span.比如”request”,”db”<br>span 可以包含其它span的引用,从而组成一个完整生命周期跟踪图.如上.<br>通常一个span的内容规范.</p>
+<ul>
+<li>name,记录点的名称,用于分类</li>
+<li>time,记录的开始时间戳和结束时间戳</li>
+<li>tags,标记. key:value组成</li>
+<li>logs,记录, key:value组成</li>
+<li>spanContext, 上下文</li>
+<li></li>
+</ul>
+<h3 id="name"><a href="#name" class="headerlink" title="name"></a>name</h3><p>由字符串组成成的标识,可以用于过滤和标识.</p>
+<h3 id="time"><a href="#time" class="headerlink" title="time"></a>time</h3><p>时间,由开始时间和结束时间</p>
+<h3 id="tag"><a href="#tag" class="headerlink" title="tag"></a>tag</h3><p>标签,可以存放多个.<br>用于过滤.包含一些常用的规范标签.<br><a href="https://github.com/opentracing/specification/blob/master/semantic_conventions.md" target="_blank" rel="noopener">行业约定</a></p>
+<p>如:<br>| Span tag name | Type | Notes and examples |<br>|:————–|:—–|:——————-|<br>| <code>component</code> | string  | 框架,组件,模块. E.g., <code>&quot;grpc&quot;</code>, <code>&quot;django&quot;</code>, <code>&quot;JDBI&quot;</code>. |<br>| <code>db.instance</code> | string | 数据库实例名. E.g.,  jdbc.url=<code>&quot;jdbc:mysql://127.0.0.1:3306/customers&quot;</code>, 实例 <code>&quot;customers&quot;</code>. |<br>| <code>db.statement</code> | string | 语句 E.g., for <code>db.type=&quot;sql&quot;</code>, <code>&quot;SELECT * FROM wuser_table&quot;</code>; for <code>db.type=&quot;redis&quot;</code>, <code>&quot;SET mykey &#39;WuValue&#39;&quot;</code>. |<br>| <code>db.type</code> | string | 数据库类库类型分类,普通数据库用<code>&quot;sql&quot;</code>. 其他使用小写, e.g. <code>&quot;cassandra&quot;</code>, <code>&quot;hbase&quot;</code>, or <code>&quot;redis&quot;</code>. |<br>| <code>db.user</code> | string | 数据库用户名. E.g., <code>&quot;readonly_user&quot;</code> or <code>&quot;reporting_user&quot;</code> |<br>| <code>error</code> | bool | <code>true</code> 当且只当应用程序认为这块操作失败时,才返True |<br>| <code>http.method</code> | string | Http请求的方法. E.g., <code>&quot;GET&quot;</code>, <code>&quot;POST&quot;</code> |<br>| <code>http.status_code</code> | integer | HTTP 状态码. E.g., 200, 503, 404 |<br>| <code>http.url</code> | string | URL. E.g., <code>&quot;https://domain.com/path/to?resource=here&quot;</code> |<br>| <code>message_bus.destination</code> | string | 消息队列标识. E.g. 如kafaka的 <code>&quot;topic name&quot;</code> 生产者或消息者都可以. |<br>| <code>peer.address</code> | string | 远程地址,如网络客户端库 <code>&quot;ip:port&quot;</code>, a bare <code>&quot;hostname&quot;</code>, 甚至可以使用DJBC的<code>&quot;mysql://prod-db:3306&quot;</code> |<br>| <code>peer.hostname</code> | string | 远程主机名. E.g., <code>&quot;www.baidu.com&quot;</code>|<br>| <code>peer.ipv4</code> | string | 远程IPv4地址. E.g., <code>&quot;127.0.0.1&quot;</code> |<br>| <code>peer.ipv6</code> | string | 远程IPv6地址. E.g., <code>&quot;2001:0db8:85a3:0000:0000:8a2e:0370:7334&quot;</code> |<br>| <code>peer.port</code> | integer | 远程端口. E.g., <code>80</code> |<br>| <code>peer.service</code> | string | 远程服务名称 (未指定使用 <code>&quot;service&quot;</code>定义). E.g., <code>&quot;elasticsearch&quot;</code>, <code>&quot;a_custom_microservice&quot;</code>, <code>&quot;memcache&quot;</code> |<br>| <code>sampling.priority</code> | integer | 如果&gt;0,则尽可能捕捉,==0不再跟踪|<br>| <code>span.kind</code> | string | 种类, Rpc使用 <code>&quot;client&quot;</code> ,消息队列使用 <code>&quot;server&quot;</code> , and <code>&quot;producer&quot;</code> or <code>&quot;consumer&quot;</code> 表示|</p>
+<h3 id="log"><a href="#log" class="headerlink" title="log"></a>log</h3><p>日志,用于调试和信息记录.<br>日志的准备字段,参考上面的约定链接.<br>| Span log field name | Type    | Notes and examples |<br>|:——————–|:——–|:——————-|<br>| <code>error.kind</code> | string | 种类 (仅适用于 <code>event=&quot;error&quot;</code> 的日志). E.g., <code>&quot;Exception&quot;</code>, <code>&quot;OSError&quot;</code> |<br>| <code>error.object</code> | object | 异常对象 (e.g., Java, Python),  Throwable/Exception/Error . E.g., A <code>java.lang.UnsupportedOperationException</code>  |<br>| <code>event</code> | string | 事件标识, <a href="https://developer.mozilla.org/en-US/docs/Web/API/PerformanceTiming" target="_blank" rel="noopener">Performance.timing</a> specification. E.g., from <a href="https://zipkin.io/pages/instrumenting.html#core-data-structures" target="_blank" rel="noopener">Zipkin</a>, <code>&quot;cs&quot;</code>, <code>&quot;sr&quot;</code>, <code>&quot;ss&quot;</code>, or <code>&quot;cr&quot;</code>. Or, more generally, <code>&quot;initialized&quot;</code> or <code>&quot;timed out&quot;</code>. For errors, <code>&quot;error&quot;</code> |<br>| <code>message</code> | string | 消息内容 |<br>| <code>stack</code> | string | 堆栈跟踪  |</p>
+<h3 id="SpanContext"><a href="#SpanContext" class="headerlink" title="SpanContext"></a>SpanContext</h3><p>span的描述,上下文信息,<br>必须的trace-id,span-id,span-kind</p>
+<h2 id="Trace-Context"><a href="#Trace-Context" class="headerlink" title="Trace-Context"></a>Trace-Context</h2><p>传播上下文,通过Http传播给其他平台.<br><a href="https://w3c.github.io/trace-context/" target="_blank" rel="noopener">W3C Trace-Context规范</a></p>
+<p>现在各种平台规范不一样.Jaeger使用的是.<br><a href="https://www.jaegertracing.io/docs/1.7/client-libraries/#trace-span-identity" target="_blank" rel="noopener">Jaeger标记</a></p>
+<p><strong>Key</strong>:<code>uber-trace-id</code>不区分大小写,使用</p>
+<p><strong>Value</strong> :<br>值由几部份组成.<br>{trace-id}:{span-id}:{parent-span-id}:{flags}</p>
+<ul>
+<li>trace-id : 64位或128位 的 随机 base16 数</li>
+<li>span-id: 64位或128位 的 随机 base16 数</li>
+<li>parent-span-id: 0,代表根级</li>
+<li>flags: 标记,2个字节.<ul>
+<li>第1位,1:采样,0:不采样</li>
+<li>第2位,调试标记</li>
+</ul>
+</li>
+</ul>
+<h1 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h1><p>下面结合 php的<code>opentracing</code> 和 <code>jaeger</code>,几个经典分布式追踪场景的使用和查询.</p>
+<ul>
+<li>Http</li>
+<li>DB</li>
+<li>MQ</li>
+<li>Cache</li>
+<li>Task</li>
+<li>Thread</li>
+<li>RPC</li>
+<li>前端App</li>
+<li></li>
+</ul>
+<p>有很多优先的支持opentrcing平台,如<code>zipkin</code>,<code>阿里云</code>等.<br>我这里使用 Jaeger.<br>基于docker的部署环境,数据存储使用es.</p>
+<p>环境要求:</p>
+<ul>
+<li>docker</li>
+<li>jaeger,服务端</li>
+<li>jaeger-agent,客户端</li>
+<li>jaeger存储,使用ES</li>
+<li>php-opentracing 包</li>
+</ul>
+<p>演示的php框架,使用的是<code>hpyerf</code> 和 <code>laravel</code></p>
+<h2 id="安装部署Jaeger"><a href="#安装部署Jaeger" class="headerlink" title="安装部署Jaeger"></a>安装部署Jaeger</h2><p>todo:持续更新中…</p>
+</section>
+    <!-- 版权开始 -->
+    <div class="post-copyright">
+      <p><strong>本文作者：</strong>阿金 </p>
+      <p><strong>本文链接：</strong><a href="http://www.hi-arkin.com/2020/05/22/DevOps/opentracing/">http://www.hi-arkin.com/2020/05/22/DevOps/opentracing/</a></p>
+      <p><strong>版权声明：</strong>本博客所有文章除特别声明外，均采用 
+      <a target="__blank" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> 许可协议。转载请注明出处！</p>
+    </div>
+    <!-- 版权结束 -->
+
+    <!-- Tags START -->
+    
+      <div class="tags">
+        <span>Tags:</span>
+        
+  <a href="/tags#PHP" >
+    <span class="tag-code">PHP</span>
+  </a>
+
+      </div>
+    
+    <!-- Tags END -->
+    <!-- NAV START -->
+    
+  <div class="nav-container">
+    <!-- reverse left and right to put prev and next in a more logic postition -->
+    
+      <a class="nav-left" href="/2019/09/08/DevOps/docker-php/">
+        <span class="nav-arrow">← </span>
+        
+          基于Docker的php开发环境
+        
+      </a>
+    
+    
+  </div>
+
+    <!-- NAV END -->
+
+    <!-- 二维码 START -->
+    
+      <div class="qrcode">
+        <canvas id="share-qrcode"></canvas>
+        <p class="notice">扫描二维码，分享此文章</p>
+      </div>
+    
+    <!-- 二维码 END -->
+    
+      <!-- Gitment START -->
+      <div id="vcomments"></div>
+      <script src='//unpkg.com/valine/dist/Valine.min.js'></script>
+      <!-- Gitment END -->
+    
+  </article>
+  <!-- Article END -->
+  <!-- Catalog START -->
+  
+    <aside class="catalog-container">
+  <div class="toc-main">
+    <strong class="toc-title">Catalog</strong>
+    
+      <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#关键字"><span class="toc-nav-text">关键字</span></a></li><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#开始"><span class="toc-nav-text">开始</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#什么是分布式跟踪"><span class="toc-nav-text">什么是分布式跟踪?</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#谁在使用分布式跟踪"><span class="toc-nav-text">谁在使用分布式跟踪?</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#什么是OpenTracing"><span class="toc-nav-text">什么是OpenTracing?</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#组成"><span class="toc-nav-text">组成</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#trace"><span class="toc-nav-text">trace</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#span"><span class="toc-nav-text">span</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#name"><span class="toc-nav-text">name</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#time"><span class="toc-nav-text">time</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#tag"><span class="toc-nav-text">tag</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#log"><span class="toc-nav-text">log</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#SpanContext"><span class="toc-nav-text">SpanContext</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#Trace-Context"><span class="toc-nav-text">Trace-Context</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#使用"><span class="toc-nav-text">使用</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#安装部署Jaeger"><span class="toc-nav-text">安装部署Jaeger</span></a></li></ol></li></ol>
+    
+  </div>
+</aside>
+  
+  <!-- Catalog END -->
+</main>
+
+<script>
+  (function () {
+    var url = 'http://www.hi-arkin.com/2020/05/22/DevOps/opentracing/';
+    var banner = ''
+    if (banner !== '' && banner !== 'undefined' && banner !== 'null') {
+      $('#article-banner').css({
+        'background-image': 'url(' + banner + ')'
+      })
+    } else {
+      $('#article-banner').geopattern(url)
+    }
+    $('.header').removeClass('fixed-header')
+
+     // error image
+    $(".markdown-content img").on('error', function() {
+      $(this).attr('src', '/css/images/error-img.svg')
+      $(this).css({
+        'cursor': 'default'
+      })
+    })
+
+    // zoom image
+    $(".markdown-content img").on('click', function() {
+      var src = $(this).attr('src')
+      if (src !== '/css/images/error-img.svg') {
+        var imageW = $(this).width()
+        var imageH = $(this).height()
+        
+        var zoom = ($(window).width() * 0.95 / imageW).toFixed(2)
+        zoom = zoom < 1 ? 1 : zoom
+        zoom = zoom > 2 ? 2 : zoom
+        var transY = (($(window).height() - imageH) / 2).toFixed(2)
+
+        $('body').append('<div class="image-view-wrap"><div class="image-view-inner"><img src="'+ src +'" /></div></div>')
+        $('.image-view-wrap').addClass('wrap-active')
+        $('.image-view-wrap img').css({
+          'width': `${imageW}`,
+          'transform': `translate3d(0, ${transY}px, 0) scale3d(${zoom}, ${zoom}, 1)`
+        })
+        $('html').css('overflow', 'hidden')
+
+        $('.image-view-wrap').on('click', function() {
+          $(this).remove()
+          $('html').attr('style', '')
+        })
+      }
+    })
+
+    // qrcode
+    var qr = new QRious({
+      element: document.getElementById('share-qrcode'),
+      value: document.location.href
+    });
+
+  
+   
+  
+
+  })();
+</script>
+<!-- 评论 -->
+
+<script>
+    Valine && new Valine({
+              el: '#vcomments',
+              placeholder: '欢迎大家吐槽~ ',
+              appId: 's00pjsgpQfTMhup6C0IC1e5w-gzGzoHsz',
+              appKey: 'L1jipTeNE3kEt8GGtbJvGMvV',
+
+    })
+</script>
+
+
+    <div class="scroll-top">
+  <span class="arrow-icon"></span>
+</div>
+    <footer class="app-footer">
+  <div id="vcomments" style="max-width:800px"></div>
+  <p class="copyright">
+    <a href="http://tongji.baidu.com/web/welcome/ico?s=371952d9b83cd706a4702ef0c232e3de" target="_blank">...</a>
+    &copy; 2020 | Powered by 阿金
+    <br /> <a href="http://www.miitbeian.gov.cn" rel="nofollow" target="_blank"> 京ICP备18064786号-1 </a>
+  </p>
+</footer>
+<script src="/js/search.js"></script>
+
+<script>
+  function async(u, c) {
+    var d = document, t = 'script',
+      o = d.createElement(t),
+      s = d.getElementsByTagName(t)[0];
+    o.src = u;
+    if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+    s.parentNode.insertBefore(o, s);
+  }
+</script>
+<script>
+  async("//cdn.staticfile.org/fastclick/1.0.6/fastclick.min.js", function () {
+    FastClick.attach(document.body);
+  })
+</script>
+
+<script>
+  var hasLine = 'true';
+  async("//cdn.staticfile.org/highlight.js/9.12.0/highlight.min.js", function () {
+    $('figure pre').each(function (i, block) {
+      var figure = $(this).parents('figure');
+      if (hasLine === 'false') {
+        figure.find('.gutter').hide();
+      }
+      var lang = figure.attr('class').split(' ')[1] || 'code';
+      var codeHtml = $(this).html();
+      var codeTag = document.createElement('code');
+      codeTag.className = lang;
+      codeTag.innerHTML = codeHtml;
+      $(this).attr('class', '').empty().html(codeTag);
+      figure.attr('data-lang', lang.toUpperCase());
+      hljs.highlightBlock(block);
+    });
+  })
+</script>
+
+
+<script src='https://unpkg.com/mermaid@7.1.0/dist/mermaid.min.js'></script>
+<script>
+  if (window.mermaid) {
+    mermaid.initialize({ theme: 'forest' });
+  }
+</script>
+
+
+
+
+<script type="text/javascript">
+  var search_path = "search.xml";
+  if (search_path.length == 0) {
+    search_path = "search.xml";
+  }
+  var path = "/" + search_path;
+  searchFunc(path, 'local-search-input', 'local-search-result');
+</script>
+
+
+
+
+<script src="/js/script.js"></script>
+  </body>
+</html>

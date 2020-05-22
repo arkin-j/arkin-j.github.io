@@ -255,41 +255,4 @@
 
 <script src="/js/script.js"></script>
   </body>
-</html>[1] || 'code';
-      var codeHtml = $(this).html();
-      var codeTag = document.createElement('code');
-      codeTag.className = lang;
-      codeTag.innerHTML = codeHtml;
-      $(this).attr('class', '').empty().html(codeTag);
-      figure.attr('data-lang', lang.toUpperCase());
-      hljs.highlightBlock(block);
-    });
-  })
-</script>
-
-
-<script src='https://unpkg.com/mermaid@7.1.0/dist/mermaid.min.js'></script>
-<script>
-  if (window.mermaid) {
-    mermaid.initialize({ theme: 'forest' });
-  }
-</script>
-
-
-
-
-<script type="text/javascript">
-  var search_path = "search.xml";
-  if (search_path.length == 0) {
-    search_path = "search.xml";
-  }
-  var path = "/" + search_path;
-  searchFunc(path, 'local-search-input', 'local-search-result');
-</script>
-
-
-
-
-<script src="/js/script.js"></script>
-  </body>
 </html>
